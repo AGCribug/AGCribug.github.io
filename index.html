@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Hung's WebSite</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mr. Hung's Lab</h1>
+    </header>
+    <nav>
+        <button onclick="showContent('home')">Home</button>
+        <button onclick="showContent('research')">Research</button>
+        <button onclick="showContent('publications')">Publications</button>
+        <button onclick="showContent('member')">Member</button>
+        <button onclick="showContent('contact')">Contact</button>
+    </nav>
+    <div class="main-content">
+        <div id="content" class="container active">
+            <!-- Content will be loaded here dynamically -->
+        </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; 2024 Henry Hung. All Rights Reserved.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
