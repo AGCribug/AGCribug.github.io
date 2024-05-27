@@ -13,28 +13,39 @@ header {
     background-color: #333; /* 设置背景颜色为深灰色 */
     color: white; /* 设置文字颜色为白色 */
     padding: 20px 0; /* 设置内边距 */
-    text-align: center; /* 设置文字居中 */
+    display: flex; /* 使用 Flexbox 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 子元素两端对齐 */
     position: relative; /* 设置定位为相对定位 */
 }
 
 /* 设置 logo 样式 */
 .logo {
-    max-width: 200px; /* 调整 logo 图片的最大宽度 */
+    max-width: 50px; /* 调整 logo 图片的最大宽度 */
     height: auto; /* 让高度自适应以保持宽高比 */
-    margin-right: 20px; /* 添加右边距以与标题分隔 */
+    margin-left: 20px; /* 添加右边距以与标题分隔 */
 }
 
 /* 设置标题样式 */
 header h1 {
     margin: 0; /* 清除标题的外边距 */
     font-size: 36px; /* 设置标题字体大小 */
+    text-align: center; /* 居中对齐 */
+    flex-grow: 1; /* 填充剩余空间 */
+}
+
+
+/* 设置日期时间样式 */
+.date-time {
+    color: white; /* 设置文字颜色为白色 */
+    margin-right: 20px; /* 添加右边距 */
 }
 
 /* 设置导航栏样式 */
 nav {
     background-color: #444; /* 设置背景颜色为深灰色 */
     display: flex; /* 使用 Flexbox 布局 */
-    justify-content: flex-start; /* 将导航项从左侧开始排列 */
+    justify-content: center; /* 将导航项从左侧开始排列 */
     padding: 20px; /* 设置内边距 */
 }
 
