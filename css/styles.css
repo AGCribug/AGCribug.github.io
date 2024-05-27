@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+}
+header h1 {
+    margin: 0;
+}
+header .info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: right;
+}
+header .info p {
+    margin: 5px 0;
+}
+nav {
+    background-color: #444;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+nav button {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    margin: 0 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+nav button:hover {
+    background-color: #666;
+}
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+}
+.container {
+    display: none;
+    flex-grow: 1;
+    width: 100%;
+}
+.container.active {
+    display: block;
+}
+.photo-gallery {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+.photo-gallery img {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+.photo-gallery img.active {
+    display: block;
+}
+.photo-gallery .controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+}
+.photo-gallery .controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.photo-gallery .controls button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.links-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.links-section a {
+    text-decoration: none;
+    color: #333;
+    margin: 5px 0;
+}
+.links-section a:hover {
+    text-decoration: underline;
+}
+.links-section p {
+    margin: 0;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+}
