@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", function() {
     loadPart("footer", "parts/footer.html");
     loadContent("home");
 
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll(".photo-gallery img");
+
+    setInterval(() => {
+        images[currentImageIndex].classList.remove("active");
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        images[currentImageIndex].classList.add("active");
+    }, 10000);
+
     document.addEventListener("click", function(event) {
         if (event.target.tagName === "BUTTON" && event.target.hasAttribute("data-page")) {
             const page = event.target.getAttribute("data-page");
@@ -34,21 +43,19 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function initializePhotoGallery() {
-        const images = document.querySelectorAll(".photo-gallery img");
         const buttons = document.querySelectorAll(".photo-gallery .controls button");
-        let currentIndex = 0;
-
-        function showImage(index) {
-            images[currentIndex].classList.remove("active");
-            currentIndex = index;
-            images[currentIndex].classList.add("active");
-        }
 
         buttons.forEach((button, index) => {
             button.addEventListener("click", () => showImage(index));
         });
 
         showImage(0);
+    }
+
+    function showImage(index) {
+        const images = document.querySelectorAll(".photo-gallery img");
+        images.forEach(image => image.classList.remove("active"));
+        images[index].classList.add("active");
     }
 
     function updateDateTime() {
