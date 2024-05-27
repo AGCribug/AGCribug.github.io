@@ -1,115 +1,163 @@
+/* 设置全局样式 */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    margin: 0; /* 将 body 元素的外边距设为 0 */
+    font-family: Arial, sans-serif; /* 设置字体为 Arial 或系统默认 sans-serif 字体 */
+    background-color: #f0f0f0; /* 设置背景颜色为浅灰色 */
+    display: flex; /* 使用 Flexbox 布局 */
+    flex-direction: column; /* 设置主轴方向为垂直 */
+    min-height: 100vh; /* 设置最小高度为视口高度 */
 }
+
+/* 设置 header 样式 */
 header {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    position: relative;
+    background-color: #333; /* 设置背景颜色为深灰色 */
+    color: white; /* 设置文字颜色为白色 */
+    padding: 20px 0; /* 设置内边距 */
+    text-align: center; /* 设置文字居中 */
+    position: relative; /* 设置定位为相对定位 */
 }
+
+/* 设置 logo 样式 */
+.logo {
+    max-width: 200px; /* 调整 logo 图片的最大宽度 */
+    height: auto; /* 让高度自适应以保持宽高比 */
+    margin-right: 20px; /* 添加右边距以与标题分隔 */
+}
+
+/* 设置标题样式 */
 header h1 {
-    margin: 0;
-    font-size: 36px;
+    margin: 0; /* 清除标题的外边距 */
+    font-size: 36px; /* 设置标题字体大小 */
 }
+
+/* 设置导航栏样式 */
 nav {
-    background-color: #444;
-    display: flex;
-    justify-content: flex-start;
-    padding: 20px;
+    background-color: #444; /* 设置背景颜色为深灰色 */
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: flex-start; /* 将导航项从左侧开始排列 */
+    padding: 20px; /* 设置内边距 */
 }
+
+/* 设置导航按钮样式 */
 nav button {
-    background-color: #444;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    margin-right: 20px;
-    font-size: 18px;
-    cursor: pointer;
+    background-color: #444; /* 设置背景颜色为深灰色 */
+    border: none; /* 移除边框 */
+    color: white; /* 设置文字颜色为白色 */
+    padding: 10px 20px; /* 设置内边距 */
+    margin-right: 20px; /* 添加右边距 */
+    font-size: 18px; /* 设置字体大小 */
+    cursor: pointer; /* 设置鼠标样式为手型 */
 }
+
+/* 设置导航按钮悬停样式 */
 nav button:hover {
-    background-color: #666;
+    background-color: #666; /* 设置悬停时的背景颜色为深灰色 */
 }
+
+/* 设置主内容区样式 */
 .main-content {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    padding: 20px;
+    display: flex; /* 使用 Flexbox 布局 */
+    flex-grow: 1; /* 设置自动增长以填充剩余空间 */
+    justify-content: center; /* 设置水平居中 */
+    align-items: center; /* 设置垂直居中 */
+    text-align: center; /* 设置文本居中 */
+    background-color: white; /* 设置背景颜色为白色 */
+    padding: 20px; /* 设置内边距 */
 }
+
+/* 设置容器样式 */
 .container {
-    display: none;
-    flex-grow: 1;
-    width: 100%;
+    display: none; /* 默认隐藏容器 */
+    flex-grow: 1; /* 设置自动增长以填充剩余空间 */
+    width: 100%; /* 设置宽度为100% */
 }
+
+/* 设置活动容器样式 */
 .container.active {
-    display: block;
+    display: block; /* 显示活动容器 */
 }
+
+/* 设置照片画廊样式 */
 .photo-gallery {
-    position: relative;
-    width: 100%;
-    max-height: 400px;
-    overflow: hidden;
+    position: relative; /* 设置相对定位 */
+    width: 100%; /* 设置宽度为100% */
+    max-height: 400px; /* 设置最大高度 */
+    overflow: hidden; /* 隐藏溢出部分 */
 }
+
+/* 设置照片样式 */
 .photo-gallery img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: none;
+    width: 100%; /* 设置宽度为100% */
+    height: auto; /* 让高度自适应以保持宽高比 */
+    object-fit: contain; /* 缩放图片以适应容器 */
+    display: none; /* 默认隐藏图片 */
 }
+
+/* 设置活动照片样式 */
 .photo-gallery img.active {
-    display: block;
+    display: block; /* 显示活动图片 */
 }
+
+/* 设置照片画廊控制按钮样式 */
 .photo-gallery .controls {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
+    position: absolute; /* 设置绝对定位
+    bottom: 10px; /* 设置底部距离为10像素 */
+    right: 10px; /* 设置右侧距离为10像素 */
+    display: flex; /* 使用 Flexbox 布局 */
 }
+
+/* 设置照片画廊控制按钮样式 */
 .photo-gallery .controls button {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5); /* 设置背景颜色为半透明黑色 */
+    border: none; /* 移除边框 */
+    color: white; /* 设置文字颜色为白色 */
+    padding: 5px 10px; /* 设置内边距 */
+    margin: 0 5px; /* 设置外边距 */
+    cursor: pointer; /* 设置鼠标样式为手型 */
 }
+
+/* 设置照片画廊控制按钮悬停样式 */
 .photo-gallery .controls button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7); /* 设置悬停时的背景颜色为更深的半透明黑色 */
 }
+
+/* 设置链接部分样式 */
 .links-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
+    display: flex; /* 使用 Flexbox 布局 */
+    flex-direction: column; /* 设置主轴方向为垂直 */
+    align-items: flex-start; /* 将链接从左侧开始对齐 */
+    padding: 20px; /* 设置内边距 */
 }
+
+/* 设置链接项样式 */
 .link-item {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* 设置下边距 */
 }
+
+/* 设置链接样式 */
 .link-item a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 5px;
+    text-decoration: none; /* 移除下划线 */
+    color: #333; /* 设置文字颜色为深灰色 */
+    font-weight: bold; /* 设置文字加粗 */
+    margin-bottom: 5px; /* 设置下边距 */
 }
-.link-item p {
-    margin: 0;
-}
+
+/* 设置链接悬停样式 */
 .link-item a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* 添加下划线 */
 }
+
+/* 设置段落样式 */
+.link-item p {
+    margin: 0; /* 清除段落的外边距 */
+}
+
+/* 设置页脚样式 */
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    width: 100%;
+    background-color: #333; /* 设置背景颜色为深灰色 */
+    color: white; /* 设置文字颜色为白色 */
+    text-align: center; /* 设置文字居中 */
+    padding: 10px 0; /* 设置内边距 */
+    position: relative; /* 设置定位为相对定位 */
+    width: 100%; /* 设置宽度为100% */
 }
