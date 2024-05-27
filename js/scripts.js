@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     loadPart("footer", "parts/footer.html");
     loadContent("home");
 
-    document.querySelector("nav").addEventListener("click", function(event) {
-        if (event.target.tagName === "BUTTON") {
+    document.addEventListener("click", function(event) {
+        if (event.target.tagName === "BUTTON" && event.target.hasAttribute("data-page")) {
             const page = event.target.getAttribute("data-page");
             loadContent(page);
         }
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateDateTime() {
         const dateElement = document.getElementById("date");
         const timeElement = document.getElementById("time");
-        const visitorElement = document.getElementById("visitors");
 
         function update() {
             const now = new Date();
@@ -64,9 +63,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
         update();
         setInterval(update, 1000);
-
-        // Simulate visitor count (in a real scenario, this would be fetched from a server)
-        let visitorCount = 1234;
-        visitorElement.textContent = `Visitors: ${visitorCount}`;
     }
 });
