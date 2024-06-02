@@ -140,17 +140,24 @@ nav button:hover {
     padding: 20px; /* 设置内边距 */
 }
 
-/* 设置链接项样式 */
+/* 单个链接项目样式 */
 .link-item {
-    margin-bottom: 20px; /* 设置下边距 */
+    display: flex; /* 使用 Flexbox 布局，使链接和描述在同一行 */
+    align-items: center; /* 使链接和描述在垂直方向上居中对齐 */
+    margin-bottom: 20px; /* 添加底部间距，使每个链接项目之间有空隙 */
 }
 
-/* 设置链接样式 */
+/* 链接文本样式 */
 .link-item a {
-    text-decoration: none; /* 移除下划线 */
-    color: #333; /* 设置文字颜色为深灰色 */
-    font-weight: bold; /* 设置文字加粗 */
-    margin-bottom: 5px; /* 设置下边距 */
+    text-decoration: none; /* 移除默认的下划线 */
+    color: #333; /* 设置链接文本颜色 */
+    font-weight: bold; /* 使链接文本加粗 */
+    margin-right: 10px; /* 增加右边距以与描述文本分隔 */
+}
+
+/* 链接描述文本样式 */
+.link-item p {
+    margin: 0; /* 移除默认的外边距 */
 }
 
 /* 设置链接悬停样式 */

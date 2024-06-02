@@ -1,22 +1,42 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 加载页面各部分
+    // 加载网站的各个部分
     loadPart("header", "parts/header.html");
     loadPart("nav", "parts/nav.html");
     loadPart("footer", "parts/footer.html");
-    loadContent("home");
+    loadContent("home");  // 默认加载主页内容
 
-    // 初始化图片轮播的当前索引
-    let currentImageIndex = 0;
-    const images = document.querySelectorAll(".photo-gallery img");
+    let currentImageIndex = 0; // 跟踪当前图片在画廊中的索引
 
-    // 设置图片每6秒自动切换
-    setInterval(() => {
-        images[currentImageIndex].classList.remove("active");
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        images[currentImageIndex].classList.add("active");
-    }, 6000);
+    // 初始化图片画廊，设置按钮点击处理程序并开始图片轮播
+    function initializePhotoGallery() {
+        const images = document.querySelectorAll(".photo-gallery img");
+        const buttons = document.querySelectorAll(".photo-gallery .controls button");
 
-    // 监听按钮点击事件以加载相应的页面内容
+        // 每6秒自动切换图片
+        setInterval(() => {
+            images[currentImageIndex].classList.remove("active");
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add("active");
+        }, 6000);
+
+        // 为画廊按钮添加点击事件监听器以显示相应的图片
+        buttons.forEach((button, index) => {
+            button.addEventListener("click", () => showImage(index));
+        });
+
+        // 默认显示第一张图片
+        showImage(0);
+    }
+
+    // 显示画廊中的特定图片
+    function showImage(index) {
+        const images = document.querySelectorAll(".photo-gallery img");
+        images.forEach(image => image.classList.remove("active"));
+        images[index].classList.add("active");
+        currentImageIndex = index;  // 更新当前索引以匹配点击的按钮
+    }
+
+    // 处理导航按钮点击事件以加载不同的内容部分
     document.addEventListener("click", function(event) {
         if (event.target.tagName === "BUTTON" && event.target.hasAttribute("data-page")) {
             const page = event.target.getAttribute("data-page");
@@ -24,51 +44,31 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 加载部分页面的函数
+    // 加载网站部分
     function loadPart(id, url) {
         fetch(url)
             .then(response => response.text())
             .then(data => {
                 document.getElementById(id).innerHTML = data;
-                // 如果加载的是header部分，初始化日期时间显示
                 if (id === "header") {
-                    updateDateTime();
+                    updateDateTime(); // 如果是header部分，更新日期和时间
                 }
             });
     }
 
-    // 加载页面内容的函数
+    // 加载内容部分
     function loadContent(page) {
         fetch(`parts/${page}.html`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById("main-content").innerHTML = data;
-                // 如果加载的是home页面，初始化图片轮播
                 if (page === "home") {
-                    initializePhotoGallery();
+                    initializePhotoGallery(); // 如果是主页，初始化图片画廊
                 }
             });
     }
 
-    // 初始化图片轮播的函数
-    function initializePhotoGallery() {
-        const buttons = document.querySelectorAll(".photo-gallery .controls button");
-
-        buttons.forEach((button, index) => {
-            button.addEventListener("click", () => showImage(index));
-        });
-
-        showImage(0); // 显示第一张图片
-    }
-
-    // 显示指定索引图片的函数
-    function showImage(index) {
-        const images = document.querySelectorAll(".photo-gallery img");
-        images.forEach(image => image.classList.remove("active"));
-        images[index].classList.add("active");
-    }
-
-    // 更新日期和时间的函数
+    // 更新日期和时间
     function updateDateTime() {
         const dateElement = document.getElementById("date");
         const timeElement = document.getElementById("time");
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
             timeElement.textContent = now.toLocaleTimeString();
         }
 
-        update(); // 初始化时立即更新一次
-        setInterval(update, 1000); // 每秒更新一次
+        update();
+        setInterval(update, 1000); // 每秒更新一次日期和时间
     }
 });
