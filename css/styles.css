@@ -21,7 +21,7 @@ header {
 
 /* 设置 logo 样式 */
 .logo {
-    max-width: 50px; /* 调整 logo 图片的最大宽度 */
+    max-width: 80px; /* 调整 logo 图片的最大宽度 */
     height: auto; /* 让高度自适应以保持宽高比 */
     margin-left: 20px; /* 添加右边距以与标题分隔 */
 }
