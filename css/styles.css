@@ -100,8 +100,8 @@ nav button:hover {
 
 /* 设置照片样式 */
 .photo-gallery img {
-    width: 100%; /* 设置宽度为100% */
-    height: 100%; /* 设置高度为100% */
+    width: auto; /* 设置宽度为100% */
+    height: auto; /* 设置高度为100% */
     object-fit: cover; /* 缩放图片以适应容器，并保持宽高比 */
     display: none; /* 默认隐藏图片 */
 }
@@ -180,4 +180,59 @@ footer {
     padding: 10px 0; /* 设置内边距 */
     position: relative; /* 设置定位为相对定位 */
     width: 100%; /* 设置宽度为100% */
+}
+/* 设置 Publications 页面样式 */
+.publications-container {
+    padding: 20px; /* 添加内边距 */
+    background-color: white; /* 设置背景色为白色 */
+    border-radius: 8px; /* 设置边框圆角 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    width: 80%; /* 设置宽度为80% */
+    margin: 20px auto; /* 设置外边距，使其水平居中 */
+}
+
+.publications-container h2 {
+    text-align: center; /* 设置标题居中对齐 */
+    font-size: 24px; /* 设置标题字体大小 */
+    margin-bottom: 20px; /* 设置标题底部边距 */
+}
+
+.filter-bar {
+    display: flex; /* 使用 Flex 布局 */
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    margin-bottom: 20px; /* 设置底部边距 */
+}
+
+.filter-bar label {
+    margin-right: 10px; /* 设置右边距 */
+    font-size: 16px; /* 设置字体大小 */
+}
+
+.filter-bar select {
+    padding: 10px; /* 添加内边距 */
+    font-size: 16px; /* 设置字体大小 */
+    border: 1px solid #ccc; /* 设置边框 */
+    border-radius: 4px; /* 设置边框圆角 */
+}
+
+.publication-list {
+    margin-top: 20px; /* 设置顶部边距 */
+}
+
+.publication-item {
+    margin-bottom: 20px; /* 设置底部边距 */
+}
+
+.publication-item p {
+    margin: 5px 0; /* 设置段落上下边距 */
+}
+
+.publication-item a {
+    text-decoration: none; /* 移除链接下划线 */
+    color: #0066cc; /* 设置链接颜色 */
+}
+
+.publication-item a:hover {
+    text-decoration: underline; /* 鼠标悬停时显示下划线 */
 }
