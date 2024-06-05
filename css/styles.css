@@ -13,7 +13,7 @@ body {
 header {
     background-color: #333; /* 设置背景颜色为深灰色 */
     color: white; /* 设置文字颜色为白色 */
-    padding: 20px 0; /* 设置内边距 */
+    padding: 10px 0; /* 设置内边距 */
     display: flex; /* 使用 Flexbox 布局 */
     align-items: center; /* 垂直居中 */
     justify-content: space-between; /* 子元素两端对齐 */
@@ -93,16 +93,21 @@ nav button:hover {
 .photo-gallery {
     position: relative; /* 设置相对定位 */
     width: 100%; /* 设置宽度为100% */
-    height: 100%; /* 设置高度为100% */
+    height: 0; /* 初始化高度为0 */
+    padding-bottom: 50%; /* 设置底部填充，以实现1:2比例 */
     overflow: hidden; /* 隐藏溢出部分 */
     max-height: 400px; /* 设置最大高度 */
 }
 
 /* 设置照片样式 */
 .photo-gallery img {
+    position: absolute; /* 设置绝对定位 */
+    top: 50%; /* 垂直方向居中 */
+    left: 50%; /* 水平方向居中 */
     width: 100%; /* 设置宽度为100% */
-    height: auto; /* 让高度自适应以保持宽高比 */
+    height: 100%; /* 设置高度为100% */
     object-fit: cover; /* 缩放图片以适应容器，并保持宽高比 */
+    transform: translate(-50%, -50%); /* 通过平移实现居中 */
     display: none; /* 默认隐藏图片 */
 }
 
@@ -110,6 +115,7 @@ nav button:hover {
 .photo-gallery img.active {
     display: block; /* 显示当前图片 */
 }
+
 
 /* 设置照片画廊控制按钮样式 */
 .photo-gallery .controls {
