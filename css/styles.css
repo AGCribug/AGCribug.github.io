@@ -100,8 +100,8 @@ nav button:hover {
 
 /* 设置照片样式 */
 .photo-gallery img {
-    width: auto; /* 设置宽度为100% */
-    height: auto; /* 设置高度为100% */
+    width: 100%; /* 设置宽度为100% */
+    height: auto; /* 让高度自适应以保持宽高比 */
     object-fit: cover; /* 缩放图片以适应容器，并保持宽高比 */
     display: none; /* 默认隐藏图片 */
 }
