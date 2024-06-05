@@ -199,40 +199,47 @@ footer {
 
 .filter-bar {
     display: flex; /* 使用 Flex 布局 */
-    justify-content: center; /* 水平居中对齐 */
+    justify-content: space-between; /* 水平居中对齐 */
     align-items: center; /* 垂直居中对齐 */
-    margin-bottom: 20px; /* 设置底部边距 */
+    margin-bottom: 20px;
 }
 
+/* 设置 Filter by Year 标签样式 */
 .filter-bar label {
-    margin-right: 10px; /* 设置右边距 */
-    font-size: 16px; /* 设置字体大小 */
+    margin-right: 10px;
+    font-size: 16px;
 }
 
+/* 设置年份选择框样式 */
 .filter-bar select {
-    padding: 10px; /* 添加内边距 */
-    font-size: 16px; /* 设置字体大小 */
-    border: 1px solid #ccc; /* 设置边框 */
-    border-radius: 4px; /* 设置边框圆角 */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .publication-list {
-    margin-top: 20px; /* 设置顶部边距 */
+    margin-top: 20px;
 }
 
+/* 设置单个出版物条目样式 */
 .publication-item {
-    margin-bottom: 20px; /* 设置底部边距 */
+    margin-bottom: 20px;
+    text-align: left; /* 设置文本左对齐 */
 }
 
+/* 设置出版物内容样式 */
 .publication-item p {
     margin: 5px 0; /* 设置段落上下边距 */
 }
 
+/* 设置出版物链接样式 */
 .publication-item a {
     text-decoration: none; /* 移除链接下划线 */
     color: #0066cc; /* 设置链接颜色 */
 }
 
+/* 设置出版物链接悬停样式 */
 .publication-item a:hover {
     text-decoration: underline; /* 鼠标悬停时显示下划线 */
 }
