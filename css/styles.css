@@ -205,9 +205,9 @@ footer {
 
 .filter-bar {
     display: flex; /* 使用 Flex 布局 */
-    justify-content: space-between; /* 水平居中对齐 */
+    justify-content: space-between; /* 在容器中平均分配空间，使其左对齐 */
     align-items: center; /* 垂直居中对齐 */
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* 设置底部间距 */
 }
 
 /* 设置 Filter by Year 标签样式 */
