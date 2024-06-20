@@ -188,61 +188,55 @@ footer {
     width: 100%; /* 设置宽度为100% */
 }
 /* 设置 Publications 页面样式 */
-.publications-container {
-    padding: 20px; /* 添加内边距 */
-    background-color: white; /* 设置背景色为白色 */
-    border-radius: 8px; /* 设置边框圆角 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
-    width: 80%; /* 设置宽度为80% */
-    margin: 20px auto; /* 设置外边距，使其水平居中 */
+/* 设置主内容区样式 */
+.main-content {
+    display: flex; /* 使用 Flex 布局 */
+    flex-grow: 1; /* 占据剩余空间 */
+    justify-content: center; /* 子元素水平居中 */
+    align-items: center; /* 子元素垂直居中 */
+    text-align: center; /* 文本居中对齐 */
+    background-color: white; /* 设置背景颜色 */
+    padding: 20px; /* 设置内边距 */
 }
 
-.publications-container h2 {
-    text-align: center; /* 设置标题居中对齐 */
-    font-size: 24px; /* 设置标题字体大小 */
-    margin-bottom: 20px; /* 设置标题底部边距 */
+/* 设置容器样式 */
+.container {
+    display: none; /* 默认隐藏容器 */
+    flex-grow: 1; /* 占据剩余空间 */
+    width: 100%; /* 设置宽度为100% */
 }
 
+.container.active {
+    display: block; /* 显示活动容器 */
+}
+
+/* 设置出版物标题样式 */
+.publications-header {
+    text-align: center; /* 文本居中对齐 */
+    margin-bottom: 20px; /* 设置底部外边距 */
+}
+
+/* 设置筛选器栏样式 */
 .filter-bar {
     display: flex; /* 使用 Flex 布局 */
-    justify-content: space-between; /* 在容器中平均分配空间，使其左对齐 */
-    align-items: center; /* 垂直居中对齐 */
-    margin-bottom: 20px; /* 设置底部间距 */
+    justify-content: center; /* 子元素水平居中 */
+    align-items: center; /* 子元素垂直居中 */
+    margin-top: 10px; /* 设置顶部外边距 */
 }
 
-/* 设置 Filter by Year 标签样式 */
-.filter-bar label {
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-/* 设置年份选择框样式 */
-.filter-bar select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
+/* 设置出版物列表样式 */
 .publication-list {
-    margin-top: 20px;
+    text-align: left; /* 文本左对齐 */
 }
 
-/* 设置单个出版物条目样式 */
+/* 设置出版物项样式 */
 .publication-item {
-    margin-bottom: 20px;
-    text-align: left; /* 设置文本左对齐 */
+    margin-bottom: 20px; /* 设置底部外边距 */
 }
 
-/* 设置出版物内容样式 */
+/* 设置出版物项的段落样式 */
 .publication-item p {
-    margin: 5px 0; /* 设置段落上下边距 */
-}
-
-/* 设置出版物链接样式 */
-.publication-item a {
-    text-decoration: none; /* 移除链接下划线 */
-    color: #0066cc; /* 设置链接颜色 */
+    margin: 0; /* 移除段落默认的外边距 */
 }
 
 /* 设置出版物链接悬停样式 */

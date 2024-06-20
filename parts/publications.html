@@ -1,38 +1,68 @@
-<div class="publications-container">
-    <h2>Publications</h2>
-</div>
-<div class="filter-bar">
-        <label for="year-filter">Filter by Year:</label>
-        <select id="year-filter" onchange="filterPublications()">
-            <option value="all">All</option>
-            <option value="2024">2024</option>
-            <option value="2023">2023</option>
-            <!-- 根据需要添加更多年份 -->
-        </select>
-</div>
-    <div class="publication-list">
-        <div class="publication-item" data-year="2024">
-            <p>
-                <strong>Hai-Rong Wu, Rong Tan, Shi-Ping Hong, Qiong Zhou, Bang-Yu Liu, Jia-Wei Chang, Tian-Fang Luan, Ning Kang, Ji-Rui Hou</strong>
-                <br>
-                Synergistic anionic/zwitterionic mixed surfactant system with high emulsification efficiency for enhanced oil recovery in low permeability reservoirs [J].
-                <br>
-                <em>Petroleum Science, 2024, 21(2): 936-950.</em>
-                <br>
-                <a href="https://doi.org/10.1016/j.petsci.2023.12.023" target="_blank">DOI: 10.1016/j.petsci.2023.12.023</a>
-            </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Header Title</h1>
+        <div class="date-time">Date and Time</div>
+    </header>
+    <nav>
+        <button onclick="showContainer('publications-container')">Publications</button>
+        <!-- 其他导航按钮 -->
+    </nav>
+    <div class="main-content">
+        <div id="publications-container" class="container active">
+            <div class="publications-header">
+                <h2>Publications</h2>
+                <div class="filter-bar">
+                    <label for="year-filter">Filter by Year:</label>
+                    <select id="year-filter" onchange="filterPublications()">
+                        <option value="all">All</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <!-- 根据需要添加更多年份 -->
+                    </select>
+                </div>
+            </div>
+            <div class="publication-list">
+                <div class="publication-item" data-year="2024">
+                    <p>
+                        <strong>Hai-Rong Wu, Rong Tan, Shi-Ping Hong, Qiong Zhou, Bang-Yu Liu, Jia-Wei Chang, Tian-Fang Luan, Ning Kang, Ji-Rui Hou</strong><br>
+                        Synergistic anionic/zwitterionic mixed surfactant system with high emulsification efficiency for enhanced oil recovery in low permeability reservoirs [J].<br>
+                        <em>Petroleum Science, 2024, 21(2): 936-950.</em><br>
+                        <a href="https://doi.org/10.1016/j.petsci.2023.12.023" target="_blank">DOI: 10.1016/j.petsci.2023.12.023</a>
+                    </p>
+                </div>
+                <div class="publication-item" data-year="2023">
+                    <p>
+                        <strong>Author Name</strong><br>
+                        Title of the publication [J].<br>
+                        <em>Journal Name, 2023, 20(1): 123-134.</em><br>
+                        <a href="#" target="_blank">DOI: xxxxxxxx</a>
+                    </p>
+                </div>
+                <!-- 根据需要添加更多出版物 -->
+            </div>
         </div>
-        <div class="publication-item" data-year="2023">
-            <p>
-                <strong>Author Name</strong>
-                <br>
-                Title of the publication[J].
-                <br>
-                <em>Journal Name, 2023, 20(1): 123-134.</em>
-                <br>
-                <a href="#" target="_blank">DOI: xxxxxxxx</a>
-            </p>
-        </div>
-        <!-- 根据需要添加更多出版物 -->
     </div>
-</div>
+    <script>
+        function filterPublications() {
+            const year = document.getElementById('year-filter').value;
+            const items = document.querySelectorAll('.publication-item');
+            items.forEach(item => {
+                if (year === 'all' || item.dataset.year === year) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
