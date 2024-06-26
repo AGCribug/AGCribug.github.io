@@ -219,7 +219,7 @@ footer {
 /* 设置筛选器栏样式 */
 .filter-bar {
     display: flex; /* 使用 Flex 布局 */
-    justify-content: center; /* 子元素水平居中 */
+    justify-content: left; /* 子元素左对齐 */
     align-items: center; /* 子元素垂直居中 */
     margin-top: 10px; /* 设置顶部外边距 */
 }
