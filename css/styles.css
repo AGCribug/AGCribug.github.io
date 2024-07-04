@@ -47,7 +47,7 @@ nav {
     background-color: #5dade2; /* 设置背景颜色为天蓝色 */
     display: flex; /* 使用 Flexbox 布局 */
     justify-content: center; /* 将导航项从左侧开始排列 */
-    padding: 20px; /* 设置内边距 */
+    padding: 5px; /* 设置内边距 */
 }
 
 /* 设置导航按钮样式 */
@@ -55,7 +55,7 @@ nav button {
     background-color: #5dade2; /* 设置背景颜色为天蓝色 */
     border: none; /* 移除边框 */
     color: white; /* 设置文字颜色为白色 */
-    padding: 10px 20px; /* 设置内边距 */
+    padding: 5px 10px; /* 设置内边距 */
     margin-right: 20px; /* 添加右边距 */
     font-size: 18px; /* 设置字体大小 */
     cursor: pointer; /* 设置鼠标样式为手型 */
@@ -104,8 +104,8 @@ nav button:hover {
     position: absolute; /* 设置绝对定位 */
     top: 50%; /* 垂直方向居中 */
     left: 50%; /* 水平方向居中 */
-    width: 100%; /* 设置宽度为100% */
-    height: 100%; /* 设置高度为100% */
+    width: 80%; /* 设置宽度为80% */
+    height: 80%; /* 设置高度为80% */
     object-fit: cover; /* 缩放图片以适应容器，并保持宽高比 */
     transform: translate(-50%, -50%); /* 通过平移实现居中 */
     display: none; /* 默认隐藏图片 */
@@ -138,6 +138,11 @@ nav button:hover {
 /* 设置照片画廊控制按钮悬停样式 */
 .photo-gallery .controls button:hover {
     background-color: rgba(0, 0, 0, 0.7); /* 设置悬停时的背景颜色为更深的半透明黑色 */
+}
+
+/* 设置照片样式 */
+.fit-picture {
+  width: 540px;
 }
 
 /* 设置链接部分样式 */
