@@ -96,7 +96,7 @@ nav button:hover {
     height: 0; /* 初始化高度为0 */
     padding-bottom: 50%; /* 设置底部填充，以实现1:2比例 */
     overflow: hidden; /* 隐藏溢出部分 */
-    max-height: 200px; /* 设置最大高度 */
+    max-height: 400px; /* 设置最大高度 */
 }
 
 /* 设置照片样式 */
