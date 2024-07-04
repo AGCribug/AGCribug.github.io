@@ -248,3 +248,49 @@ footer {
 .publication-item a:hover {
     text-decoration: underline; /* 鼠标悬停时显示下划线 */
 }
+
+/* 设置通用文本样式 */
+.text {
+    text-align: left; /* 文本左对齐 */
+}
+
+/* 定义容器样式 */
+.box {
+    display: flex; /* 使用Flexbox布局 */
+    flex-direction: row; /* 设置为水平方向排列 */
+    justify-content: flex-start; /* 设置子元素靠左排列 */
+    gap: 10px; /* 子元素之间的间距 */
+    padding: 20px;
+}
+
+/* 定义盒子的基本样式 */
+.subbox {
+    background-color: lightblue; /* 设置背景颜色为淡蓝色 */
+    flex: 1 1 calc(25% - 20px); /* 设置盒子的自适应宽度，减去间距 */
+    height: 100px; /* 设置高度为100像素 */
+    display: flex; /* 使用Flexbox布局使内容居中 */
+    justify-content: center; /* 水平居中内容 */
+    align-items: center; /* 垂直居中内容 */
+    box-sizing: border-box; /* 包括内边距和边框在宽度和高度内 */
+}
+
+/* 响应式设计：屏幕宽度小于1200px时的样式 */
+@media (max-width: 1200px) {
+    .box {
+        flex: 1 1 calc(33.33% - 20px); /* 设置盒子的宽度为1/3 */
+    }
+}
+
+/* 响应式设计：屏幕宽度小于768px时的样式 */
+@media (max-width: 768px) {
+    .box {
+        flex: 1 1 calc(50% - 20px); /* 设置盒子的宽度为1/2 */
+    }
+}
+
+/* 响应式设计：屏幕宽度小于480px时的样式 */
+@media (max-width: 480px) {
+    .box {
+        flex: 1 1 calc(100% - 20px); /* 设置盒子的宽度为100% */
+    }
+}
