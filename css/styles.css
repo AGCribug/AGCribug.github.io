@@ -265,7 +265,7 @@ footer {
 
 /* 定义盒子的基本样式 */
 .subbox {
-    background-color: lightblue; /* 设置背景颜色为淡蓝色 */
+    background-color: white; /* 设置背景颜色为白色 */
     flex: 1 1 calc(25% - 20px); /* 设置盒子的自适应宽度，减去间距 */
     height: 100px; /* 设置高度为100像素 */
     display: flex; /* 使用Flexbox布局使内容居中 */
