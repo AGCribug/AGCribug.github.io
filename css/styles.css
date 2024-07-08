@@ -90,7 +90,7 @@ nav button:hover {
 /* 设置照片画廊样式 */
 .photo-gallery {
     position: relative; /* 设置相对定位 */
-    width: 100%; /* 设置宽度为100% */
+    width: 80%; /* 设置宽度为100% */
     height: 0; /* 初始化高度为0 */
     padding-bottom: 50%; /* 设置底部填充，以实现1:2比例 */
     overflow: hidden; /* 隐藏溢出部分 */
@@ -102,8 +102,8 @@ nav button:hover {
     position: absolute; /* 设置绝对定位 */
     top: 50%; /* 垂直方向居中 */
     left: 50%; /* 水平方向居中 */
-    width: 80%; /* 设置宽度为80% */
-    height: 80%; /* 设置高度为80% */
+    width: 100%; /* 设置宽度为100% */
+    height: 100%; /* 设置高度为100% */
     object-fit: cover; /* 缩放图片以适应容器，并保持宽高比 */
     transform: translate(-50%, -50%); /* 通过平移实现居中 */
     display: none; /* 默认隐藏图片 */
