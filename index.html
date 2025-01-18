@@ -7,10 +7,30 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="header"></div>
-    <div id="nav"></div>
+    <header>
+        <div class="header-logo">
+            <img src="images/XMU.png" alt="XMU Logo" class="XMU">
+        </div>
+        <h1>Welcome to Mr. Hung's Lab</h1>
+        <div class="header-date-time">
+            <p class="date"></p>
+            <p class="time"></p>
+        </div>
+    </header>
+    <nav>
+        <button data-page="home">Home</button>
+        <button data-page="research">Research</button>
+        <button data-page="publications">Publications</button>
+        <button data-page="member">Members</button>
+        <button data-page="contact">Contact</button>
+    </nav>
+
+    <!-- 主内容区域 -->
     <div class="main-content" id="main-content"></div>
-    <div id="footer"></div>
+
+    <footer>
+        <p>Copyright &copy; 2025 Henry Hung. All Rights Reserved.</p>
+    </footer>
 
     <script src="js/scripts.js"></script>
 </body>

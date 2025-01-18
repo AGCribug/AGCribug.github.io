@@ -80,6 +80,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         update();
-        setInterval(update, 1000); // 每秒更新一次日期和时间
+        setInterval(update, 1000); // 每1秒更新一次日期和时间
     }
 });

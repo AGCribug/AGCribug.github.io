@@ -20,11 +20,11 @@ header {
     position: relative; /* 设置定位为相对定位 */
 }
 
-/* 设置 logo 样式 */
-.logo {
+/* 设置XMU logo 样式 */
+.XMU {
     max-width: 80px; /* 调整 logo 图片的最大宽度 */
     height: auto; /* 让高度自适应以保持宽高比 */
-    margin-left: 20px; /* 添加右边距以与标题分隔 */
+    margin-left: 100px; /* 添加右边距以与标题分隔 */
 }
 
 /* 设置标题样式 */
@@ -35,9 +35,12 @@ header h1 {
     flex-grow: 1; /* 填充剩余空间 */
 }
 
-
 /* 设置日期时间样式 */
-.date-time {
+.date{
+    color: white; /* 设置文字颜色为白色 */
+    margin-right: 20px; /* 添加右边距 */
+}
+.time {
     color: white; /* 设置文字颜色为白色 */
     margin-right: 20px; /* 添加右边距 */
 }
