@@ -1,4 +1,4 @@
-/* 设置全局样式 */
+/* 1_设置全局样式 */
 body {
     margin: 0; /* 将 body 元素的外边距设为 0 */
     font-family: Arial, sans-serif; /* 设置字体为 Arial 或系统默认 sans-serif 字体 */
@@ -9,7 +9,7 @@ body {
     height: 100px; /* 根据 logo 的高度调整 header 的高度 */
 }
 
-/* 设置 header 样式 */
+/* 1.1_设置 header 样式 */
 header {
     background-color: #3498DB; /* 设置背景颜色为宝蓝色 */
     color: white; /* 设置文字颜色为白色 */
@@ -20,14 +20,14 @@ header {
     position: relative; /* 设置定位为相对定位 */
 }
 
-/* 设置XMU logo 样式 */
+/* 1.1.1_设置XMU logo 样式 */
 .XMU {
     max-width: 80px; /* 调整 logo 图片的最大宽度 */
     height: auto; /* 让高度自适应以保持宽高比 */
     margin-left: 100px; /* 添加右边距以与标题分隔 */
 }
 
-/* 设置标题样式 */
+/* 1.1.2_设置标题样式 */
 header h1 {
     margin: 0; /* 清除标题的外边距 */
     font-size: 36px; /* 设置标题字体大小 */
@@ -35,7 +35,7 @@ header h1 {
     flex-grow: 1; /* 填充剩余空间 */
 }
 
-/* 设置日期时间样式 */
+/* 1.1.3_设置日期时间样式 */
 .date{
     color: white; /* 设置文字颜色为白色 */
     margin-right: 20px; /* 添加右边距 */
