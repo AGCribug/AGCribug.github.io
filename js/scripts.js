@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadPart("header", "parts/header.html");
     loadPart("nav", "parts/nav.html");
     loadPart("footer", "parts/footer.html");
-    loadContent("home");  // 默认加载主页内容
+    loadContent("1_home");  // 默认加载主页内容
 
     let currentImageIndex = 0; // 跟踪当前图片在画廊中的索引
 
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => response.text())
             .then(data => {
                 document.getElementById("main-content").innerHTML = data;
-                if (page === "home") {
+                if (page === "1_home") {
                     initializePhotoGallery(); // 如果是主页，初始化图片画廊
                 }
             });

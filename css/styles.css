@@ -45,7 +45,7 @@ header h1 {
     margin-right: 20px; /* 添加右边距 */
 }
 
-/* 设置导航栏样式 */
+/* 2_设置导航栏样式 */
 nav {
     background-color: #5dade2; /* 设置背景颜色为天蓝色 */
     display: flex; /* 使用 Flexbox 布局 */
@@ -53,7 +53,7 @@ nav {
     padding: 5px; /* 设置内边距 */
 }
 
-/* 设置导航按钮样式 */
+/* 2.1_设置导航按钮样式 */
 nav button {
     background-color: #5dade2; /* 设置背景颜色为天蓝色 */
     border: none; /* 移除边框 */
@@ -64,12 +64,12 @@ nav button {
     cursor: pointer; /* 设置鼠标样式为手型 */
 }
 
-/* 设置导航按钮悬停样式 */
+/* 2.2_设置导航按钮悬停样式 */
 nav button:hover {
     background-color: #2980b9; /* 设置悬停时的背景颜色为深宝蓝色 */
 }
 
-/* 设置主内容区样式 */
+/* 3_设置主内容区样式 */
 .main-content {
     display: flex; /* 使用 Flexbox 布局 */
     flex-grow: 1; /* 设置自动增长以填充剩余空间 */
