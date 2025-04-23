@@ -264,7 +264,7 @@ footer {
 /* 定义容器样式 */
 .box {
     display: flex; /* 使用Flexbox布局 */
-    flex-direction: row; /* 设置为水平方向排列 */
+    flex-direction: column; /* 设置为水平方向排列 */
     justify-content: flex-start; /* 设置子元素靠左排列 */
     gap: 10px; /* 子元素之间的间距 */
     padding: 20px;
