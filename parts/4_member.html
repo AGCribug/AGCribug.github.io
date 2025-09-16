@@ -1,21 +1,83 @@
+<head>
+   <style>
+        .self-intro {
+            display: flex; /* 左右布局 */
+            gap: 30px;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .intro-left {
+            width: 100px;
+            height: auto;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .intro-right {
+            flex: 1; /* 自动填满剩余空间 */
+        }
+
+        .intro-right table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .intro-right td {
+            border: none;
+            text-align: left;
+        }
+        .intro-right th {
+            border: none;
+            text-align: left;
+        }
+    </style>
+</head>
+<p><strong>Professor<strong></p>
+
+<p><strong>Student<strong></p>
 <div class="self-intro">
-    <div>
-        <img src="images/myphoto.jpg" alt="Henry Hung">
-        <p><strong>Henry Hung</strong></p>
+    <div class="intro-left">
+        <img src="images/myphoto.jpg" alt="Henry Hong" class="profile-photo">
+        <tr>
+            <td>Henry N. Hong</td>
+        </tr>
     </div>
-    <div>
-        <p><strong>EDUCATION</strong></p>
+    <div class="intro-right">
         <table>
             <tbody>
+                <th><strong>WORK EXPERIENCE</strong></th>
                 <tr>
-                    <td>China University of Petroleum-Beijing</td>
-                    <td>M. Eng in Petroleum engineering and technology</td>
-                   <td>2021.09 - 2024.06</td>
+                    <td>Future - Future</td>
+                    <td>Somewhere in the universe</td>
+                </tr>
+                <th><strong>EDUCATION</strong></th>
+                <tr>
+                    <td>Sep 2024 - Now</td>
+                    <td>Ph.D (Supervisor: Dr. )</td>
                 </tr>
                 <tr>
-                    <td>Wuhan Institute of Technology</td>
+                    <td colspan="2">Xiamen University</td>
+                </tr>
+                <tr>
+                    <td>Sep 2021 - Jun 2024</td>
+                    <td>M. Eng in Res. & Env. Eng. (Advisor: Dr. Wu Hairong)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">China University of Petroleum-Beijing</td>
+                </tr>
+                <tr>
+                    <td>Sep 2016 - Jun 2020</td>
                     <td>B. Eng in Chemical Engineering</td>
-                    <td>2016.09 - 2020.06</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Wuhan Institute of Technology</td>
                 </tr>
             </tbody>
         </table>
