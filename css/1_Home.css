@@ -1,0 +1,63 @@
+/* 1_Home */
+/* 设置容器样式 */
+.container {
+    display: none; /* 默认隐藏容器 */
+    flex-grow: 1; /* 设置自动增长以填充剩余空间 */
+    width: 100%; /* 设置宽度为100% */
+}
+
+/* 设置活动容器样式 */
+.container.active {
+    display: block; /* 显示活动容器 */
+}
+
+/* 设置照片画廊样式 */
+.photo-gallery {
+    position: relative; /* 设置相对定位 */
+    width: 80%; /* 设置宽度为100% */
+    height: 0; /* 初始化高度为0 */
+    padding-bottom: 50%; /* 设置底部填充，以实现1:2比例 */
+    overflow: hidden; /* 隐藏溢出部分 */
+    max-height: 400px; /* 设置最大高度 */
+}
+
+/* 设置照片样式 */
+.photo-gallery img {
+    position: absolute; /* 设置绝对定位 */
+    top: 50%; /* 垂直方向居中 */
+    left: 50%; /* 水平方向居中 */
+    width: 100%; /* 设置宽度为100% */
+    height: 100%; /* 设置高度为100% */
+    object-fit: cover; /* 缩放图片以适应容器，并保持宽高比 */
+    transform: translate(-50%, -50%); /* 通过平移实现居中 */
+    display: none; /* 默认隐藏图片 */
+}
+
+/* 设置显示的照片样式 */
+.photo-gallery img.active {
+    display: block; /* 显示当前图片 */
+}
+
+
+/* 设置照片画廊控制按钮样式 */
+.photo-gallery .controls {
+    position: absolute; /* 设置绝对定位
+    bottom: 10px; /* 设置底部距离为10像素 */
+    right: 10px; /* 设置右侧距离为10像素 */
+    display: flex; /* 使用 Flexbox 布局 */
+}
+
+/* 设置照片画廊控制按钮样式 */
+.photo-gallery .controls button {
+    background-color: rgba(0, 0, 0, 0.5); /* 设置背景颜色为半透明黑色 */
+    border: none; /* 移除边框 */
+    color: white; /* 设置文字颜色为白色 */
+    padding: 5px 10px; /* 设置内边距 */
+    margin: 0 5px; /* 设置外边距 */
+    cursor: pointer; /* 设置鼠标样式为手型 */
+}
+
+/* 设置照片画廊控制按钮悬停样式 */
+.photo-gallery .controls button:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* 设置悬停时的背景颜色为更深的半透明黑色 */
+}
