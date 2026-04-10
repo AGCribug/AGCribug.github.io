@@ -71,37 +71,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-// 3_footer
-document.getElementById("year").textContent = new Date().getFullYear();
+// 实时更新时间
+function updateDateTime() {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString(); // 本地日期
+  const timeStr = now.toLocaleTimeString(); // 本地时间
+  document.querySelector(".date").textContent = dateStr;
+  document.querySelector(".time").textContent = timeStr;
+}
 
-const now = new Date();
-document.getElementById("date").textContent = now.toLocaleDateString();
+// 每秒刷新一次
+setInterval(updateDateTime, 1000);
+updateDateTime();
 
-let visits = localStorage.getItem("visits") || 0;
-visits++;
-localStorage.setItem("visits", visits);
-document.getElementById("visits").textContent = visits;
-
-
-const groups = document.querySelectorAll(".menu-group");
-
-groups.forEach(group => {
-  const btn = group.querySelector(".menu-btn");
-  const menu = group.querySelector(".menu");
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    document.querySelectorAll(".menu").forEach(m => {
-      if (m !== menu) m.style.display = "none";
-    });
-
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
-  });
-});
-
-document.addEventListener("click", () => {
-  document.querySelectorAll(".menu").forEach(m => {
-    m.style.display = "none";
-  });
-});
+// 设置 footer 年份
+document.querySelector("footer p").innerHTML =
+  `Copyright &copy; ${new Date().getFullYear()} Henry N. Hong. All Rights Reserved.`;
