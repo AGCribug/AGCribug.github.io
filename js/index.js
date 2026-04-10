@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // 默认加载首页
-    loadContent("1_home");
+    loadContent("1_home_zh");
 
     // 全局初始化接口，局部 JS 可以调用
     window.initPage = function(pageId) {
@@ -69,6 +69,19 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
+});
+// 1.3_语言切换
+// 🌐 点击地球 → 展开菜单
+document.querySelector(".lang-btn").addEventListener("click", () => {
+  const menu = document.querySelector(".lang-menu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+// 点击外部关闭
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".lang-menu-group")) {
+    document.querySelector(".lang-menu").style.display = "none";
+  }
 });
 
 // 3_footer

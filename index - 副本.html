@@ -8,37 +8,20 @@
 </head>
 <body>
     <!-- 1.顶栏 -->
-    <nav class="navbar">
-        <!-- 左：logo -->
-        <div class="nav-logo">
-            <img src="images/ENL.png" alt="ENL" class="ENL">
-        </div>
-        <!-- 中：导航按钮 -->
-        <div class="nav-center">
-            <button data-page="1_home_zh">首　　页</button>
-            <button data-page="2_research_zh">研究方向</button>
-            <button data-page="3_publications_zh">学术成果</button>
-            <button data-page="4_members_zh">组内成员</button>
-            <button data-page="5_news_zh">组内新闻</button>
-            <button data-page="6_contact_zh">联络方式</button>
-        </div>
-        <!-- 右：语言切换 -->
-        <div class="nav-right">
-            <div class="lang-menu-group">
-                <button class="lang-btn">🌐</button>
-                <div class="lang-menu">
-                    <button data-lang="en">English</button>
-                    <button data-lang="zh">简体中文</button>
-                </div>
-            </div>
-        </div>
+    <nav>
+        <button data-page="parts/1_home_zh.html">首页</button>
+        <button data-page="parts/2_research_zh.html">研究方向</button>
+        <button data-page="parts/3_publications_zh.html">学术成果</button>
+        <button data-page="parts/4_members_zh.html">组内成员</button>
+        <button data-page="parts/5_news_zh.html">组内新闻</button>
+        <button data-page="parts/6_contact_zh.html">联络方式</button>
     </nav>
     <!-- 2.主内容 -->
     <div class="main-content" id="main-content"></div>
     <!-- 3.底栏 -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- 3.1 校徽 -->
+            <!-- 1：校徽 -->
             <div class="footer-logo-box">
                 <a href="https://www.wit.edu.cn" target="_blank">
                     <img src="images/WIT.png" alt="WIT" class="WIT">
@@ -50,7 +33,7 @@
                     <img src="images/XMU.png" alt="XMU" class="XMU">
                 </a>
             </div>
-            <!-- 3.2 信息 -->
+            <!-- 2：信息 -->
             <div class="footer-info">
                 <div>
                     版权所有 © <span id="year"></span> Henry N. Hong
@@ -59,7 +42,7 @@
                     地址：福建省厦门市翔安区翔安南路4221号，361102
                 </div>
             </div>
-            <!-- 3.3 链接 -->
+            <!-- 3：按钮 -->
             <div class="footer-links">
                 <div class="menu-group">
                     <button class="menu-btn">学术资源</button>
@@ -79,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <!-- 3.4 日期 + 访问 -->
+            <!-- 4：日期 + 访问 -->
             <div class="footer-meta">
                 更新日期：<span id="date"></span> | 浏览人次：<span id="visits"></span>
             </div>
