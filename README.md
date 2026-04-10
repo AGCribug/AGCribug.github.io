@@ -1,1 +1,1 @@
-This is homepage of Henry Hong.
+This is the homepage of Henry N. Hong.
