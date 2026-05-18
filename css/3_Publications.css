@@ -1,106 +1,64 @@
 /* 3_publications */
-/* 设置主内容区样式 */
+
+/* 主内容区：移除居中，改为顶部对齐 */
 .main-content {
-    display: flex; /* 使用 Flex 布局 */
-    flex-grow: 1; /* 占据剩余空间 */
-    justify-content: center; /* 子元素水平居中 */
-    align-items: center; /* 子元素垂直居中 */
-    text-align: center; /* 文本居中对齐 */
-    background-color: white; /* 设置背景颜色 */
-    padding: 20px; /* 设置内边距 */
-}
-
-/* 设置容器样式 */
-.container {
-    display: none; /* 默认隐藏容器 */
-    flex-grow: 1; /* 占据剩余空间 */
-    width: 100%; /* 设置宽度为100% */
-}
-
-.container.active {
-    display: block; /* 显示活动容器 */
-}
-
-/* 设置出版物标题样式 */
-.publications-header {
-    text-align: center; /* 文本居中对齐 */
-    margin-bottom: 20px; /* 设置底部外边距 */
-}
-
-/* 设置筛选器栏样式 */
-.filter-bar {
-    display: flex; /* 使用 Flex 布局 */
-    justify-content: left; /* 子元素左对齐 */
-    align-items: center; /* 子元素垂直居中 */
-    margin-top: 10px; /* 设置顶部外边距 */
-}
-
-/* 设置出版物列表样式 */
-.publication-list {
-    text-align: left; /* 文本左对齐 */
-}
-
-/* 设置出版物项样式 */
-.publication-item {
-    margin-bottom: 20px; /* 设置底部外边距 */
-}
-
-/* 设置出版物项的段落样式 */
-.publication-item p {
-    margin: 0; /* 移除段落默认的外边距 */
-}
-
-/* 设置出版物链接悬停样式 */
-.publication-item a:hover {
-    text-decoration: underline; /* 鼠标悬停时显示下划线 */
-}
-
-/* 设置通用文本样式 */
-.text{
-    width: 100%; /* 宽度为 100% */
-    max-width: 800px; /* 设置最大宽度 */
-    padding: 0 20px; /* 设置左右内边距 */
-    background-color: white; /* 设置背景颜色为白色，方便区分 */
-    box-sizing: border-box; /* 包括内边距和边框在宽度和高度内 */
-}
-
-/* 定义容器样式 */
-.box {
-    display: flex; /* 使用Flexbox布局 */
-    flex-direction: column; /* 设置为水平方向排列 */
-    justify-content: flex-start; /* 设置子元素靠左排列 */
-    gap: 10px; /* 子元素之间的间距 */
+    display: flex;
+    flex-grow: 1;
+    background-color: white;
     padding: 20px;
 }
 
-/* 定义盒子的基本样式 */
-.subbox {
-    background-color: white; /* 设置背景颜色为白色 */
-    flex: 1 1 calc(25% - 20px); /* 设置盒子的自适应宽度，减去间距 */
-    height: 100px; /* 设置高度为100像素 */
-    display: flex; /* 使用Flexbox布局使内容居中 */
-    justify-content: center; /* 水平居中内容 */
-    align-items: center; /* 垂直居中内容 */
-    box-sizing: border-box; /* 包括内边距和边框在宽度和高度内 */
+/* 容器：确保宽度撑满 */
+.container {
+    width: 100%;
+    max-width: 1000px; /* 建议设置一个最大宽度，方便大屏阅读 */
+    margin: 0; /* 确保靠左 */
 }
 
-/* 响应式设计：屏幕宽度小于1200px时的样式 */
-@media (max-width: 1200px) {
-    .box {
-        flex: 1 1 calc(33.33% - 20px); /* 设置盒子的宽度为1/3 */
-    }
+/* 第一行：过滤器样式 */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* 与下方列表拉开距离 */
 }
 
-/* 响应式设计：屏幕宽度小于768px时的样式 */
+.filter-bar label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* 第二行：出版物大框 */
+.publication-list {
+    border-top: 1px solid #eee; /* 可选：加一条分割线区分过滤器 */
+    padding-top: 20px;
+}
+
+/* 每一篇文章的小框：从上到下排列 */
+.publication-item {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #fafafa; /* 可选：文章间微弱的分隔感 */
+    text-align: left; /* 强制文字靠左 */
+}
+
+.publication-item p {
+    margin: 0;
+    line-height: 1.6; /* 增加行高提高可读性 */
+}
+
+/* 链接样式 */
+.publication-item a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.publication-item a:hover {
+    text-decoration: underline;
+}
+
+/* 响应式：针对移动端微调 */
 @media (max-width: 768px) {
-    .box {
-        flex: 1 1 calc(50% - 20px); /* 设置盒子的宽度为1/2 */
-    }
-}
-
-/* 响应式设计：屏幕宽度小于480px时的样式 */
-@media (max-width: 480px) {
-    .box {
-        flex: 1 1 calc(100% - 20px); /* 设置盒子的宽度为100% */
+    .main-content {
+        padding: 15px;
     }
 }
