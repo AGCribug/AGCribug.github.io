@@ -1,4 +1,11 @@
-· This is the homepage of Henry N. Hong.
-· Mr. Hong is currently a Ph.D. student from China, focusing on radiation effect of materials.
-Support Ukraine 🇺🇦
-Stand with the people of Ukraine!
+# 🎓 Henry N. Hong
+
+Welcome to my repository! 🌐 This is the home of my personal academic website.
+
+## 🔬 About Me
+
+* 🏛️ Currently a Ph.D. student from China.
+* 📝 My research field focuses on irradiation effect of materials.
+
+---
+*Stand with Ukraine 🕊️🇺🇦*
