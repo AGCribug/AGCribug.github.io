@@ -1,9 +1,7 @@
-# 🎓 Henry N. Hong
+## 🎓 Henry N. Hong
 
-Welcome! 
+Welcome! <br>
 This is the repository for my personal academic homepage.
-
----
 
 ## 🔬 About Me
 
@@ -18,4 +16,4 @@ This website is built with a lightweight and modern architecture:
 
 ---
 
-*🕊️ Stand with Ukraine 💙💛*
+🕊️*Stand with Ukraine*💙💛
