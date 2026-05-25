@@ -1,25 +1,25 @@
 /* 3_publications */
 
-/* 主内容区：移除居中，改为顶部对齐 */
+/* 主内容区 */
 .main-content {
     display: flex;
-    flex-grow: 1;
+    justify-content: center; /* 让内部的 container 整体居中 */
     background-color: white;
-    padding: 20px;
+    padding: 20px 0; /* 上下保留内边距，左右由 container 的 margin 控制 */
 }
 
-/* 容器：确保宽度撑满 */
+/* 容器：负责整体居中和左右各40px的间距 */
 .container {
-    width: 100%;
-    max-width: 1000px; /* 建议设置一个最大宽度，方便大屏阅读 */
-    margin: 0; /* 确保靠左 */
+    width: calc(100% - 80px); /* 减去左右各40px的间距，等同于两侧留空 */
+    max-width: 1000px; /* 大屏时的最大宽度 */
+    margin: 0 auto; /* 核心：让容器水平居中 */
 }
 
 /* 第一行：过滤器样式 */
 .filter-bar {
     display: flex;
     align-items: center;
-    margin-bottom: 30px; /* 与下方列表拉开距离 */
+    margin-bottom: 30px; 
 }
 
 .filter-bar label {
@@ -29,21 +29,23 @@
 
 /* 第二行：出版物大框 */
 .publication-list {
-    border-top: 1px solid #eee; /* 可选：加一条分割线区分过滤器 */
+    border-top: 1px solid #eee; 
     padding-top: 20px;
 }
 
-/* 每一篇文章的小框：从上到下排列 */
+/* 每一篇文章的小块：独立的圆角背景块 */
 .publication-item {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed #fafafa; /* 可选：文章间微弱的分隔感 */
-    text-align: left; /* 强制文字靠左 */
+    background-color: #F8F7F2; /* 设定的背景色 */
+    border-radius: 12px; /* 倒角弧度，可根据喜好调整 */
+    padding: 20px; /* 块内部文字离边框的距离 */
+    margin-bottom: 20px; /* 块与块之间的间距 */
+    text-align: left; /* 强制文字靠左对齐 */
+    box-sizing: border-box;
 }
 
 .publication-item p {
     margin: 0;
-    line-height: 1.6; /* 增加行高提高可读性 */
+    line-height: 1.6; 
 }
 
 /* 链接样式 */
@@ -58,7 +60,10 @@
 
 /* 响应式：针对移动端微调 */
 @media (max-width: 768px) {
-    .main-content {
-        padding: 15px;
+    .container {
+        width: calc(100% - 40px); /* 移动端屏幕小，左右改留20px间距 */
+    }
+    .publication-item {
+        padding: 15px; /* 移动端内部稍微紧凑一点 */
     }
 }
