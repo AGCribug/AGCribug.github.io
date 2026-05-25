@@ -1,4 +1,4 @@
-function filterPublications() {
+window.filterPublications = function() {
     const year = document.getElementById('year-filter').value;
     const items = document.querySelectorAll('.publication-item');
     items.forEach(item => {
