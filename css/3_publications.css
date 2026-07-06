@@ -64,7 +64,7 @@
     border-radius: 12px; /* 倒角弧度，可根据喜好调整 */
     margin-bottom: 6px; /* 块与块之间的间距 */
 
-    padding: 6px 12px; /* 块内部文字离边框的距离 */
+    padding: 9px 18px; /* 块内部文字离边框的距离 */
     text-align: left; /* 强制文字靠左对齐 */
     box-sizing: border-box;
 

@@ -1,7 +1,7 @@
 /* index */
 /* 0_滚动条与页面稳定性 */
 html {
-    scrollbar-gutter: stable both-edges;
+    scrollbar-gutter: stable;
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
 }
