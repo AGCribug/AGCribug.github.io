@@ -10,7 +10,7 @@
     /* 覆盖全局居中 */
     text-align: left;
     background-color: #F8F7F2;
-    padding: 20px 0;
+    padding: 8px 0 20px;
 }
 
 /* 容器：负责整体居中和左右各40px的间距 */
