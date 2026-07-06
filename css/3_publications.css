@@ -1,13 +1,9 @@
 /* 3_publications */
-
 /* 主内容区 */
 .main-content {
     display: flex;
-    /* 整个 publications 容器仍然水平居中 */
     justify-content: center;
-    /* 关键：让内容从上方开始排，不再垂直居中 */
     align-items: flex-start;
-    /* 覆盖全局居中 */
     text-align: left;
     background-color: #FFFFFF;
     padding: 8px 0 20px;
@@ -18,9 +14,7 @@
     width: calc(100% - 80px);
     max-width: 1000px;
     margin: 0 auto;
-    /* 防止被父级 flex 布局影响 */
     align-self: flex-start;
-    /* 容器内部全部左对齐 */
     text-align: left;
     box-sizing: border-box;
 }
@@ -77,7 +71,6 @@
 .publication-item:hover {
     background-color: #F8F7F2;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
 }
 
 .publication-item p {

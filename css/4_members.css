@@ -1,30 +1,25 @@
 /* 4_members */
-
 /* 主内容区 */
 .main-content {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     text-align: left;
-
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     padding: 8px 0 20px;
 }
-
 
 /* 成员页整体容器 */
 .members-container {
     width: calc(100% - 80px);
     max-width: 1000px;
     margin: 0 auto;
-
     display: flex;
     flex-direction: column;
     gap: 28px;
-
+    text-align: left;
     box-sizing: border-box;
 }
-
 
 /* 分类标题：教授 / 学生 */
 .member-category {
@@ -35,19 +30,18 @@
     line-height: 1.4;
 }
 
-
 /* 成员卡片 */
 .member-card {
     width: 100%;
 
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 10px;
 
-    padding: 18px 20px;
-    margin-bottom: 16px;
+    padding: 6px 12px;
+    margin-bottom: 6px;
 
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border-radius: 12px;
 
     box-sizing: border-box;
@@ -57,13 +51,6 @@
         box-shadow 0.2s ease,
         transform 0.2s ease;
 }
-
-.member-card:hover {
-    background-color: #fff7df;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
-}
-
 
 /* 左侧照片与姓名 */
 .member-left {

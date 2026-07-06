@@ -43,7 +43,6 @@
 .news-item:hover {
     background-color: #F8F7F2;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
 }
 
 .news-item:last-child {
