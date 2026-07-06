@@ -1,11 +1,18 @@
-window.filterPublications = function() {
-    const year = document.getElementById('year-filter').value;
-    const items = document.querySelectorAll('.publication-item');
+window.filterPublications = function () {
+    const yearFilter = document.getElementById("year-filter");
+
+    if (!yearFilter) {
+        return;
+    }
+
+    const selectedYear = yearFilter.value;
+    const items = document.querySelectorAll(".publication-item");
+
     items.forEach(item => {
-        if (year === 'all' || item.dataset.year === year) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
+        const shouldShow =
+            selectedYear === "all" ||
+            item.dataset.year === selectedYear;
+
+        item.hidden = !shouldShow;
     });
-}
+};
