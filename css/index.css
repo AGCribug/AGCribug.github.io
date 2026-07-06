@@ -1,27 +1,45 @@
 /* index */
-/* 0_滚动条与页面稳定性 */
+/* 0_隐藏原生滚动条 */
 html {
-    scrollbar-gutter: stable;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE / old Edge */
 }
 
-/* Chrome / Edge / Safari */
 html::-webkit-scrollbar {
-    width: 8px;
+    display: none;              /* Chrome / Edge / Safari */
 }
 
-html::-webkit-scrollbar-track {
-    background: transparent;
+
+/* 0.1_自定义浮动滚动条 */
+.floating-scrollbar {
+    position: fixed;
+    top: 0;
+    right: 4px;
+
+    width: 6px;
+    height: 100vh;
+
+    pointer-events: none;
+    z-index: 9999;
+
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
-html::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.12);
-    border-radius: 999px;
+.floating-scrollbar.is-visible {
+    opacity: 1;
 }
 
-html:hover::-webkit-scrollbar-thumb {
+.floating-scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 6px;
+    min-height: 40px;
+
     background-color: rgba(0, 0, 0, 0.28);
+    border-radius: 999px;
 }
 
 body {

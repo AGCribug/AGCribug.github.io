@@ -201,6 +201,7 @@ window.initPage = function (pageId) {
     }
 
 });
+
 // 2_语言切换
 // 🌐 点击地球 → 展开菜单
 document.querySelector(".lang-btn").addEventListener("click", () => {
@@ -249,3 +250,59 @@ document.addEventListener("click", () => {
     m.style.display = "none";
   });
 });
+
+// 4_自定义浮动滚动条
+(function initFloatingScrollbar() {
+    const scrollbar = document.createElement("div");
+    scrollbar.className = "floating-scrollbar";
+
+    const thumb = document.createElement("div");
+    thumb.className = "floating-scrollbar-thumb";
+
+    scrollbar.appendChild(thumb);
+    document.body.appendChild(scrollbar);
+
+    let hideTimer = null;
+
+    function updateScrollbar() {
+        const scrollTop =
+            window.scrollY || document.documentElement.scrollTop;
+
+        const scrollHeight =
+            document.documentElement.scrollHeight;
+
+        const clientHeight =
+            document.documentElement.clientHeight;
+
+        const maxScrollTop =
+            scrollHeight - clientHeight;
+
+        // 页面没有超过一屏时，不显示滚动条
+        if (maxScrollTop <= 0) {
+            scrollbar.classList.remove("is-visible");
+            return;
+        }
+
+        const thumbHeight =
+            Math.max((clientHeight / scrollHeight) * clientHeight, 40);
+
+        const thumbTop =
+            (scrollTop / maxScrollTop) * (clientHeight - thumbHeight);
+
+        thumb.style.height = `${thumbHeight}px`;
+        thumb.style.transform = `translateY(${thumbTop}px)`;
+
+        scrollbar.classList.add("is-visible");
+
+        clearTimeout(hideTimer);
+
+        hideTimer = setTimeout(function () {
+            scrollbar.classList.remove("is-visible");
+        }, 700);
+    }
+
+    window.addEventListener("scroll", updateScrollbar);
+    window.addEventListener("resize", updateScrollbar);
+
+    updateScrollbar();
+})();
