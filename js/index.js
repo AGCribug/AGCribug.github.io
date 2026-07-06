@@ -16,10 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // 默认加载中文首页
     loadContent("1_home_zh");
 
-    // 全局初始化接口
-    window.initPage = function (pageId) {
-        console.log(`全局 initPage 已调用：${pageId}`);
-    };
+// 全局初始化接口
+window.initPage = function (pageId) {
+    console.log(`全局 initPage 已调用：${pageId}`);
+
+    // 初始化学术成果页面
+    if (
+        pageId.startsWith("3_publications") &&
+        typeof window.initPublicationsPage === "function"
+    ) {
+        window.initPublicationsPage();
+    }
+};
 
     // 加载对应的 HTML、CSS 和 JS
     function loadContent(pageId) {
