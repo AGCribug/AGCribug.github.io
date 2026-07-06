@@ -1,0 +1,202 @@
+/* 4_members */
+
+/* 主内容区 */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+
+    background-color: #ffffff;
+    padding: 8px 0 20px;
+}
+
+
+/* 成员页整体容器 */
+.members-container {
+    width: calc(100% - 80px);
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    box-sizing: border-box;
+}
+
+
+/* 分类标题：教授 / 学生 */
+.member-category {
+    margin: 0 0 16px;
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+
+/* 成员卡片 */
+.member-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    padding: 18px 20px;
+    margin-bottom: 16px;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.member-card:hover {
+    background-color: #fff7df;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+
+/* 左侧照片与姓名 */
+.member-left {
+    width: 160px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* 成员照片 */
+.profile-photo {
+    width: 120px;
+    height: 120px;
+
+    object-fit: cover;
+    border-radius: 10px;
+
+    display: block;
+}
+
+
+/* 成员姓名 */
+.member-name {
+    margin-top: 10px;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+/* 右侧表格区域 */
+.member-right {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* 履历表格 */
+.member-info-table {
+    width: 100%;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    font-size: 15px;
+    color: #222222;
+}
+
+
+/* 表格文字全部取消加粗 */
+.member-info-table th,
+.member-info-table td {
+    padding: 4px 0;
+
+    border: none;
+    vertical-align: top;
+    text-align: left;
+
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+/* “工作经历”“教育经历”这类小标题 */
+.member-info-table th {
+    display: table-cell;
+
+    padding-top: 8px;
+    padding-bottom: 6px;
+
+    color: #222222;
+    font-weight: 400;
+}
+
+
+/* 第一列：学校/单位 */
+.member-info-table td:first-child {
+    width: 55%;
+}
+
+
+/* 第二列：时间 */
+.member-info-table td:nth-child(2) {
+    width: 45%;
+
+    color: #555555;
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+/* 学位/身份这类 colspan 行 */
+.member-info-table td[colspan="2"] {
+    padding-bottom: 8px;
+
+    color: #555555;
+    font-size: 14px;
+}
+
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+    .members-container {
+        width: calc(100% - 40px);
+    }
+
+    .member-card {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        padding: 16px;
+    }
+
+    .member-left {
+        width: 100%;
+    }
+
+    .member-right {
+        width: 100%;
+    }
+
+    .member-info-table td:nth-child(2) {
+        text-align: left;
+        white-space: normal;
+    }
+}
