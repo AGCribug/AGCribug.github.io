@@ -19,9 +19,8 @@
 }
 .news-year h2 {
     margin: 0 0 16px;
-    padding-bottom: 8px;
+    padding-bottom: 0px;
     font-size: 26px;
-    border-bottom: 2px solid #1f618d;
 }
 
 /* 3_单条新闻 */
