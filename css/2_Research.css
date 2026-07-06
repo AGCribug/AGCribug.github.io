@@ -1,9 +1,106 @@
 /* 2_research */
-/* 设置照片样式 */
-.fit-picture {
-  width: 540px;
+
+/* 主内容区 */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+
+    background-color: #ffffff;
+    padding: 8px 0 20px;
 }
-/* 设置段落样式 */
-.link-item p {
-    margin: 0; /* 清除段落的外边距 */
+
+
+/* 研究方向整体容器 */
+.research-container {
+    width: calc(100% - 80px);
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    box-sizing: border-box;
+}
+
+
+/* 顶部标题：居中 */
+.research-title {
+    margin: 0 0 24px;
+
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+
+/* 正文区域：从上到下排列，无背景、无 hover */
+.research-text {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-bottom: 28px;
+
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.research-text p {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: left;
+}
+
+
+/* 图片区域：排在文字下方 */
+.research-image-section {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 4px;
+}
+
+.research-image {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+
+    display: block;
+}
+
+.research-caption {
+    margin: 12px 0 0;
+
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+}
+
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .research-container {
+        width: calc(100% - 40px);
+    }
+
+    .research-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .research-text p {
+        font-size: 15px;
+    }
 }
