@@ -26,7 +26,7 @@
 /* 3_单条新闻 */
 .news-item {
     width: 100%;
-    background-color: #F8F7F2;
+    background-color: #FFFFFF;
     border-radius: 12px;
     margin-bottom: 12px;
 
@@ -38,7 +38,7 @@
 }
 
 .news-item:hover {
-    background-color: #FFFFFF;
+    background-color: #F8F7F2;
 }
 
 .news-item:last-child {

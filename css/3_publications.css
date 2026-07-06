@@ -9,7 +9,7 @@
     align-items: flex-start;
     /* 覆盖全局居中 */
     text-align: left;
-    background-color: white;
+    background-color: #F8F7F2;
     padding: 20px 0;
 }
 
@@ -36,7 +36,7 @@
     margin-bottom: 12px;
     padding: 16px 20px;
 
-    background-color: #FFFFFF;
+    background-color: #F8F7F2;
     border-radius: 12px;
 
     text-align: left;
@@ -60,7 +60,7 @@
 
 /* 每一篇文章的小块：独立的圆角背景块 */
 .publication-item {
-    background-color: #F8F7F2; /* 设定的背景色 */
+    background-color: #FFFFFF; /* 设定的背景色 */
     border-radius: 12px; /* 倒角弧度，可根据喜好调整 */
     margin-bottom: 12px; /* 块与块之间的间距 */
 
@@ -72,7 +72,7 @@
 }
 
 .publication-item:hover {
-    background-color: #FFFFFF;
+    background-color: #F8F7F2;
 }
 
 .publication-item p {
