@@ -9,7 +9,7 @@
     align-items: flex-start;
     /* 覆盖全局居中 */
     text-align: left;
-    background-color: #F8F7F2;
+    background-color: #FFFFFF;
     padding: 8px 0 20px;
 }
 
@@ -36,7 +36,7 @@
     margin-bottom: 12px;
     padding: 16px 20px;
 
-    background-color: #F8F7F2;
+    background-color: #FFFFFF;
     border-radius: 12px;
 
     text-align: left;
@@ -68,11 +68,16 @@
     text-align: left; /* 强制文字靠左对齐 */
     box-sizing: border-box;
 
-    transition: background-color 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
 .publication-item:hover {
-    background-color: #F8F7F2;
+    background-color: #fff7df;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .publication-item p {
