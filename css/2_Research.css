@@ -20,15 +20,14 @@
 
     display: flex;
     flex-direction: column;
-    align-items: stretch;
 
     box-sizing: border-box;
 }
 
 
-/* 顶部标题：居中 */
+/* 顶部标题：单独置顶居中 */
 .research-title {
-    margin: 0 0 24px;
+    margin: 0 0 28px;
 
     text-align: center;
     font-size: 26px;
@@ -37,15 +36,28 @@
 }
 
 
-/* 正文区域：从上到下排列，无背景、无 hover */
-.research-text {
+/* 正文 + 图片：左右排列 */
+.research-body {
     width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    box-sizing: border-box;
+}
+
+
+/* 左侧正文 */
+.research-text {
+    flex: 1;
+    max-width: 520px;
 
     display: flex;
     flex-direction: column;
     gap: 16px;
-
-    margin-bottom: 28px;
 
     background: none;
     border: none;
@@ -61,20 +73,18 @@
 }
 
 
-/* 图片区域：排在文字下方 */
+/* 右侧图片 */
 .research-image-section {
-    width: 100%;
+    flex: 1;
+    max-width: 420px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-top: 4px;
 }
 
 .research-image {
     width: 100%;
-    max-width: 720px;
     height: auto;
 
     display: block;
@@ -89,7 +99,7 @@
 }
 
 
-/* 移动端适配 */
+/* 移动端：自动改回上下排列 */
 @media (max-width: 768px) {
     .research-container {
         width: calc(100% - 40px);
@@ -97,7 +107,21 @@
 
     .research-title {
         font-size: 22px;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
+    }
+
+    .research-body {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    .research-text {
+        max-width: none;
+    }
+
+    .research-image-section {
+        max-width: none;
     }
 
     .research-text p {

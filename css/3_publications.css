@@ -33,8 +33,8 @@
     gap: 10px;
 
     width: 100%;
-    margin-bottom: 12px;
-    padding: 16px 20px;
+    margin-bottom: 6px;
+    padding: 6px;
 
     background-color: #FFFFFF;
     border-radius: 12px;
@@ -62,9 +62,9 @@
 .publication-item {
     background-color: #FFFFFF; /* 设定的背景色 */
     border-radius: 12px; /* 倒角弧度，可根据喜好调整 */
-    margin-bottom: 12px; /* 块与块之间的间距 */
+    margin-bottom: 6px; /* 块与块之间的间距 */
 
-    padding: 20px; /* 块内部文字离边框的距离 */
+    padding: 6px; /* 块内部文字离边框的距离 */
     text-align: left; /* 强制文字靠左对齐 */
     box-sizing: border-box;
 
