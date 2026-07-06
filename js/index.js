@@ -3,18 +3,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const mainContent = document.getElementById("main-content");
 
-    // 事件委托：监听导航按钮点击
-    document.addEventListener("click", function (event) {
-        const button = event.target.closest("button[data-page]");
+// 事件委托：监听导航按钮点击
+document.addEventListener("click", function (event) {
+    const button = event.target.closest("button[data-page]");
 
-        if (button) {
-            const pageId = button.getAttribute("data-page");
+    if (button) {
+        const pageId = button.getAttribute("data-page");
+
+        // 点击导航时，把当前页面写入网址 hash
+        if (window.location.hash !== `#${pageId}`) {
+            window.location.hash = pageId;
+        } else {
             loadContent(pageId);
         }
-    });
+    }
+});
 
-    // 默认加载中文首页
-    loadContent("1_home_zh");
+    // 默认页面
+    const defaultPage = "1_home_zh";
+
+    // 从网址 hash 中读取当前页面
+    function getPageFromHash() {
+        const pageId = window.location.hash.replace("#", "");
+
+        return pageId || defaultPage;
+    }
+
+    // 初次进入或刷新页面时，加载 hash 对应页面
+    loadContent(getPageFromHash());
+
+    // 浏览器前进、后退，或 hash 改变时，重新加载对应页面
+    window.addEventListener("hashchange", function () {
+        loadContent(getPageFromHash());
+    });
 
 // 1.1_全局初始化接口
 window.initPage = function (pageId) {
