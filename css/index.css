@@ -1,6 +1,27 @@
 /* index */
+/* 0_滚动条与页面稳定性 */
 html {
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
+}
+
+/* Chrome / Edge / Safari */
+html::-webkit-scrollbar {
+    width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+}
+
+html:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.28);
 }
 
 body {
