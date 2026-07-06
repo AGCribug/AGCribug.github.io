@@ -25,7 +25,7 @@
 }
 
 
-/* 顶部标题：单独置顶居中 */
+/* 顶部标题：置顶居中 */
 .research-title {
     margin: 0 0 28px;
 
@@ -36,7 +36,7 @@
 }
 
 
-/* 正文 + 图片：左右排列 */
+/* 标题下面：左文字 + 右图片 */
 .research-body {
     width: 100%;
 
@@ -50,7 +50,7 @@
 }
 
 
-/* 左侧正文 */
+/* 左侧文字 */
 .research-text {
     flex: 1;
     max-width: 520px;
@@ -58,10 +58,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-
-    background: none;
-    border: none;
-    box-shadow: none;
 }
 
 .research-text p {
@@ -86,7 +82,6 @@
 .research-image {
     width: 100%;
     height: auto;
-
     display: block;
 }
 
@@ -99,7 +94,7 @@
 }
 
 
-/* 移动端：自动改回上下排列 */
+/* 移动端：改回上下排列 */
 @media (max-width: 768px) {
     .research-container {
         width: calc(100% - 40px);
@@ -116,10 +111,7 @@
         gap: 24px;
     }
 
-    .research-text {
-        max-width: none;
-    }
-
+    .research-text,
     .research-image-section {
         max-width: none;
     }
