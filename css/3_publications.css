@@ -1,25 +1,29 @@
 /* 3_publications */
-/* 主内容区 */
 .main-content {
     display: flex;
-    justify-content: center;
     align-items: flex-start;
-    text-align: left;
-    background-color: #FFFFFF;
+    justify-content: center;
+
     padding: 8px 0 20px;
+
+    background-color: #FFFFFF;
+
+    text-align: left;
 }
 
-/* 容器：负责整体居中和左右各40px的间距 */
 .container {
+    align-self: flex-start;
+
     width: calc(100% - 80px);
     max-width: 1000px;
-    margin: 0 auto;
-    align-self: flex-start;
-    text-align: left;
     box-sizing: border-box;
+
+    margin: 0 auto;
+
+    text-align: left;
 }
 
-/* 第一行：过滤器样式 */
+/* 3.1_Filter */
 .filter-bar {
     display: flex;
     align-items: center;
@@ -27,6 +31,8 @@
     gap: 10px;
 
     width: 100%;
+    box-sizing: border-box;
+
     margin-bottom: 6px;
     padding: 6px 12px;
 
@@ -34,7 +40,6 @@
     border-radius: 12px;
 
     text-align: left;
-    box-sizing: border-box;
 }
 
 .filter-bar label {
@@ -42,25 +47,27 @@
     margin-right: 10px;
 }
 
-/* 第二行：出版物大框 */
+/* 3.2_Publication List */
 .publication-list {
-    width: 100%;
-    padding-top: 0;
-
     display: flex;
     flex-direction: column;
     align-items: stretch;
+
+    width: 100%;
+
+    padding-top: 0;
 }
 
-/* 每一篇文章的小块：独立的圆角背景块 */
 .publication-item {
-    background-color: #FFFFFF; /* 设定的背景色 */
-    border-radius: 12px; /* 倒角弧度，可根据喜好调整 */
-    margin-bottom: 6px; /* 块与块之间的间距 */
-
-    padding: 9px 18px; /* 块内部文字离边框的距离 */
-    text-align: left; /* 强制文字靠左对齐 */
     box-sizing: border-box;
+
+    margin-bottom: 6px;
+    padding: 9px 18px;
+
+    background-color: #FFFFFF;
+    border-radius: 12px;
+
+    text-align: left;
 
     transition:
         background-color 0.2s ease,
@@ -79,9 +86,8 @@
     line-height: 1.6; 
 }
 
-/* 链接样式 */
 .publication-item a {
-    color: #0056b3;
+    color: #0056B3;
     text-decoration: none;
 }
 

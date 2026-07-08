@@ -1,16 +1,14 @@
 /* index */
-/* 0_隐藏原生滚动条 */
+/* 0.1_Scrollbar */
 html {
-    scrollbar-width: none;      /* Firefox */
-    -ms-overflow-style: none;   /* IE / old Edge */
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE / old Edge */
 }
 
 html::-webkit-scrollbar {
-    display: none;              /* Chrome / Edge / Safari */
+    display: none;  /* Chrome / Edge / Safari */
 }
 
-
-/* 0.1_自定义浮动滚动条 */
 .floating-scrollbar {
     position: fixed;
     top: 0;
@@ -42,63 +40,79 @@ html::-webkit-scrollbar {
     border-radius: 999px;
 }
 
+/* 0.2_Body */
 body {
     margin: 0;
+
     font-family: Arial, sans-serif;
-    background-color: #FFFFFF;
+    color: black;
+
     display: flex;
     flex-direction: column;
+
     min-height: 100vh;
-    color: black;
+
+    background-color: #FFFFFF;
 }
 
-/* 1_设置导航栏样式 */
+/* 1_Navbar */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #F8F7F2;
+
   padding: 8px 20px;
+
+  background-color: #F8F7F2;
 }
 
 /* 左侧logo */
 .nav-logo {
   display: flex;
+
   width: 40px;
   height: 40px;
+
   object-fit: contain;
 }
 
 /* 中间按钮区域 */
 .nav-center {
   display: flex;
+  gap: 10px;
+
   margin-left: auto;
   margin-right: 20px;
-  gap: 10px;
 }
 
 /* 按钮样式 */
 .nav-center button {
+  width: 100px;
+
+  padding: 6px 0;
+
   background: transparent;
   border: none;
+
   color: black;
   font-size: 16px;
-  padding: 6px 0;
-  cursor: pointer;
-  width: 100px;
   text-align: center;
+
+  cursor: pointer;
 }
 
 .nav-center button:hover {
   background-color: #00000030;
   border-radius: 8px;
+
   color: white;
 }
 
 /* 当前选中 */
 .nav-center button.active {
-  background-color: #1f618d;
+  background-color: #1F618D;
   border-radius: 4px;
+
   color: white;
 }
 
@@ -106,9 +120,11 @@ body {
 .lang-btn {
   background: transparent;
   border: none;
-  font-size: 20px;
-  cursor: pointer;
+
   color: black;
+  font-size: 20px;
+
+  cursor: pointer;
 }
 
 /* 弹出菜单 */
@@ -119,72 +135,92 @@ body {
 .lang-menu {
   display: none;
   position: absolute;
-  right: 0;
   top: 35px;
+  right: 0;
+
+  min-width: 90px;
+
+  overflow: hidden;
+
   background: white;
-  color: black;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  overflow: hidden;
-  min-width: 90px;
+
+  color: black;
 }
 
 .lang-menu button {
   display: block;
+
+  width: 100%;
+
   padding: 8px 15px;
+
   background: white;
   border: none;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
+
   color: black;
+  text-align: left;
+
+  cursor: pointer;
 }
 
 .lang-menu button:hover {
-  background: #f2f2f2;
+  background: #F2F2F2;
 }
 
-/* 2_设置主内容区样式 */
+/* 2_Main Content */
 .main-content {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #FFFFFF;
-    padding: 20px;
-    color: black;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background-color: #FFFFFF;
+
+  color: black;
+  text-align: center;
 }
 
 /* 3_footer */
 .footer {
-  background-color: #F8F7F2; 
-  color: black; 
-  padding: 12px 0;
-  width: 100%;
   display: flex;
   justify-content: center;
+
+  width: 100%;
+
+  padding: 12px 0;
+
+  background-color: #F8F7F2;
+
+  color: black;
 }
 
 .footer-container {
-  width: 100%;
-  max-width: 1100px;
-  padding: 0 20px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
+  width: 100%;
+  max-width: 1100px;
+
+  padding: 0 20px;
 }
 
 .footer-logo-box {
   display: flex;
   align-items: center;
-  padding-right: 15px;
   gap: 5px;
+
+  padding-right: 15px;
 }
 
 .footer-logo-box img {
   width: 50px;
   height: 50px;
+
   object-fit: contain;
 }
 
@@ -192,8 +228,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+
   padding-left: 15px;
-  border-left: 1px solid rgba(0,0,0,0.2); 
+
+  border-left: 1px solid rgba(0,0,0,0.2);
 }
 
 .footer-info div {
@@ -202,22 +240,27 @@ body {
 
 .footer-links {
   display: flex;
-  gap: 20px;
   align-items: center;
-  margin-left: auto; 
+  gap: 20px;
+
+  margin-left: auto;
 }
 
 .menu-btn {
-  background: #f0eee4; 
-  color: black;
-  border: none;
   padding: 5px 10px;
+
+  background: #F0EEE4;
+  border: none;
   border-radius: 4px;
+
+  color: black;
+
   cursor: pointer;
 }
 
 .menu-btn:hover {
   background: #00000030;
+
   color: white;
 }
 
@@ -228,32 +271,39 @@ body {
 .menu {
   display: none;
   position: absolute;
-  bottom: 35px;
   right: 0;
-  background: white;
-  color: #333;
-  border-radius: 6px;
-  padding: 8px 0;
+  bottom: 35px;
+
   min-width: 160px;
+
+  padding: 8px 0;
+
+  background: white;
+  border-radius: 6px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  color: #333;
 }
 
 .menu a {
   display: block;
+
   padding: 6px 12px;
-  text-decoration: none;
+
   color: #333;
+  text-decoration: none;
 }
 
 .menu a:hover {
-  background: #f2f2f2;
+  background: #F2F2F2;
 }
 
 .footer-meta {
   margin-left: 20px;
-  white-space: nowrap;
-  font-size: 14px;
+
   color: black;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
