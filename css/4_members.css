@@ -1,47 +1,44 @@
 /* 4_members */
+
 /* 主内容区 */
 .main-content {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     text-align: left;
-    background-color: #FFFFFF;
+
+    background-color: #ffffff;
     padding: 8px 0 20px;
 }
 
-/* 成员页整体容器 */
+
+/* 成员页整体容器：像学术成果一样整体居中、左右留白 */
 .members-container {
     width: calc(100% - 80px);
     max-width: 1000px;
     margin: 0 auto;
+
     display: flex;
     flex-direction: column;
     gap: 28px;
-    text-align: left;
+
     box-sizing: border-box;
 }
 
-/* 分类标题：教授 / 学生 */
-.member-category {
-    margin: 0 0 16px;
 
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.4;
-}
-
-/* 成员卡片 */
+/* 如果你的 HTML 里暂时没有 members-container，也让 member-card 自己居中 */
 .member-card {
-    width: 100%;
+    width: calc(100% - 80px);
+    max-width: 1000px;
+    margin: 0 auto 16px;
 
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 40px;
 
-    padding: 6px 12px;
-    margin-bottom: 6px;
+    padding: 18px 20px;
 
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 12px;
 
     box-sizing: border-box;
@@ -52,9 +49,33 @@
         transform 0.2s ease;
 }
 
+/* 如果 member-card 已经在 members-container 里面，就不要重复缩窄 */
+.members-container .member-card {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 16px;
+}
+
+.member-card:hover {
+    background-color: #fff7df;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+
+/* 分类标题：教授 / 学生 */
+.member-category {
+    margin: 0 0 16px;
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+
 /* 左侧照片与姓名 */
 .member-left {
-    width: 160px;
+    width: 180px;
     flex-shrink: 0;
 
     display: flex;
@@ -65,12 +86,14 @@
 }
 
 
-/* 成员照片 */
+/* 成员照片：宽高比例 2:3 */
 .profile-photo {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    aspect-ratio: 2 / 3;
 
     object-fit: cover;
+    object-position: center;
+
     border-radius: 10px;
 
     display: block;
@@ -91,9 +114,10 @@
 /* 右侧表格区域 */
 .member-right {
     flex: 1;
+    min-width: 0;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 
@@ -103,13 +127,14 @@
 
     border-collapse: collapse;
     border-spacing: 0;
+    table-layout: fixed;
 
     font-size: 15px;
     color: #222222;
 }
 
 
-/* 表格文字全部取消加粗 */
+/* 表格文字全部取消加粗，并且全部靠左 */
 .member-info-table th,
 .member-info-table td {
     padding: 4px 0;
@@ -123,46 +148,48 @@
 }
 
 
-/* “工作经历”“教育经历”这类小标题 */
+/* 工作经历 / 教育经历 */
 .member-info-table th {
-    display: table-cell;
-
-    padding-top: 8px;
+    padding-top: 0;
     padding-bottom: 6px;
 
     color: #222222;
-    font-weight: 400;
+    font-weight: 600;
+    text-align: left;
 }
 
 
-/* 第一列：学校/单位 */
+/* 第一列：单位 / 学校 */
 .member-info-table td:first-child {
     width: 55%;
+    text-align: left;
 }
 
 
-/* 第二列：时间 */
+/* 第二列：时间，也靠左，不要再跑到最右边 */
 .member-info-table td:nth-child(2) {
     width: 45%;
 
     color: #555555;
-    text-align: right;
+    text-align: left;
     white-space: nowrap;
 }
 
 
-/* 学位/身份这类 colspan 行 */
+/* 学位 / 身份这类 colspan 行 */
 .member-info-table td[colspan="2"] {
     padding-bottom: 8px;
 
     color: #555555;
     font-size: 14px;
+    text-align: left;
 }
 
 
 /* 手机端适配 */
 @media (max-width: 768px) {
-    .members-container {
+    .members-container,
+    .member-card {
         width: calc(100% - 40px);
     }
 
@@ -174,6 +201,10 @@
         padding: 16px;
     }
 
+    .members-container .member-card {
+        width: 100%;
+    }
+
     .member-left {
         width: 100%;
     }
@@ -182,8 +213,15 @@
         width: 100%;
     }
 
+    .profile-photo {
+        width: 120px;
+    }
+
+    .member-info-table {
+        table-layout: auto;
+    }
+
     .member-info-table td:nth-child(2) {
-        text-align: left;
         white-space: normal;
     }
 }
