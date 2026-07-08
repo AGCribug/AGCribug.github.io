@@ -38,8 +38,18 @@ document.addEventListener("click", function (event) {
     });
 
 // 1.1_全局初始化接口
+window.currentPageId = "1_home_zh";
+
 window.initPage = function (pageId) {
     console.log(`全局 initPage 已调用：${pageId}`);
+
+    window.currentPageId = pageId;
+
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+        navbar.classList.remove("navbar-hidden");
+    }
 
     // 初始化学术成果页面
     if (
@@ -83,6 +93,8 @@ window.initPage = function (pageId) {
 
                 // 显示主内容
                 mainContent.style.visibility = "visible";
+
+                window.scrollTo(0, 0);
 
                 // 加载当前页面 JS
                 loadPageScript(jsUrl, pageId);
@@ -305,4 +317,46 @@ document.addEventListener("click", () => {
     window.addEventListener("resize", updateScrollbar);
 
     updateScrollbar();
+})();
+
+// 5_Navbar滚动隐藏
+(function initNavbarAutoHide() {
+    const navbar = document.querySelector(".navbar");
+
+    if (!navbar) {
+        return;
+    }
+
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener("scroll", function () {
+        const currentScrollY = window.scrollY;
+        const currentPageId = window.currentPageId || "1_home_zh";
+
+        // Home 页面不启用隐藏，navbar 永远显示
+        if (currentPageId.startsWith("1_home")) {
+            navbar.classList.remove("navbar-hidden");
+            lastScrollY = currentScrollY;
+            return;
+        }
+
+        // 页面在最顶部时，navbar 永远显示
+        if (currentScrollY <= 0) {
+            navbar.classList.remove("navbar-hidden");
+            lastScrollY = currentScrollY;
+            return;
+        }
+
+        // 向下滚动：隐藏 navbar
+        if (currentScrollY > lastScrollY) {
+            navbar.classList.add("navbar-hidden");
+        }
+
+        // 向上滚动：显示 navbar
+        if (currentScrollY < lastScrollY) {
+            navbar.classList.remove("navbar-hidden");
+        }
+
+        lastScrollY = currentScrollY;
+    });
 })();

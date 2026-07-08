@@ -57,6 +57,10 @@ body {
 
 /* 1_Navbar */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,6 +68,13 @@ body {
   padding: 8px 20px;
 
   background-color: #F8F7F2;
+
+  transform: translateY(0);
+  transition: transform 0.25s ease;
+}
+
+.navbar.navbar-hidden {
+  transform: translateY(-100%);
 }
 
 /* 左侧logo */
