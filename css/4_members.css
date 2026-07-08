@@ -10,33 +10,19 @@
     padding: 8px 0 20px;
 }
 
-
-/* 成员页整体容器：像学术成果一样整体居中、左右留白 */
-.members-container {
-    width: calc(100% - 80px);
-    max-width: 1000px;
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-
-    box-sizing: border-box;
-}
-
-/* 如果你的 HTML 里暂时没有 members-container，也让 member-card 自己居中 */
+/* 成员卡片 */
 .member-card {
     width: calc(100% - 80px);
     max-width: 1000px;
     margin: 0 auto 16px;
 
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 40px;
 
     padding: 18px 20px;
 
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border-radius: 12px;
 
     box-sizing: border-box;
@@ -47,27 +33,10 @@
         transform 0.2s ease;
 }
 
-/* 如果 member-card 已经在 members-container 里面，就不要重复缩窄 */
-.members-container .member-card {
-    width: 100%;
-    max-width: none;
-    margin: 0 0 16px;
-}
-
 .member-card:hover {
     background-color: #F8F7F2;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     transform: translateY(-1px);
-}
-
-
-/* 分类标题：教授 / 学生 */
-.member-category {
-    margin: 0 0 16px;
-
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.4;
 }
 
 /* 左侧照片与姓名 */
@@ -111,9 +80,8 @@
     min-width: 0;
 
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
-
 
 /* 履历表格 */
 .member-info-table {
@@ -128,7 +96,6 @@
     color: #222222;
 }
 
-
 /* 表格文字全部取消加粗，并且全部靠左 */
 .member-info-table th,
 .member-info-table td {
@@ -142,7 +109,6 @@
     line-height: 1.6;
 }
 
-
 /* 工作经历 / 教育经历 */
 .member-info-table th {
     padding-top: 0;
@@ -150,54 +116,34 @@
 
     color: #222222;
     font-weight: 600;
-    text-align: left;
 }
 
-
-/* 第一列：单位 / 学校 */
-.member-info-table td:first-child {
-    width: auto;
+/* 表格列间距 */
+.member-info-table td {
     padding-right: 32px;
-    text-align: left;
 }
 
-/* 第二列：时间，也靠左，不要再跑到最右边 */
-.member-info-table td:nth-child(2) {
-    width: auto;
+/* 最后一列不额外留右间距 */
+.member-info-table td:last-child {
+    padding-right: 0;
+}
 
-    color: #555555;
-    text-align: left;
+/* 时间或学校等较短字段不换行 */
+.member-info-table td:nth-child(1),
+.member-info-table td:nth-child(2) {
     white-space: nowrap;
 }
 
-
-/* 学位 / 身份这类 colspan 行 */
-.member-info-table td[colspan="2"] {
-    padding-bottom: 8px;
-
-    color: #555555;
-    font-size: 14px;
-    text-align: left;
-}
-
-
 /* 手机端适配 */
 @media (max-width: 768px) {
-    .members-container,
     .member-card {
         width: calc(100% - 40px);
-    }
 
-    .member-card {
         flex-direction: column;
         align-items: center;
         gap: 16px;
 
         padding: 16px;
-    }
-
-    .members-container .member-card {
-        width: 100%;
     }
 
     .member-left {
