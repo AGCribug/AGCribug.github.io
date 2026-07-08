@@ -1,5 +1,4 @@
 /* 4_members */
-
 /* 主内容区 */
 .main-content {
     display: flex;
@@ -57,9 +56,9 @@
 }
 
 .member-card:hover {
-    background-color: #fff7df;
+    background-color: #F8F7F2;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 
@@ -72,7 +71,6 @@
     line-height: 1.4;
 }
 
-
 /* 左侧照片与姓名 */
 .member-left {
     width: 180px;
@@ -84,7 +82,6 @@
 
     text-align: center;
 }
-
 
 /* 成员照片：宽高比例 2:3 */
 .profile-photo {
@@ -99,7 +96,6 @@
     display: block;
 }
 
-
 /* 成员姓名 */
 .member-name {
     margin-top: 10px;
@@ -109,7 +105,6 @@
     line-height: 1.5;
     text-align: center;
 }
-
 
 /* 右侧表格区域 */
 .member-right {
@@ -123,11 +118,12 @@
 
 /* 履历表格 */
 .member-info-table {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
 
     border-collapse: collapse;
     border-spacing: 0;
-    table-layout: fixed;
+    table-layout: auto;
 
     font-size: 15px;
     color: #222222;
@@ -161,14 +157,14 @@
 
 /* 第一列：单位 / 学校 */
 .member-info-table td:first-child {
-    width: 55%;
+    width: auto;
+    padding-right: 32px;
     text-align: left;
 }
 
-
 /* 第二列：时间，也靠左，不要再跑到最右边 */
 .member-info-table td:nth-child(2) {
-    width: 45%;
+    width: auto;
 
     color: #555555;
     text-align: left;
