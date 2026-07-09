@@ -1,0 +1,73 @@
+/* 1_组内新闻整体容器 */
+.news-container {
+    width: calc(100% - 80px);
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* 2_年份区域 */
+.news-year {
+    width: 100%;
+}
+.news-year h2 {
+    margin: 0 0 12px;
+    padding-bottom: 0px;
+    font-size: 26px;
+}
+
+/* 3_单条新闻 */
+.news-item {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    margin-bottom: 6px;
+
+    padding: 9px 18px;
+    text-align: left;
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.news-item:hover {
+    background-color: #F8F7F2;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.news-item:last-child {
+    margin-bottom: 0;
+}
+
+.news-item p {
+    margin: 0 0 10px;
+    line-height: 1.7;
+}
+
+.news-item time {
+    display: block;
+    font-size: 14px;
+    color: #666666;
+}
+
+/* 4_手机端适配 */
+@media (max-width: 768px) {
+    .news-container {
+        width: calc(100% - 32px);
+        gap: 22px;
+    }
+    .news-item {
+        padding: 16px;
+    }
+}
