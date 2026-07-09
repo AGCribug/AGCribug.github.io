@@ -24,7 +24,7 @@
     position: relative;
 
     width: min(100%, 1080px);
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 3 / 2;
 
     overflow: hidden;
 }
