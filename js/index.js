@@ -228,7 +228,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// 3_footer
+// 3_Footer
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const now = new Date();
@@ -263,7 +263,7 @@ document.addEventListener("click", () => {
   });
 });
 
-// 4_自定义浮动滚动条
+// 4_Scrollbar
 (function initFloatingScrollbar() {
     const scrollbar = document.createElement("div");
     scrollbar.className = "floating-scrollbar";
@@ -289,7 +289,6 @@ document.addEventListener("click", () => {
         const maxScrollTop =
             scrollHeight - clientHeight;
 
-        // 页面没有超过一屏时，不显示滚动条
         if (maxScrollTop <= 0) {
             scrollbar.classList.remove("is-visible");
             return;
@@ -319,7 +318,7 @@ document.addEventListener("click", () => {
     updateScrollbar();
 })();
 
-// 5_Navbar滚动隐藏
+// 5_Navbar
 (function initNavbarAutoHide() {
     const navbar = document.querySelector(".navbar");
 
@@ -333,26 +332,22 @@ document.addEventListener("click", () => {
         const currentScrollY = window.scrollY;
         const currentPageId = window.currentPageId || "1_home_zh";
 
-        // Home 页面不启用隐藏，navbar 永远显示
         if (currentPageId.startsWith("1_home")) {
             navbar.classList.remove("navbar-hidden");
             lastScrollY = currentScrollY;
             return;
         }
 
-        // 页面在最顶部时，navbar 永远显示
         if (currentScrollY <= 0) {
             navbar.classList.remove("navbar-hidden");
             lastScrollY = currentScrollY;
             return;
         }
 
-        // 向下滚动：隐藏 navbar
         if (currentScrollY > lastScrollY) {
             navbar.classList.add("navbar-hidden");
         }
 
-        // 向上滚动：显示 navbar
         if (currentScrollY < lastScrollY) {
             navbar.classList.remove("navbar-hidden");
         }
