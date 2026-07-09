@@ -64,8 +64,8 @@
 
     padding: 0;
 
-    background-color: rgba(255, 255, 255, 0.75);
-    border: none;
+    background-color: rgba(2, 191, 2, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.85);
     border-radius: 50%;
 
     font-size: 0;
@@ -77,7 +77,7 @@
 .controls button.active {
     width: 22px;
 
-    background-color: #F8F7F2;
+    background-color: #02BF02;
     border-radius: 999px;
 }
 
