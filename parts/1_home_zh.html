@@ -1,21 +1,18 @@
-<div id="home" class="container">
-    <h2 class="welcome-text">WELCOME!</h2>
+<div class="home-container">
+    <h1 class="welcome-text">WELCOME!</h1>
     <div class="photo-gallery">
         <img src="images/[1][Princess].jpg" alt="公主" class="active">
         <img src="images/[2][zaizai].jpg" alt="旺仔">
         <div class="controls">
-            <button>1</button>
-            <button>2</button>
+            <button type="button">1</button>
+            <button type="button">2</button>
         </div>
     </div>
-    <script src="js/1_home.js"></script>
+    <section class="home-news-section">
+        <h2 class="home-section-title">最新动态</h2>
+        <div id="home-news-list" class="home-news-list"></div>
+        <button class="home-news-more" data-page="5_news_zh">
+            查看更多↗
+        </button>
+    </section>
 </div>
-<section class="home-news-section">
-    <h2 class="home-section-title">最新动态</h2>
-
-    <div id="home-news-list" class="home-news-list"></div>
-
-    <button class="home-news-more" data-page="5_news_zh">
-        查看更多 ↗
-    </button>
-</section>

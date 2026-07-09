@@ -1,15 +1,23 @@
 /* 1_home */
-.container {
+/* Home 页面整体容器 */
+.home-container {
+    width: calc(100% - 80px);
+    max-width: 1000px;
+    margin: 0 auto;
+
     display: flex;
-    flex-direction: column; /* 垂直排列 */
+    flex-direction: column;
     align-items: center;
-    gap: 20px; /* 欢迎文字和照片间距 */
+    gap: 20px;
+
+    box-sizing: border-box;
 }
 
 .welcome-text {
+    margin: 0;
+
     font-size: 36px;
     text-align: center;
-    margin: 0;
 }
 
 .photo-gallery {
@@ -44,6 +52,7 @@
     position: absolute;
     bottom: 10px;
     left: 50%;
+
     transform: translateX(-50%);
 }
 
@@ -59,9 +68,8 @@
 
 /* 1.2_Home News */
 .home-news-section {
-    width: calc(100% - 80px);
-    max-width: 1000px;
-    margin: 24px auto 0;
+    width: 100%;
+    margin: 4px auto 0;
 
     box-sizing: border-box;
     text-align: left;
