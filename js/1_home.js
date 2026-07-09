@@ -1,5 +1,12 @@
-// 1_照片展示廊
-(function initPhotoGallery() {
+// 1_Home 初始化入口
+window.initHomePage = function (pageId) {
+    initPhotoGallery();
+    loadLatestNewsToHome(pageId);
+};
+
+
+// 1.1_照片展示廊
+function initPhotoGallery() {
     const gallery = document.querySelector(".photo-gallery");
 
     if (!gallery) {
@@ -24,8 +31,8 @@
             img.classList.remove("active");
         });
 
-        buttons.forEach(btn => {
-            btn.classList.remove("active");
+        buttons.forEach(button => {
+            button.classList.remove("active");
         });
 
         images[index].classList.add("active");
@@ -38,25 +45,26 @@
     }
 
     buttons.forEach((button, index) => {
-        button.addEventListener("click", () => {
+        button.onclick = function () {
             showImage(index);
-        });
+        };
     });
 
     if (window.homeGalleryTimer) {
         clearInterval(window.homeGalleryTimer);
     }
 
-    window.homeGalleryTimer = setInterval(() => {
+    window.homeGalleryTimer = setInterval(function () {
         const nextIndex = (currentImageIndex + 1) % images.length;
         showImage(nextIndex);
     }, 6000);
 
     showImage(0);
-})();
+}
 
-// 2_首页自动读取最新新闻
-(function loadLatestNewsToHome() {
+
+// 1.2_首页自动读取最新新闻
+function loadLatestNewsToHome(pageId) {
     const homeNewsList = document.getElementById("home-news-list");
 
     if (!homeNewsList) {
@@ -64,7 +72,7 @@
     }
 
     const currentPageId =
-        window.location.hash.replace("#", "") || "1_home_zh";
+        pageId || window.location.hash.replace("#", "") || "1_home_zh";
 
     const langSuffix = currentPageId.replace("1_home", "") || "_zh";
 
@@ -104,43 +112,43 @@
         .catch(error => {
             console.warn("首页新闻加载失败：", error);
         });
+}
 
 
-    function parseNewsFromText(html) {
-        const doc = new DOMParser().parseFromString(html, "text/html");
-        const rawText = doc.body.textContent || "";
+function parseNewsFromText(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const rawText = doc.body.textContent || "";
 
-        const lines = rawText
-            .split("\n")
-            .map(line => line.trim())
-            .filter(line => line !== "");
+    const lines = rawText
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line !== "");
 
-        const items = [];
-        let currentText = [];
+    const items = [];
+    let currentText = [];
 
-        lines.forEach(line => {
-            if (line.startsWith("##")) {
-                return;
-            }
+    lines.forEach(line => {
+        if (line.startsWith("##")) {
+            return;
+        }
 
-            if (isDateLine(line)) {
-                items.push({
-                    date: line,
-                    text: currentText.join("")
-                });
+        if (isDateLine(line)) {
+            items.push({
+                date: line,
+                text: currentText.join("")
+            });
 
-                currentText = [];
-                return;
-            }
+            currentText = [];
+            return;
+        }
 
-            currentText.push(line);
-        });
+        currentText.push(line);
+    });
 
-        return items;
-    }
+    return items;
+}
 
 
-    function isDateLine(line) {
-        return /^\d{4}年\d{1,2}月\d{1,2}日$/.test(line);
-    }
-})();
+function isDateLine(line) {
+    return /^\d{4}年\d{1,2}月\d{1,2}日$/.test(line);
+}

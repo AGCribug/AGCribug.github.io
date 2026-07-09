@@ -51,7 +51,15 @@ window.initPage = function (pageId) {
         navbar.classList.remove("navbar-hidden");
     }
 
-    // 初始化学术成果页面
+    // 初始化首页
+    if (
+        pageId.startsWith("1_home") &&
+        typeof window.initHomePage === "function"
+    ) {
+        window.initHomePage(pageId);
+    }
+
+    // 初始化学术成果
     if (
         pageId.startsWith("3_publications") &&
         typeof window.initPublicationsPage === "function"
