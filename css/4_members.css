@@ -33,15 +33,6 @@
         transform 0.2s ease;
 }
 
-/* 暂时注释掉个人简介的悬浮特效 */
-/* 
-.member-card:hover {
-    background-color: #F8F7F2;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
-}
- */
-
 /* 左侧照片与姓名 */
 .member-left {
     width: 180px;
@@ -67,8 +58,18 @@
     display: block;
 }
 
-/* 成员姓名 */
-.member-name {
+/* 职工姓名 */
+.staff-name {
+    margin-bottom: 6px;
+
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #111111;
+}
+
+/* 学生姓名 */
+.student-name {
     margin-top: 10px;
 
     font-size: 15px;

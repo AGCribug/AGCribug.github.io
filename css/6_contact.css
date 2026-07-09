@@ -37,14 +37,6 @@
         transform 0.2s ease;
 }
 
-/* 暂时注释掉
-.contact-card:hover {
-    background-color: #F8F7F2;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
-}
- */
-
 /* 页面标题 */
 .contact-header {
     margin-bottom: 26px;
@@ -67,30 +59,6 @@
     color: #555555;
 }
 
-/* 个人信息 */
-.contact-profile {
-    margin-bottom: 24px;
-    padding-bottom: 20px;
-
-    border-bottom: 1px solid #EEEEEE;
-}
-
-.contact-name {
-    margin-bottom: 6px;
-
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: #111111;
-}
-
-.contact-title,
-.contact-affiliation {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #555555;
-}
-
 /* 联系方式列表 */
 .contact-list {
     display: flex;
@@ -100,9 +68,10 @@
 
 /* 单条联系方式 */
 .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    column-gap: 18px;
+    align-items: start;
 
     font-size: 16px;
     line-height: 1.7;
@@ -110,9 +79,6 @@
 
 /* 左侧标签 */
 .contact-label {
-    width: 120px;
-    flex-shrink: 0;
-
     color: #333333;
     font-weight: 600;
 }
@@ -147,7 +113,7 @@
     }
 
     .contact-item {
-        flex-direction: column;
+        flex-direction: 1fr;
         gap: 4px;
 
         font-size: 15px;
