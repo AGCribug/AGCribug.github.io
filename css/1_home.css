@@ -50,25 +50,35 @@
 
 .controls {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    right: 12px;
+    bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .controls button {
-    margin-left: 5px;
-    padding: 5px 10px;
+    width: 10px;
+    height: 10px;
 
-    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0;
+
+    background-color: rgba(255, 255, 255, 0.75);
     border: none;
-    border-radius: 4px;
+    border-radius: 50%;
 
-    color: black;
+    font-size: 0;
+    line-height: 0;
+
     cursor: pointer;
 }
 
 .controls button.active {
+    width: 22px;
+
     background-color: #1F618D;
-    color: #FFFFFF;
+    border-radius: 999px;
 }
 
 /* 1.2_Home News */

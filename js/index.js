@@ -247,7 +247,6 @@ visits++;
 localStorage.setItem("visits", visits);
 document.getElementById("visits").textContent = visits;
 
-
 const groups = document.querySelectorAll(".menu-group");
 
 groups.forEach(group => {
@@ -271,7 +270,7 @@ document.addEventListener("click", () => {
   });
 });
 
-// 4_自定义浮动滚动条
+// 4_Scrollbar
 (function initFloatingScrollbar() {
     const scrollbar = document.createElement("div");
     scrollbar.className = "floating-scrollbar";
