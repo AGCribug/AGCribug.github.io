@@ -23,7 +23,7 @@
 .photo-gallery {
     position: relative;
 
-    width: min(100%, 720px);
+    width: min(100%, 1080px);
     aspect-ratio: 2 / 1;
 
     overflow: hidden;
@@ -77,7 +77,7 @@
 .controls button.active {
     width: 22px;
 
-    background-color: #1F618D;
+    background-color: #F8F7F2;
     border-radius: 999px;
 }
 
