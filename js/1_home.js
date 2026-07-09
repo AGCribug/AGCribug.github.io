@@ -62,7 +62,6 @@ function initPhotoGallery() {
     showImage(0);
 }
 
-
 // 1.2_首页自动读取最新新闻
 function loadLatestNewsToHome(pageId) {
     const homeNewsList = document.getElementById("home-news-list");
@@ -87,21 +86,34 @@ function loadLatestNewsToHome(pageId) {
             return response.text();
         })
         .then(html => {
-            const newsItems = parseNewsFromText(html).slice(0, 3);
+            const doc = new DOMParser().parseFromString(html, "text/html");
+
+            const newsItems = Array.from(
+                doc.querySelectorAll(".news-item")
+            ).slice(0, 3);
 
             homeNewsList.innerHTML = "";
 
             newsItems.forEach(item => {
+                const sourceDate = item.querySelector(".news-date");
+                const sourceText = item.querySelector(".news-text");
+
+                if (!sourceDate || !sourceText) {
+                    return;
+                }
+
                 const newsItem = document.createElement("div");
                 newsItem.className = "home-news-item";
 
                 const date = document.createElement("span");
                 date.className = "home-news-date";
-                date.textContent = item.date;
+                date.textContent = sourceDate.textContent.trim();
 
                 const text = document.createElement("span");
                 text.className = "home-news-text";
-                text.innerHTML = item.text;
+
+                // 关键：用 innerHTML，保留 sub/sup 等标签
+                text.innerHTML = sourceText.innerHTML.trim();
 
                 newsItem.appendChild(date);
                 newsItem.appendChild(text);
@@ -112,43 +124,4 @@ function loadLatestNewsToHome(pageId) {
         .catch(error => {
             console.warn("首页新闻加载失败：", error);
         });
-}
-
-
-function parseNewsFromText(html) {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const rawText = doc.body.textContent || "";
-
-    const lines = rawText
-        .split("\n")
-        .map(line => line.trim())
-        .filter(line => line !== "");
-
-    const items = [];
-    let currentText = [];
-
-    lines.forEach(line => {
-        if (line.startsWith("##")) {
-            return;
-        }
-
-        if (isDateLine(line)) {
-            items.push({
-                date: line,
-                text: currentText.join("")
-            });
-
-            currentText = [];
-            return;
-        }
-
-        currentText.push(line);
-    });
-
-    return items;
-}
-
-
-function isDateLine(line) {
-    return /^\d{4}年\d{1,2}月\d{1,2}日$/.test(line);
 }
