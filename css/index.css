@@ -36,6 +36,9 @@ html::-webkit-scrollbar {
     width: 6px;
     min-height: 40px;
 
+    pointer-events: auto;
+    cursor: pointer;
+
     background-color: rgba(0, 0, 0, 0.28);
     border-radius: 999px;
 }

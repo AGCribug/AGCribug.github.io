@@ -271,7 +271,7 @@ document.addEventListener("click", () => {
   });
 });
 
-// 4_Scrollbar
+// 4_自定义浮动滚动条
 (function initFloatingScrollbar() {
     const scrollbar = document.createElement("div");
     scrollbar.className = "floating-scrollbar";
@@ -283,8 +283,11 @@ document.addEventListener("click", () => {
     document.body.appendChild(scrollbar);
 
     let hideTimer = null;
+    let isDragging = false;
+    let dragStartY = 0;
+    let startScrollTop = 0;
 
-    function updateScrollbar() {
+    function getScrollInfo() {
         const scrollTop =
             window.scrollY || document.documentElement.scrollTop;
 
@@ -297,28 +300,98 @@ document.addEventListener("click", () => {
         const maxScrollTop =
             scrollHeight - clientHeight;
 
-        if (maxScrollTop <= 0) {
-            scrollbar.classList.remove("is-visible");
-            return;
-        }
-
         const thumbHeight =
             Math.max((clientHeight / scrollHeight) * clientHeight, 40);
 
-        const thumbTop =
-            (scrollTop / maxScrollTop) * (clientHeight - thumbHeight);
+        const maxThumbTop =
+            clientHeight - thumbHeight;
 
-        thumb.style.height = `${thumbHeight}px`;
-        thumb.style.transform = `translateY(${thumbTop}px)`;
+        return {
+            scrollTop,
+            scrollHeight,
+            clientHeight,
+            maxScrollTop,
+            thumbHeight,
+            maxThumbTop
+        };
+    }
 
+    function showScrollbar() {
         scrollbar.classList.add("is-visible");
 
         clearTimeout(hideTimer);
 
-        hideTimer = setTimeout(function () {
-            scrollbar.classList.remove("is-visible");
-        }, 700);
+        if (!isDragging) {
+            hideTimer = setTimeout(function () {
+                scrollbar.classList.remove("is-visible");
+            }, 700);
+        }
     }
+
+    function updateScrollbar() {
+        const info = getScrollInfo();
+
+        if (info.maxScrollTop <= 0) {
+            scrollbar.classList.remove("is-visible");
+            return;
+        }
+
+        const thumbTop =
+            (info.scrollTop / info.maxScrollTop) * info.maxThumbTop;
+
+        thumb.style.height = `${info.thumbHeight}px`;
+        thumb.style.transform = `translateY(${thumbTop}px)`;
+
+        showScrollbar();
+    }
+
+    thumb.addEventListener("mousedown", function (event) {
+        event.preventDefault();
+
+        isDragging = true;
+        dragStartY = event.clientY;
+        startScrollTop =
+            window.scrollY || document.documentElement.scrollTop;
+
+        scrollbar.classList.add("is-visible");
+        clearTimeout(hideTimer);
+
+        document.body.style.userSelect = "none";
+    });
+
+    window.addEventListener("mousemove", function (event) {
+        if (!isDragging) {
+            return;
+        }
+
+        const info = getScrollInfo();
+
+        if (info.maxScrollTop <= 0 || info.maxThumbTop <= 0) {
+            return;
+        }
+
+        const deltaY = event.clientY - dragStartY;
+        const scrollDelta =
+            (deltaY / info.maxThumbTop) * info.maxScrollTop;
+
+        window.scrollTo({
+            top: startScrollTop + scrollDelta,
+            behavior: "auto"
+        });
+
+        updateScrollbar();
+    });
+
+    window.addEventListener("mouseup", function () {
+        if (!isDragging) {
+            return;
+        }
+
+        isDragging = false;
+        document.body.style.userSelect = "";
+
+        updateScrollbar();
+    });
 
     window.addEventListener("scroll", updateScrollbar);
     window.addEventListener("resize", updateScrollbar);
