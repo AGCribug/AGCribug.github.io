@@ -69,7 +69,7 @@
 /* 单条联系方式 */
 .contact-item {
     display: grid;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 70px 1fr;
     column-gap: 18px;
     align-items: start;
 
