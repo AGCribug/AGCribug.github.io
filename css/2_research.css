@@ -3,8 +3,9 @@
 /* 主内容区 */
 .main-content {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     text-align: left;
 
     background-color: #FFFFFF;
