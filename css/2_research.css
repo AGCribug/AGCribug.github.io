@@ -17,7 +17,7 @@
 .research-container {
     width: calc(100% - 80px);
     max-width: 1000px;
-    margin: 0 auto 12px;
+    margin: 24px auto ;
 
     display: flex;
     flex-direction: column;
@@ -25,6 +25,9 @@
     box-sizing: border-box;
 }
 
+.research-container:last-child {
+    margin-bottom: 0;
+}
 
 /* 顶部标题：置顶居中 */
 .research-title {
@@ -35,7 +38,6 @@
     font-weight: 700;
     line-height: 1.4;
 }
-
 
 /* 标题下面：左文字 + 右图片 */
 .research-body {
@@ -49,7 +51,6 @@
 
     box-sizing: border-box;
 }
-
 
 /* 左侧文字 */
 .research-text {
@@ -68,7 +69,6 @@
     line-height: 1.8;
     text-align: left;
 }
-
 
 /* 右侧图片 */
 .research-image-section {
@@ -93,7 +93,6 @@
     color: #666666;
     text-align: center;
 }
-
 
 /* 移动端：改回上下排列 */
 @media (max-width: 768px) {
