@@ -25,10 +25,6 @@
     box-sizing: border-box;
 }
 
-.research-container:last-child {
-    margin-bottom: 0;
-}
-
 /* 顶部标题：置顶居中 */
 .research-title {
     margin: 0 0 28px;
