@@ -17,7 +17,7 @@
 .research-container {
     width: calc(100% - 80px);
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto 12px;
 
     display: flex;
     flex-direction: column;
