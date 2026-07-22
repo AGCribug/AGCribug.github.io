@@ -3,80 +3,111 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const mainContent = document.getElementById("main-content");
 
-// 事件委托：监听导航按钮点击
-document.addEventListener("click", function (event) {
-    const button = event.target.closest("button[data-page]");
-
-    if (button) {
-        const pageId = button.getAttribute("data-page");
-
-        // 点击导航时，把当前页面写入网址 hash
-        if (window.location.hash !== `#${pageId}`) {
-            window.location.hash = pageId;
-        } else {
-            loadContent(pageId);
-        }
-    }
-});
-
     // 默认页面
-    const defaultPage = "1_home_zh";
+    const defaultPage = "1_home_sc";
 
-    // 从网址 hash 中读取当前页面
+    // 1.1_从网址 hash 中读取当前页面
     function getPageFromHash() {
         const pageId = window.location.hash.replace("#", "");
 
         return pageId || defaultPage;
     }
 
-    // 初次进入或刷新页面时，加载 hash 对应页面
-    loadContent(getPageFromHash());
+    // 1.2_语言识别
+    function getLangFromPageId(pageId) {
+        if (pageId.endsWith("_sc")) {
+            return "sc";
+        }
 
-    // 浏览器前进、后退，或 hash 改变时，重新加载对应页面
-    window.addEventListener("hashchange", function () {
-        loadContent(getPageFromHash());
+        if (pageId.endsWith("_tc")) {
+            return "tc";
+        }
+
+        if (pageId.endsWith("_en")) {
+            return "en";
+        }
+
+        return "sc";
+    }
+
+    function getBasePageId(pageId) {
+        return pageId.replace(/_(sc|tc|en)$/, "");
+    }
+
+    function getLangLabel(lang) {
+        if (lang === "sc") {
+            return "简中";
+        }
+
+        if (lang === "tc") {
+            return "繁中";
+        }
+
+        if (lang === "en") {
+            return "EN";
+        }
+
+        return "简中";
+    }
+
+    // 1.3_事件委托：监听导航按钮点击
+    document.addEventListener("click", function (event) {
+        const button = event.target.closest("button[data-base-page]");
+
+        if (!button) {
+            return;
+        }
+
+        const basePageId = button.getAttribute("data-base-page");
+        const currentLang = getLangFromPageId(getPageFromHash());
+        const pageId = `${basePageId}_${currentLang}`;
+
+        if (window.location.hash !== `#${pageId}`) {
+            window.location.hash = pageId;
+        } else {
+            loadContent(pageId);
+        }
     });
 
-// 1.1_全局初始化接口
-window.currentPageId = "1_home_zh";
+    // 1.4_全局初始化接口
+    window.currentPageId = defaultPage;
 
-window.initPage = function (pageId) {
-    console.log(`全局 initPage 已调用：${pageId}`);
+    window.initPage = function (pageId) {
+        console.log(`全局 initPage 已调用：${pageId}`);
 
-    window.currentPageId = pageId;
+        window.currentPageId = pageId;
 
-    const navbar = document.querySelector(".navbar");
+        const navbar = document.querySelector(".navbar");
 
-    if (navbar) {
-        navbar.classList.remove("navbar-hidden");
-    }
+        if (navbar) {
+            navbar.classList.remove("navbar-hidden");
+        }
 
-    // 初始化首页
-    if (
-        pageId.startsWith("1_home") &&
-        typeof window.initHomePage === "function"
-    ) {
-        window.initHomePage(pageId);
-    }
+        // 初始化首页
+        if (
+            pageId.startsWith("1_home") &&
+            typeof window.initHomePage === "function"
+        ) {
+            window.initHomePage(pageId);
+        }
 
-    // 初始化学术成果
-    if (
-        pageId.startsWith("3_publications") &&
-        typeof window.initPublicationsPage === "function"
-    ) {
-        window.initPublicationsPage();
-    }
-};
+        // 初始化学术成果
+        if (
+            pageId.startsWith("3_publications") &&
+            typeof window.initPublicationsPage === "function"
+        ) {
+            window.initPublicationsPage();
+        }
+    };
 
-// 1.2_加载对应的 HTML、CSS 和 JS
+    // 1.5_加载对应的 HTML、CSS 和 JS
     function loadContent(pageId) {
 
         // HTML 文件保留语言后缀
         const htmlUrl = `parts/${pageId}.html`;
 
-        const assetId = pageId.replace(/_(zh|en)$/, "");
-
-        // 中英文页面共用同名 CSS 和 JS
+        // 三种语言页面共用同名 CSS 和 JS
+        const assetId = pageId.replace(/_(sc|tc|en)$/, "");
         const cssUrl = `css/${assetId}.css`;
         const jsUrl = `js/${assetId}.js`;
 
@@ -104,6 +135,8 @@ window.initPage = function (pageId) {
 
                 window.scrollTo(0, 0);
 
+                updateLanguageSwitcher(pageId);
+
                 // 加载当前页面 JS
                 loadPageScript(jsUrl, pageId);
             })
@@ -114,7 +147,7 @@ window.initPage = function (pageId) {
             });
     }
 
-    // 加载当前页面 CSS
+    // 1.6_加载当前页面 CSS
     function loadPageCss(cssUrl) {
         return new Promise(resolve => {
             const existingLink =
@@ -167,7 +200,7 @@ window.initPage = function (pageId) {
         });
     }
 
-    // 加载当前页面 JS
+    // 1.7_加载当前页面 JS
     function loadPageScript(jsUrl, pageId) {
         const oldScript =
             document.getElementById("page-script");
@@ -220,20 +253,85 @@ window.initPage = function (pageId) {
             });
     }
 
-});
+    // 2_语言切换
+    function updateLanguageSwitcher(pageId) {
+        const langSwitcher = document.querySelector(".lang-switcher");
+        const currentText = document.getElementById("lang-current-text");
+        const langArrow = document.getElementById("lang-arrow");
+        const langMenu = document.getElementById("lang-menu");
 
-// 2_语言切换
-// 🌐 点击地球 → 展开菜单
-document.querySelector(".lang-btn").addEventListener("click", () => {
-  const menu = document.querySelector(".lang-menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-});
+        if (!langSwitcher || !currentText || !langArrow || !langMenu) {
+            return;
+        }
 
-// 点击外部关闭
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".lang-menu-group")) {
-    document.querySelector(".lang-menu").style.display = "none";
-  }
+        const currentLang = getLangFromPageId(pageId);
+
+        currentText.textContent = getLangLabel(currentLang);
+        langArrow.textContent = "↓";
+        langSwitcher.classList.remove("is-open");
+
+        const langButtons = langMenu.querySelectorAll("button[data-lang]");
+
+        langButtons.forEach(button => {
+            const buttonLang = button.getAttribute("data-lang");
+
+            button.hidden = buttonLang === currentLang;
+            button.textContent = getLangLabel(buttonLang);
+        });
+    }
+
+    function initLanguageSwitcher() {
+        const langSwitcher = document.querySelector(".lang-switcher");
+        const langToggle = document.getElementById("lang-toggle");
+        const langArrow = document.getElementById("lang-arrow");
+        const langMenu = document.getElementById("lang-menu");
+
+        if (!langSwitcher || !langToggle || !langArrow || !langMenu) {
+            return;
+        }
+
+        langToggle.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const isOpen = langSwitcher.classList.toggle("is-open");
+            langArrow.textContent = isOpen ? "↑" : "↓";
+        });
+
+        langMenu.addEventListener("click", function (event) {
+            const button = event.target.closest("button[data-lang]");
+
+            if (!button) {
+                return;
+            }
+
+            const targetLang = button.getAttribute("data-lang");
+            const currentPageId = getPageFromHash();
+            const basePageId = getBasePageId(currentPageId);
+            const targetPageId = `${basePageId}_${targetLang}`;
+
+            langSwitcher.classList.remove("is-open");
+            langArrow.textContent = "↓";
+
+            window.location.hash = targetPageId;
+        });
+
+        document.addEventListener("click", function () {
+            langSwitcher.classList.remove("is-open");
+            langArrow.textContent = "↓";
+        });
+    }
+
+    // 2.1_初始化语言切换
+    initLanguageSwitcher();
+
+    // 2.2_初次进入或刷新页面时，加载 hash 对应页面
+    loadContent(getPageFromHash());
+
+    // 2.3_浏览器前进、后退，或 hash 改变时，重新加载对应页面
+    window.addEventListener("hashchange", function () {
+        loadContent(getPageFromHash());
+    });
+
 });
 
 // 3_Footer
@@ -410,7 +508,7 @@ document.addEventListener("click", () => {
 
     window.addEventListener("scroll", function () {
         const currentScrollY = window.scrollY;
-        const currentPageId = window.currentPageId || "1_home_zh";
+        const currentPageId = window.currentPageId || "1_home_sc";
 
         if (currentPageId.startsWith("1_home")) {
             navbar.classList.remove("navbar-hidden");
