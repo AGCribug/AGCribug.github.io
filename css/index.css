@@ -130,57 +130,96 @@ body {
   color: white;
 }
 
-/* 右侧语言按钮 */
-.lang-btn {
-  background: transparent;
-  border: none;
+/* 右侧语言切换 */
+.lang-switcher {
+  position: relative;
 
-  color: black;
-  font-size: 20px;
-
-  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-/* 弹出菜单 */
-.lang-menu-group {
-  position: relative;
+.lang-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  min-width: 62px;
+  padding: 6px 10px;
+
+  background-color: #F8F7F2;
+  border: none;
+  border-radius: 8px;
+
+  color: black;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.lang-current:hover {
+  background-color: #F8F7F2;
+
+  color: #02BF02;
+}
+
+#lang-arrow {
+  font-size: 12px;
+  line-height: 1;
 }
 
 .lang-menu {
   display: none;
+
   position: absolute;
-  top: 35px;
+  top: calc(100% + 8px);
   right: 0;
 
-  min-width: 90px;
+  min-width: 62px;
+  padding: 6px 0;
 
   overflow: hidden;
 
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background-color: #F8F7F2;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
   color: black;
+
+  z-index: 1001;
+}
+
+.lang-switcher.is-open .lang-menu {
+  display: block;
 }
 
 .lang-menu button {
   display: block;
 
   width: 100%;
+  padding: 8px 14px;
 
-  padding: 8px 15px;
-
-  background: white;
+  background-color: #F8F7F2;
   border: none;
 
   color: black;
-  text-align: left;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
 
   cursor: pointer;
 }
 
 .lang-menu button:hover {
-  background: #F2F2F2;
+  background-color: #F8F7F2;
+
+  color: #02BF02;
 }
 
 /* 2_Main Content */

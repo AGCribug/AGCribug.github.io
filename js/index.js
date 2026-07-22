@@ -36,18 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getLangLabel(lang) {
         if (lang === "sc") {
-            return "简中";
+            return "简";
         }
 
         if (lang === "tc") {
-            return "繁中";
+            return "正";
         }
 
         if (lang === "en") {
             return "EN";
         }
 
-        return "简中";
+        return "简";
     }
 
     // 1.3_事件委托：监听导航按钮点击
