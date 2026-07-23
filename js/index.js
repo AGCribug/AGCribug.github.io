@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 1.5_加载对应的 HTML、CSS 和 JS
     function loadContent(pageId) {
+        updateLanguageSwitcher(pageId);
 
         // HTML 文件保留语言后缀
         const htmlUrl = `parts/${pageId}.html`;
@@ -134,8 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 mainContent.style.visibility = "visible";
 
                 window.scrollTo(0, 0);
-
-                updateLanguageSwitcher(pageId);
 
                 // 加载当前页面 JS
                 loadPageScript(jsUrl, pageId);
@@ -266,21 +265,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const currentLang = getLangFromPageId(pageId);
 
+        // 更新未展开时显示的当前语言
         currentText.textContent = getLangLabel(currentLang);
+
+        // 关闭菜单并恢复箭头
         langArrow.textContent = "↓";
         langSwitcher.classList.remove("is-open");
 
-        const langButtons = langMenu.querySelectorAll("button[data-lang]");
+        // 每种语言状态下，菜单中需要显示的另外两种语言
+        const menuOrder = {
+            sc: ["tc", "en"],
+            tc: ["en", "sc"],
+            en: ["tc", "sc"]
+        };
 
-        langButtons.forEach(button => {
-            const buttonLang = button.getAttribute("data-lang");
+        // 清空原菜单
+        langMenu.innerHTML = "";
 
-            if (buttonLang === currentLang) {
-                button.hidden = true;
-            } else {
-                button.hidden = false;
-                button.textContent = getLangLabel(buttonLang);
-            }
+        // 只生成另外两个语言按钮
+        menuOrder[currentLang].forEach(function (lang) {
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.setAttribute("data-lang", lang);
+            button.textContent = getLangLabel(lang);
+
+            langMenu.appendChild(button);
         });
     }
 
