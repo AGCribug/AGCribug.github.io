@@ -136,6 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 window.scrollTo(0, 0);
 
+                updateLanguageSwitcher(pageId);
+
                 // 加载当前页面 JS
                 loadPageScript(jsUrl, pageId);
             })
@@ -265,32 +267,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const currentLang = getLangFromPageId(pageId);
 
-        // 更新未展开时显示的当前语言
+        // 按钮外部显示当前语言
         currentText.textContent = getLangLabel(currentLang);
 
-        // 关闭菜单并恢复箭头
+        // 关闭菜单
         langArrow.textContent = "↓";
         langSwitcher.classList.remove("is-open");
 
-        // 每种语言状态下，菜单中需要显示的另外两种语言
-        const menuOrder = {
-            sc: ["tc", "en"],
-            tc: ["en", "sc"],
-            en: ["tc", "sc"]
-        };
+        // 菜单中隐藏当前语言，只显示另外两种语言
+        const langButtons = langMenu.querySelectorAll("button[data-lang]");
 
-        // 清空原菜单
-        langMenu.innerHTML = "";
+        langButtons.forEach(function (button) {
+            const buttonLang = button.getAttribute("data-lang");
 
-        // 只生成另外两个语言按钮
-        menuOrder[currentLang].forEach(function (lang) {
-            const button = document.createElement("button");
-
-            button.type = "button";
-            button.setAttribute("data-lang", lang);
-            button.textContent = getLangLabel(lang);
-
-            langMenu.appendChild(button);
+            if (buttonLang === currentLang) {
+                button.style.display = "none";
+            } else {
+                button.style.display = "block";
+                button.textContent = getLangLabel(buttonLang);
+            }
         });
     }
 
