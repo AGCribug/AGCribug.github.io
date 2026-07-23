@@ -271,7 +271,6 @@ document.addEventListener("DOMContentLoaded", function () {
         currentText.textContent = getLangLabel(currentLang);
 
         // 关闭菜单
-        langArrow.textContent = "↓";
         langSwitcher.classList.remove("is-open");
 
         // 菜单中隐藏当前语言，只显示另外两种语言
@@ -302,8 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
         langToggle.addEventListener("click", function (event) {
             event.stopPropagation();
 
-            const isOpen = langSwitcher.classList.toggle("is-open");
-            langArrow.textContent = isOpen ? "↑" : "↓";
+            langSwitcher.classList.toggle("is-open");
         });
 
         langMenu.addEventListener("click", function (event) {
@@ -319,14 +317,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const targetPageId = `${basePageId}_${targetLang}`;
 
             langSwitcher.classList.remove("is-open");
-            langArrow.textContent = "↓";
 
             window.location.hash = targetPageId;
         });
 
         document.addEventListener("click", function () {
             langSwitcher.classList.remove("is-open");
-            langArrow.textContent = "↓";
         });
     }
 

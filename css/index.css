@@ -130,67 +130,75 @@ body {
     color: white;
 }
 
-/* 右侧语言切换 */
 .lang-switcher {
     position: relative;
 
-    display: flex;
-    align-items: center;
+    width: 76px;
+
+    background-color: #F8F7F2;
+    border: 1px solid #999999;
 }
 
 .lang-current {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
+    justify-content: space-between;
 
-    min-width: 62px;
-    padding: 6px 10px;
+    width: 100%;
+    height: 40px;
+    padding: 0 14px;
+
+    box-sizing: border-box;
 
     background-color: #F8F7F2;
     border: none;
-    border-radius: 8px;
+    border-radius: 0;
 
-    color: black;
+    color: #000000;
     font-size: 16px;
-    line-height: 1.4;
-    text-align: center;
+    line-height: 1;
 
     cursor: pointer;
+}
 
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-    }
-
-.lang-current:hover {
-    background-color: #F8F7F2;
-
-    color: #02BF02;
+.lang-switcher.is-open .lang-current {
+    background-color: #E7E5E5;
 }
 
 #lang-arrow {
-    font-size: 12px;
-    line-height: 1;
+    display: block;
+
+    width: 10px;
+    height: 10px;
+
+    flex-shrink: 0;
+
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.2s ease;
+}
+
+.lang-switcher.is-open #lang-arrow {
+    transform: rotate(-135deg) translate(-2px, -2px);
 }
 
 .lang-menu {
     display: none;
 
     position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
+    top: 100%;
+    right: -1px;
+    left: -1px;
 
-    min-width: 62px;
-    padding: 6px 0;
-
+    padding: 0;
     overflow: hidden;
 
     background-color: #F8F7F2;
-    border: 1px solid #000000;
+    border: 1px solid #999999;
+    border-top: none;
     border-radius: 0;
-
-    color: black;
 
     z-index: 1001;
 }
@@ -203,23 +211,26 @@ body {
     display: block;
 
     width: 100%;
-    padding: 8px 14px;
+    height: 40px;
+    padding: 0 14px;
+
+    box-sizing: border-box;
 
     background-color: #F8F7F2;
     border: none;
+    border-radius: 0;
 
-    color: black;
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: center;
+    color: #000000;
+    font-size: 16px;
+    line-height: 1;
+    text-align: left;
 
     cursor: pointer;
 }
 
 .lang-menu button:hover {
-    background-color: #F8F7F2;
-
-    color: #02BF02;
+    background-color: #E7E5E5;
+    color: #000000;
 }
 
 /* 2_Main Content */
