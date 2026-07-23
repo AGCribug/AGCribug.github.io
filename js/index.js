@@ -275,8 +275,12 @@ document.addEventListener("DOMContentLoaded", function () {
         langButtons.forEach(button => {
             const buttonLang = button.getAttribute("data-lang");
 
-            button.hidden = buttonLang === currentLang;
-            button.textContent = getLangLabel(buttonLang);
+            if (buttonLang === currentLang) {
+                button.hidden = true;
+            } else {
+                button.hidden = false;
+                button.textContent = getLangLabel(buttonLang);
+            }
         });
     }
 
