@@ -100,9 +100,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // 1.5_加载对应的 HTML、CSS 和 JS
+    // 1.5_加载 header 和 footer
+    function loadHeader(lang) {
+        fetch(`parts/header_${lang}.html`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+                initLanguageSwitcher();
+            });
+    }
+    function loadFooter(lang) {
+        fetch(`parts/footer_${lang}.html`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("footer").innerHTML = html;
+            });
+    }
+
+    // 1.6_加载对应的 HTML、CSS 和 JS
     function loadContent(pageId) {
         updateLanguageSwitcher(pageId);
+
+        const lang = getLangFromPageId(pageId);
+        loadHeader(lang);
+        loadFooter(lang);
 
         // HTML 文件保留语言后缀
         const htmlUrl = `parts/${pageId}.html`;
@@ -326,13 +347,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 2.1_初始化语言切换
-    initLanguageSwitcher();
-
-    // 2.2_初次进入或刷新页面时，加载 hash 对应页面
+    // 2.1_初次进入或刷新页面时，加载 hash 对应页面
     loadContent(getPageFromHash());
 
-    // 2.3_浏览器前进、后退，或 hash 改变时，重新加载对应页面
+    // 2.2_浏览器前进、后退，或 hash 改变时，重新加载对应页面
     window.addEventListener("hashchange", function () {
         loadContent(getPageFromHash());
     });
