@@ -60,320 +60,320 @@ body {
 
 /* 1_Navbar */
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  padding: 8px 20px;
+    padding: 8px 20px;
 
-  background-color: #F8F7F2;
+    background-color: #F8F7F2;
 
-  transform: translateY(0);
-  transition: transform 0.25s ease;
+    transform: translateY(0);
+    transition: transform 0.25s ease;
 }
 
 .navbar.navbar-hidden {
-  transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 /* 左侧logo */
 .nav-logo {
-  display: flex;
+    display: flex;
 
-  width: 40px;
-  height: 40px;
+    width: 40px;
+    height: 40px;
 
-  object-fit: contain;
+    object-fit: contain;
 }
 
 /* 中间按钮区域 */
 .nav-center {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 
-  margin-left: auto;
-  margin-right: 20px;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 /* 按钮样式 */
 .nav-center button {
-  width: 100px;
+    width: 100px;
 
-  padding: 6px 0;
+    padding: 6px 0;
 
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
 
-  color: black;
-  font-size: 16px;
-  text-align: center;
+    color: black;
+    font-size: 16px;
+    text-align: center;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .nav-center button:hover {
-  background-color: #00000030;
-  border-radius: 8px;
+    background-color: #00000030;
+    border-radius: 8px;
 
-  color: white;
+    color: white;
 }
 
 /* 当前选中 */
 .nav-center button.active {
-  background-color: #1F618D;
-  border-radius: 4px;
+    background-color: #1F618D;
+    border-radius: 4px;
 
-  color: white;
+    color: white;
 }
 
 /* 右侧语言切换 */
 .lang-switcher {
-  position: relative;
+    position: relative;
 
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .lang-current {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 
-  min-width: 62px;
-  padding: 6px 10px;
+    min-width: 62px;
+    padding: 6px 10px;
 
-  background-color: #F8F7F2;
-  border: none;
-  border-radius: 8px;
+    background-color: #F8F7F2;
+    border: none;
+    border-radius: 8px;
 
-  color: black;
-  font-size: 16px;
-  line-height: 1.4;
-  text-align: center;
+    color: black;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+    }
 
 .lang-current:hover {
-  background-color: #F8F7F2;
+    background-color: #F8F7F2;
 
-  color: #02BF02;
+    color: #02BF02;
 }
 
 #lang-arrow {
-  font-size: 12px;
-  line-height: 1;
+    font-size: 12px;
+    line-height: 1;
 }
 
 .lang-menu {
-  display: none;
+    display: none;
 
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
 
-  min-width: 62px;
-  padding: 6px 0;
+    min-width: 62px;
+    padding: 6px 0;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  background-color: #F8F7F2;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #F8F7F2;
+    border: 1px solid #000000;
+    border-radius: 0;
 
-  color: black;
+    color: black;
 
-  z-index: 1001;
+    z-index: 1001;
 }
 
 .lang-switcher.is-open .lang-menu {
-  display: block;
+    display: block;
 }
 
 .lang-menu button {
-  display: block;
+    display: block;
 
-  width: 100%;
-  padding: 8px 14px;
+    width: 100%;
+    padding: 8px 14px;
 
-  background-color: #F8F7F2;
-  border: none;
+    background-color: #F8F7F2;
+    border: none;
 
-  color: black;
-  font-size: 14px;
-  line-height: 1.4;
-  text-align: center;
+    color: black;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .lang-menu button:hover {
-  background-color: #F8F7F2;
+    background-color: #F8F7F2;
 
-  color: #02BF02;
+    color: #02BF02;
 }
 
 /* 2_Main Content */
 .main-content {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 
-  padding: 20px;
+    padding: 20px;
 
-  background-color: #FFFFFF;
+    background-color: #FFFFFF;
 
-  color: black;
-  text-align: center;
+    color: black;
+    text-align: center;
 }
 
 /* 3_footer */
 .footer {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 
-  width: 100%;
+    width: 100%;
 
-  padding: 12px 0;
+    padding: 12px 0;
 
-  background-color: #F8F7F2;
+    background-color: #F8F7F2;
 
-  color: black;
+    color: black;
 }
 
 .footer-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 
-  width: 100%;
-  max-width: 1100px;
+    width: 100%;
+    max-width: 1100px;
 
-  padding: 0 20px;
+    padding: 0 20px;
 }
 
 .footer-logo-box {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 
-  padding-right: 15px;
+    padding-right: 15px;
 }
 
 .footer-logo-box img {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 
-  object-fit: contain;
+    object-fit: contain;
 }
 
 .footer-info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 
-  padding-left: 15px;
+    padding-left: 15px;
 
-  border-left: 1px solid rgba(0,0,0,0.2);
+    border-left: 1px solid rgba(0,0,0,0.2);
 }
 
 .footer-info div {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .footer-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .menu-btn {
-  padding: 5px 10px;
+    padding: 5px 10px;
 
-  background: #F0EEE4;
-  border: none;
-  border-radius: 4px;
+    background: #F0EEE4;
+    border: none;
+    border-radius: 4px;
 
-  color: black;
+    color: black;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .menu-btn:hover {
-  background: #00000030;
+    background: #00000030;
 
-  color: white;
+    color: white;
 }
 
 .menu-group {
-  position: relative;
+    position: relative;
 }
 
 .menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  bottom: 35px;
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 35px;
 
-  min-width: 160px;
+    min-width: 160px;
 
-  padding: 8px 0;
+    padding: 8px 0;
 
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 
-  color: #333;
+    color: #333;
 }
 
 .menu a {
-  display: block;
+    display: block;
 
-  padding: 6px 12px;
+    padding: 6px 12px;
 
-  color: #333;
-  text-decoration: none;
+    color: #333;
+    text-decoration: none;
 }
 
 .menu a:hover {
-  background: #F2F2F2;
+    background: #F2F2F2;
 }
 
 .footer-meta {
-  margin-left: 20px;
+    margin-left: 20px;
 
-  color: black;
-  font-size: 14px;
-  white-space: nowrap;
+    color: black;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 @media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .footer-info {
-    border-left: none;
-    padding-left: 0;
-  }
-  .footer-links {
-    margin-left: 0;
-    justify-content: flex-start;
-  }
-  .footer-meta {
-    margin-left: 0;
-  }
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+      gap: 10px;
+    }
+    .footer-info {
+        border-left: none;
+        padding-left: 0;
+    }
+    .footer-links {
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+    .footer-meta {
+        margin-left: 0;
+    }
 }
