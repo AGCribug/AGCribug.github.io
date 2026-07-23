@@ -216,6 +216,10 @@ body {
   cursor: pointer;
 }
 
+.lang-menu button[hidden] {
+    display: none;
+}
+
 .lang-menu button:hover {
   background-color: #F8F7F2;
 
