@@ -71,9 +71,9 @@ function loadLatestNewsToHome(pageId) {
     }
 
     const currentPageId =
-        pageId || window.location.hash.replace("#", "") || "1_home_zh";
+        pageId || window.location.hash.replace("#", "") || "1_home_sc";
 
-    const langSuffix = currentPageId.replace("1_home", "") || "_zh";
+    const langSuffix = currentPageId.replace("1_home", "") || "_sc";
 
     const newsUrl = `parts/5_news${langSuffix}.html`;
 
