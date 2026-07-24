@@ -109,12 +109,46 @@ document.addEventListener("DOMContentLoaded", function () {
                 initLanguageSwitcher();
             });
     }
-    function loadFooter(lang) {
+
+    function loadFooter(lang){
         fetch(`parts/footer_${lang}.html`)
-            .then(response => response.text())
-            .then(html => {
+            .then(response=>response.text())
+            .then(html=>{
                 document.getElementById("footer").innerHTML = html;
+                initFooterMenu();
             });
+    }
+
+    function initFooterMenu() {
+        const groups = document.querySelectorAll(".menu-group");
+        groups.forEach(group => {
+            const btn = group.querySelector(".menu-btn");
+            const menu = group.querySelector(".menu");
+
+            if (!btn || !menu) {
+                return;
+            }
+
+            btn.onclick = function(event) {
+                event.stopPropagation();
+                document.querySelectorAll(".menu").forEach(m => {
+                    if (m !== menu) {
+                        m.style.display = "none";
+                    }
+                });
+
+                menu.style.display =
+                    menu.style.display === "block"
+                    ? "none"
+                    : "block";
+            };
+        });
+
+        document.addEventListener("click", function(){
+            document.querySelectorAll(".menu").forEach(m => {
+                m.style.display = "none";
+            });
+        });
     }
 
     // 1.6_加载对应的 HTML、CSS 和 JS
@@ -367,29 +401,6 @@ let visits = localStorage.getItem("visits") || 0;
 visits++;
 localStorage.setItem("visits", visits);
 document.getElementById("visits").textContent = visits;
-
-const groups = document.querySelectorAll(".menu-group");
-
-groups.forEach(group => {
-  const btn = group.querySelector(".menu-btn");
-  const menu = group.querySelector(".menu");
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    document.querySelectorAll(".menu").forEach(m => {
-      if (m !== menu) m.style.display = "none";
-    });
-
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
-  });
-});
-
-document.addEventListener("click", () => {
-  document.querySelectorAll(".menu").forEach(m => {
-    m.style.display = "none";
-  });
-});
 
 // 4_Scrollbar
 (function initFloatingScrollbar() {
