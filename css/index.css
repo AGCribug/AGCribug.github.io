@@ -499,7 +499,7 @@ body {
     .lang-switcher {
         margin-left: auto;
     }
-}
+
     /* 移动端 Footer */
     .footer {
         padding: 16px 0;
@@ -602,3 +602,4 @@ body {
         font-size: 13px;
         line-height: 1.5;
     }
+}
