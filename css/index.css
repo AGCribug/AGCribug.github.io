@@ -309,7 +309,18 @@ body {
 }
 
 .footer-logo-box {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding-right: 15px;
+}
+
+.footer-logo-box img {
+    width: 50px;
+    height: 50px;
+
+    object-fit: contain;
 }
 
 .footer-info {
@@ -521,6 +532,11 @@ body {
         padding: 20px 0;
     }
 
+    /* 移动端隐藏自定义滚动条 */
+    .floating-scrollbar {
+        display: none;
+    }
+
     /* 移动端隐藏 Home 中原来的欢迎标题 */
     .welcome-text {
         display: none;
@@ -594,19 +610,9 @@ body {
         white-space: normal;
     }
 
-    /* 下：学校 Logo */
+    /* 移动端隐藏三个学校校徽 */
     .footer-logo-box {
-        order: 3;
-
-        justify-content: center;
-
-        padding: 0;
-        margin: 0 0 10px;
-    }
-
-    .footer-logo-box img {
-        width: 46px;
-        height: 46px;
+        display: none;
     }
 
     /* 下：地址和版权声明 */
