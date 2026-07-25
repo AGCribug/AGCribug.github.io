@@ -359,12 +359,13 @@ document.addEventListener("DOMContentLoaded", function () {
         date.textContent =
             now.toLocaleDateString();
 
-        let visits =
-            Number(
-                localStorage.getItem(
-                    "visits"
-                )
-            ) || 0;
+let visits =
+    Number(
+        localStorage.getItem("visits")
+    ) || 0;
+
+
+    if (!sessionStorage.getItem("visited")) {
 
         visits++;
 
@@ -372,6 +373,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "visits",
             String(visits)
         );
+
+        sessionStorage.setItem(
+            "visited",
+            "true"
+        );
+    }
 
         visitsText.textContent =
             String(visits);
