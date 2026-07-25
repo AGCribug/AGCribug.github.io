@@ -141,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1.6_加载对应的 HTML、CSS 和 JS
     function loadContent(pageId) {
         updateLanguageSwitcher(pageId);
+        const htmlUrl = `parts/${pageId}.html`;
         const lang = getLangFromPageId(pageId);
         loadHeader(lang);
         loadFooter(lang);
