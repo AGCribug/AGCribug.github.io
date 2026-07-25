@@ -66,15 +66,70 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 1.4_关闭 Footer 菜单
+    // 1.4_关闭移动端导航菜单
+    function closeMobileMenu() {
+        const navbar =
+            document.querySelector(".navbar");
+
+        const menuToggle =
+            document.querySelector(
+                ".mobile-menu-toggle"
+            );
+
+        if (navbar) {
+            navbar.classList.remove(
+                "mobile-menu-open"
+            );
+        }
+
+        if (menuToggle) {
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+    }
+
+    // 1.5_关闭 Footer 菜单
     function closeFooterMenus() {
         document.querySelectorAll(".menu").forEach(menu => {
             menu.style.display = "none";
         });
     }
 
-    // 1.5_统一处理导航、语言选择和 Footer 菜单点击
+    // 1.6_统一处理导航、语言选择和 Footer 菜单点击
     document.addEventListener("click", function (event) {
+
+        // 移动端导航菜单按钮
+        const mobileMenuToggle =
+            event.target.closest(
+                ".mobile-menu-toggle"
+            );
+
+        if (mobileMenuToggle) {
+            const navbar =
+                mobileMenuToggle.closest(
+                    ".navbar"
+                );
+
+            if (navbar) {
+                const isOpen =
+                    navbar.classList.toggle(
+                        "mobile-menu-open"
+                    );
+
+                mobileMenuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+            }
+
+            closeLanguageMenu();
+            closeFooterMenus();
+
+            return;
+        }
+
         // 顶部导航按钮
         const navButton =
             event.target.closest("button[data-base-page]");
@@ -89,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const pageId =
                 `${basePageId}_${currentLang}`;
 
+            closeMobileMenu();
             closeLanguageMenu();
             closeFooterMenus();
 
@@ -113,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 langSwitcher.classList.toggle("is-open");
             }
 
+            closeMobileMenu();
             closeFooterMenus();
 
             return;
@@ -185,11 +242,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 点击其他位置时关闭全部菜单
+        closeMobileMenu();
         closeLanguageMenu();
         closeFooterMenus();
     });
 
-    // 1.6_全局页面初始化接口
+    // 1.7_全局页面初始化接口
     window.currentPageId = getPageFromHash();
 
     window.initPage = function (pageId) {
@@ -230,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // 1.7_加载 Header
+    // 1.8_加载 Header
     async function loadHeader(
         lang,
         pageId,
@@ -281,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 1.8_加载 Footer
+    // 1.9_加载 Footer
     async function loadFooter(
         lang,
         loadId
@@ -330,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 1.9_初始化 Footer 信息
+    // 1.10_初始化 Footer 信息
     function initFooterInfo() {
         const year =
             document.getElementById("year");
@@ -384,7 +442,7 @@ let visits =
             String(visits);
     }
 
-    // 1.10_加载页面内容
+    // 1.11_加载页面内容
     async function loadContent(pageId) {
         const loadId = ++latestLoadId;
 
@@ -483,7 +541,7 @@ let visits =
         }
     }
 
-    // 1.11_加载当前页面 CSS
+    // 1.12_加载当前页面 CSS
     function loadPageCss(
         cssUrl,
         loadId
@@ -540,7 +598,7 @@ let visits =
         });
     }
 
-    // 1.12_加载当前页面 JS
+    // 1.13_加载当前页面 JS
     function loadPageScript(
         jsUrl,
         pageId,

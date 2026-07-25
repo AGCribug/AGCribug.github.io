@@ -4,7 +4,6 @@ window.initHomePage = function (pageId) {
     loadLatestNewsToHome(pageId);
 };
 
-
 // 1.1_照片展示廊
 function initPhotoGallery() {
     const gallery = document.querySelector(".photo-gallery");

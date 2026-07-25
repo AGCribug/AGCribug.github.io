@@ -80,6 +80,34 @@ body {
     transform: translateY(-100%);
 }
 
+/* 移动端导航菜单按钮 */
+.mobile-menu-toggle {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+
+    width: 24px;
+    height: 2px;
+    margin: 4px 0;
+
+    background-color: #000000;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
 /* 左侧logo */
 .nav-logo {
     display: flex;
@@ -374,20 +402,98 @@ body {
 }
 
 @media (max-width: 768px) {
-    .footer-container {
+    .navbar {
+        position: sticky;
+
+        padding: 8px 12px;
+    }
+
+    /* 移动端隐藏 ENL.png */
+    .nav-logo {
+        display: none;
+    }
+
+    /* 显示三横线按钮 */
+    .mobile-menu-toggle {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-      gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
     }
-    .footer-info {
-        border-left: none;
-        padding-left: 0;
+
+    /* 导航下拉菜单 */
+    .nav-center {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        margin: 0;
+        padding: 8px 0 12px;
+
+        background-color: #F8F7F2;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease,
+            transform 0.25s ease;
+
+        pointer-events: none;
     }
-    .footer-links {
-        margin-left: 0;
-        justify-content: flex-start;
+
+    /* 菜单展开 */
+    .navbar.mobile-menu-open .nav-center {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+
+        pointer-events: auto;
     }
-    .footer-meta {
-        margin-left: 0;
+
+    .nav-center button {
+        width: 100%;
+        min-width: 0;
+        padding: 12px 20px;
+
+        color: #000000;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .nav-center button:hover {
+        background-color: #E7E5E5;
+        color: #000000;
+    }
+
+    /* 展开后把三横线变成关闭图案 */
+    .navbar.mobile-menu-open
+        .mobile-menu-toggle span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .navbar.mobile-menu-open
+        .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar.mobile-menu-open
+        .mobile-menu-toggle span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* 语言按钮保持在最右边 */
+    .lang-switcher {
+        margin-left: auto;
     }
 }
