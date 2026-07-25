@@ -57,6 +57,61 @@ document.addEventListener("DOMContentLoaded", function () {
         return "简";
     }
 
+    // 获取移动端 Header 页面标题
+    function getMobileHeaderTitle(pageId) {
+        const lang =
+            getLangFromPageId(pageId);
+
+        const basePageId =
+            getBasePageId(pageId);
+
+        const titles = {
+            sc: {
+                "1_home": "欢　　迎",
+                "2_research": "研究方向",
+                "3_publications": "学术成果",
+                "4_members": "成　　员",
+                "5_news": "新　　闻",
+                "6_contact": "联络方式"
+            },
+
+            tc: {
+                "1_home": "歡　　迎",
+                "2_research": "研究方向",
+                "3_publications": "學術成果",
+                "4_members": "成　　員",
+                "5_news": "新　　聞",
+                "6_contact": "聯絡方式"
+            },
+
+            en: {
+                "1_home": "WELCOME",
+                "2_research": "RESEARCH",
+                "3_publications": "PUBLICATIONS",
+                "4_members": "MEMBERS",
+                "5_news": "NEWS",
+                "6_contact": "CONTACT"
+            }
+        };
+
+        return titles[lang]?.[basePageId] || "";
+    }
+
+    // 更新移动端 Header 页面标题
+    function updateMobileHeaderTitle(pageId) {
+        const titleElement =
+            document.querySelector(
+                ".mobile-header-title"
+            );
+
+        if (!titleElement) {
+            return;
+        }
+
+        titleElement.textContent =
+            getMobileHeaderTitle(pageId);
+    }
+
     // 1.3_关闭语言菜单
     function closeLanguageMenu() {
         const langSwitcher = document.querySelector(".lang-switcher");
@@ -331,6 +386,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Header 插入后立即校正语言状态
             updateLanguageSwitcher(pageId);
+
+            // 更新移动端页面标题
+            updateMobileHeaderTitle(pageId);
+
         } catch (error) {
             console.warn(
                 "Header 加载失败：",
