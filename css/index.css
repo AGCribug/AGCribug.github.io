@@ -500,6 +500,11 @@ body {
         margin-left: auto;
     }
 
+    /* 移动端主内容区取消左右留白 */
+    .main-content {
+        padding: 20px 0;
+    }
+
     /* 移动端 Footer */
     .footer {
         padding: 16px 0;
