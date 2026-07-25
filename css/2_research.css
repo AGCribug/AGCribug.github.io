@@ -66,6 +66,11 @@
     text-align: left;
 }
 
+/* 简体、繁体中文正文首行缩进两个字 */
+.research-cn .research-text p {
+    text-indent: 2em;
+}
+
 /* 右侧图片 */
 .research-image-section {
     flex: 1;
