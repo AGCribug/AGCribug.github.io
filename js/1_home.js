@@ -89,7 +89,7 @@ function loadLatestNewsToHome(pageId) {
 
             const newsItems = Array.from(
                 doc.querySelectorAll(".news-item")
-            ).slice(0, 3);
+            ).slice(0, 5);
 
             homeNewsList.innerHTML = "";
 
