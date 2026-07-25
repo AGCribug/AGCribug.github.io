@@ -583,10 +583,11 @@ body {
         height: 46px;
     }
 
-    /* 下：版权声明和地址 */
+    /* 下：地址和版权声明 */
     .footer-info {
         order: 4;
 
+        flex-direction: column-reverse;
         align-items: center;
         gap: 6px;
 
