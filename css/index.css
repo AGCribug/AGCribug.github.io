@@ -262,14 +262,14 @@ body {
 }
 
 .footer-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
 
     padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .footer-logo-box {
@@ -290,11 +290,15 @@ body {
 .footer-info {
     display: flex;
     flex-direction: column;
+
     gap: 6px;
 
     padding-left: 15px;
 
     border-left: 1px solid rgba(0,0,0,0.2);
+
+    flex: 1;
+    min-width: 0;
 }
 
 .footer-info div {
