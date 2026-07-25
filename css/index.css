@@ -93,7 +93,8 @@ body {
 /* 中间按钮区域 */
 .nav-center {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 14px;
 
     margin-left: auto;
     margin-right: 20px;
@@ -101,25 +102,23 @@ body {
 
 /* 按钮样式 */
 .nav-center button {
-    width: 100px;
-
-    padding: 6px 0;
+    width: auto;
+    min-width: 80px;
+    padding: 6px 10px;
 
     background: transparent;
     border: none;
 
-    color: black;
+    color: #000000;
     font-size: 16px;
     text-align: center;
+    white-space: nowrap;
 
     cursor: pointer;
 }
 
 .nav-center button:hover {
-    background-color: #00000030;
-    border-radius: 8px;
-
-    color: white;
+    color: #02BF02;
 }
 
 /* 当前选中 */
