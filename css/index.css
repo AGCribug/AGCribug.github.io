@@ -94,14 +94,17 @@ body {
     cursor: pointer;
 }
 
-.mobile-menu-toggle span {
+.mobile-menu-toggle > span {
     display: block;
 
     width: 24px;
     height: 2px;
     margin: 4px 0;
 
-    background-color: #000000;
+    flex-shrink: 0;
+
+    background-color: #000000 !important;
+    opacity: 1;
 
     transition:
         transform 0.25s ease,
