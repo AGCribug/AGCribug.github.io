@@ -158,4 +158,18 @@
         grid-template-columns: 1fr;
         row-gap: 4px;
     }
+
+    /* 新闻内容在上 */
+    .home-news-text {
+        grid-row: 1;
+    }
+
+    /* 日期位于新闻内容左下方 */
+    .home-news-date {
+        grid-row: 2;
+        justify-self: start;
+
+        font-size: 13px;
+        line-height: 1.4;
+    }
 }
