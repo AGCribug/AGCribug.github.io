@@ -167,11 +167,12 @@
         table-layout: auto;
     }
 
-    /* 学校和学位位于第一行，日期位于左下方 */
+    /* 学校和学位紧邻显示，日期位于下一行左侧 */
     .education-row {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        column-gap: 12px;
+        grid-template-columns: max-content max-content;
+        justify-content: start;
+        column-gap: 10px;
         row-gap: 2px;
 
         padding: 5px 0;
