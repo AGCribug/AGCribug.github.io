@@ -20,12 +20,10 @@ function initPhotoGallery() {
     }
 
     let currentImageIndex = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
 
     function showImage(index) {
-        if (index < 0 || index >= images.length) {
-            return;
-        }
-
         images.forEach(img => {
             img.classList.remove("active");
         });
@@ -43,22 +41,87 @@ function initPhotoGallery() {
         currentImageIndex = index;
     }
 
+    function showNextImage() {
+        const nextIndex =
+            (currentImageIndex + 1) % images.length;
+
+        showImage(nextIndex);
+    }
+
+    function showPreviousImage() {
+        const previousIndex =
+            (currentImageIndex - 1 + images.length) %
+            images.length;
+
+        showImage(previousIndex);
+    }
+
+    function restartAutoPlay() {
+        if (window.homeGalleryTimer) {
+            clearInterval(window.homeGalleryTimer);
+        }
+
+        window.homeGalleryTimer = setInterval(
+            showNextImage,
+            6000
+        );
+    }
+
     buttons.forEach((button, index) => {
         button.onclick = function () {
             showImage(index);
+            restartAutoPlay();
         };
     });
 
-    if (window.homeGalleryTimer) {
-        clearInterval(window.homeGalleryTimer);
-    }
+    // 触屏设备：记录手指落下的位置
+    gallery.ontouchstart = function (event) {
+        const touch = event.touches[0];
 
-    window.homeGalleryTimer = setInterval(function () {
-        const nextIndex = (currentImageIndex + 1) % images.length;
-        showImage(nextIndex);
-    }, 6000);
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+    };
+
+    // 触屏设备：判断左右滑动方向
+    gallery.ontouchend = function (event) {
+        const touch = event.changedTouches[0];
+
+        const distanceX =
+            touch.clientX - touchStartX;
+
+        const distanceY =
+            touch.clientY - touchStartY;
+
+        const minimumSwipeDistance = 50;
+
+        // 纵向滑动时，继续正常滚动页面
+        if (
+            Math.abs(distanceX) <=
+            Math.abs(distanceY)
+        ) {
+            return;
+        }
+
+        if (
+            Math.abs(distanceX) <
+            minimumSwipeDistance
+        ) {
+            return;
+        }
+
+        if (distanceX < 0) {
+            // 向左滑：下一张
+            showNextImage();
+        } else {
+            // 向右滑：上一张
+            showPreviousImage();
+        }
+
+        restartAutoPlay();
+    };
 
     showImage(0);
+    restartAutoPlay();
 }
 
 // 1.2_首页自动读取最新新闻

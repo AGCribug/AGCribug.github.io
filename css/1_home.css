@@ -27,6 +27,8 @@
     aspect-ratio: 2 / 1;
 
     overflow: hidden;
+
+    touch-action: pan-y;
 }
 
 .photo-gallery img {
