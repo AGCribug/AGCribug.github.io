@@ -47,7 +47,24 @@
     margin-right: 10px;
 }
 
-/* 3.2_Publication List */
+/* 3.2_Publication Section */
+.publication-section {
+    width: 100%;
+}
+
+.publication-section-title {
+
+    margin: 20px 18px 12px;
+
+    font-size: 24px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+}
+
+/* 3.3_Publication List */
 .publication-list {
     display: flex;
     flex-direction: column;
