@@ -44,7 +44,7 @@
 
 .filter-bar label {
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 4px;
 }
 
 /* 3.2_Publication Section */
@@ -54,7 +54,8 @@
 
 .publication-section-title {
     margin: 20px 18px 12px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: normal;
     text-align: left;
 }
 
