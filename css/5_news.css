@@ -83,7 +83,25 @@
         width: calc(100% - 32px);
         gap: 22px;
     }
+
     .news-item {
-        padding: 16px;
+        grid-template-columns: 1fr;
+        row-gap: 6px;
+
+        padding: 14px 16px;
+    }
+
+    /* 新闻内容在上 */
+    .news-text {
+        grid-row: 1;
+    }
+
+    /* 日期位于左下方 */
+    .news-date {
+        grid-row: 2;
+        justify-self: start;
+
+        font-size: 13px;
+        line-height: 1.4;
     }
 }
