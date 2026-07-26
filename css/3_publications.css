@@ -86,10 +86,16 @@
         transform 0.2s ease;
 }
 
-.publication-item:hover {
-    background-color: #F8F7F2;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+    .publication-item:hover {
+        background-color: #F8F7F2;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+    }
+
+    .publication-item a:hover {
+        text-decoration: underline;
+    }
 }
 
 .publication-item p {
@@ -100,10 +106,6 @@
 .publication-item a {
     color: #02bf02;
     text-decoration: none;
-}
-
-.publication-item a:hover {
-    text-decoration: underline;
 }
 
 /* 响应式：针对移动端微调 */
