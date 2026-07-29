@@ -58,6 +58,8 @@
     color: #555555;
     font-size: 16px;
     line-height: 1.8;
+    text-align: justify;
+    text-align-last: left;
 }
 
 /* 简体、繁体中文正文首行缩进两个字 */
