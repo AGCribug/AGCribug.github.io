@@ -27,7 +27,7 @@
 .news-item {
     width: 100%;
     margin-bottom: 6px;
-    padding: 9px 18px;
+    padding: 9px 0;
 
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -89,8 +89,6 @@
     .news-item {
         grid-template-columns: 1fr;
         row-gap: 6px;
-
-        padding: 14px 16px;
     }
 
     /* 新闻内容在上 */

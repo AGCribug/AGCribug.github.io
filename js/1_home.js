@@ -12,8 +12,13 @@ function initPhotoGallery() {
         return;
     }
 
-    const images = gallery.querySelectorAll("img");
-    const buttons = gallery.querySelectorAll(".controls button");
+    const images = Array.from(
+        gallery.querySelectorAll("img")
+    );
+
+    const buttons = Array.from(
+        gallery.querySelectorAll(".controls button")
+    );
 
     if (images.length === 0) {
         return;
@@ -22,43 +27,121 @@ function initPhotoGallery() {
     let currentImageIndex = 0;
     let touchStartX = 0;
     let touchStartY = 0;
+    let touchDistanceX = 0;
+    let swipeDirection = 0;
+    let nearbyImageIndex = 0;
+    let isHorizontalSwipe = false;
+    let isAnimating = false;
 
-    function showImage(index) {
-        images.forEach(img => {
-            img.classList.remove("active");
+    function getNearbyIndex(direction) {
+        return (
+            currentImageIndex +
+            direction +
+            images.length
+        ) % images.length;
+    }
+
+    function updateButtons() {
+        buttons.forEach((button, index) => {
+            button.classList.toggle(
+                "active",
+                index === currentImageIndex
+            );
+        });
+    }
+
+    function resetImagePositions() {
+        images.forEach((image, index) => {
+            image.style.transition = "";
+            image.style.transform =
+                index === currentImageIndex
+                    ? "translateX(0)"
+                    : "translateX(100%)";
+
+            image.classList.toggle(
+                "active",
+                index === currentImageIndex
+            );
         });
 
-        buttons.forEach(button => {
-            button.classList.remove("active");
-        });
+        updateButtons();
+    }
 
-        images[index].classList.add("active");
-
-        if (buttons[index]) {
-            buttons[index].classList.add("active");
+    function slideToImage(nextIndex, direction = 1) {
+        if (
+            isAnimating ||
+            nextIndex === currentImageIndex
+        ) {
+            return;
         }
 
-        currentImageIndex = index;
+        isAnimating = true;
+
+        const currentImage =
+            images[currentImageIndex];
+
+        const nextImage =
+            images[nextIndex];
+
+        const entryPosition =
+            direction > 0 ? 100 : -100;
+
+        const exitPosition =
+            direction > 0 ? -100 : 100;
+
+        images.forEach(image => {
+            image.style.transition = "none";
+        });
+
+        currentImage.style.transform =
+            "translateX(0)";
+
+        nextImage.style.transform =
+            `translateX(${entryPosition}%)`;
+
+        nextImage.classList.add("active");
+
+        // 强制浏览器记录动画开始位置
+        nextImage.offsetWidth;
+
+        currentImage.style.transition =
+            "transform 0.4s ease";
+
+        nextImage.style.transition =
+            "transform 0.4s ease";
+
+        currentImage.style.transform =
+            `translateX(${exitPosition}%)`;
+
+        nextImage.style.transform =
+            "translateX(0)";
+
+        window.setTimeout(() => {
+            currentImageIndex = nextIndex;
+            isAnimating = false;
+            resetImagePositions();
+        }, 400);
     }
 
     function showNextImage() {
-        const nextIndex =
-            (currentImageIndex + 1) % images.length;
-
-        showImage(nextIndex);
+        slideToImage(
+            getNearbyIndex(1),
+            1
+        );
     }
 
     function showPreviousImage() {
-        const previousIndex =
-            (currentImageIndex - 1 + images.length) %
-            images.length;
-
-        showImage(previousIndex);
+        slideToImage(
+            getNearbyIndex(-1),
+            -1
+        );
     }
 
     function restartAutoPlay() {
         if (window.homeGalleryTimer) {
-            clearInterval(window.homeGalleryTimer);
+            clearInterval(
+                window.homeGalleryTimer
+            );
         }
 
         window.homeGalleryTimer = setInterval(
@@ -69,22 +152,44 @@ function initPhotoGallery() {
 
     buttons.forEach((button, index) => {
         button.onclick = function () {
-            showImage(index);
+            if (index === currentImageIndex) {
+                return;
+            }
+
+            const direction =
+                index > currentImageIndex ? 1 : -1;
+
+            slideToImage(index, direction);
             restartAutoPlay();
         };
     });
 
-    // 触屏设备：记录手指落下的位置
     gallery.ontouchstart = function (event) {
+        if (isAnimating) {
+            return;
+        }
+
         const touch = event.touches[0];
 
         touchStartX = touch.clientX;
         touchStartY = touch.clientY;
+        touchDistanceX = 0;
+        swipeDirection = 0;
+        isHorizontalSwipe = false;
+
+        if (window.homeGalleryTimer) {
+            clearInterval(
+                window.homeGalleryTimer
+            );
+        }
     };
 
-    // 触屏设备：判断左右滑动方向
-    gallery.ontouchend = function (event) {
-        const touch = event.changedTouches[0];
+    gallery.ontouchmove = function (event) {
+        if (isAnimating) {
+            return;
+        }
+
+        const touch = event.touches[0];
 
         const distanceX =
             touch.clientX - touchStartX;
@@ -92,35 +197,143 @@ function initPhotoGallery() {
         const distanceY =
             touch.clientY - touchStartY;
 
-        const minimumSwipeDistance = 50;
+        // 尚未确定方向时，先判断是横滑还是纵滑
+        if (!isHorizontalSwipe) {
+            if (
+                Math.abs(distanceX) <
+                Math.abs(distanceY)
+            ) {
+                return;
+            }
 
-        // 纵向滑动时，继续正常滚动页面
+            if (Math.abs(distanceX) < 8) {
+                return;
+            }
+
+            isHorizontalSwipe = true;
+        }
+
+        touchDistanceX = distanceX;
+
+        // 左滑为下一张，右滑为上一张
+        const newDirection =
+            distanceX < 0 ? 1 : -1;
+
+        if (newDirection !== swipeDirection) {
+            swipeDirection = newDirection;
+
+            nearbyImageIndex =
+                getNearbyIndex(swipeDirection);
+
+            images.forEach((image, index) => {
+                image.style.transition = "none";
+
+                if (
+                    index !== currentImageIndex &&
+                    index !== nearbyImageIndex
+                ) {
+                    image.style.transform =
+                        "translateX(100%)";
+                }
+            });
+        }
+
+        const galleryWidth =
+            gallery.clientWidth;
+
+        const movementPercent =
+            (distanceX / galleryWidth) * 100;
+
+        const nearbyStartPosition =
+            swipeDirection > 0 ? 100 : -100;
+
+        images[currentImageIndex].style.transform =
+            `translateX(${movementPercent}%)`;
+
+        images[nearbyImageIndex].style.transform =
+            `translateX(${
+                nearbyStartPosition +
+                movementPercent
+            }%)`;
+
+        images[nearbyImageIndex]
+            .classList.add("active");
+    };
+
+    gallery.ontouchend = function () {
         if (
-            Math.abs(distanceX) <=
-            Math.abs(distanceY)
+            isAnimating ||
+            !isHorizontalSwipe
         ) {
+            restartAutoPlay();
             return;
         }
 
+        const minimumSwipeDistance =
+            Math.min(
+                80,
+                gallery.clientWidth * 0.2
+            );
+
+        const currentImage =
+            images[currentImageIndex];
+
+        const nearbyImage =
+            images[nearbyImageIndex];
+
+        currentImage.style.transition =
+            "transform 0.3s ease";
+
+        nearbyImage.style.transition =
+            "transform 0.3s ease";
+
         if (
-            Math.abs(distanceX) <
+            Math.abs(touchDistanceX) >=
             minimumSwipeDistance
         ) {
-            return;
-        }
+            isAnimating = true;
 
-        if (distanceX < 0) {
-            // 向左滑：下一张
-            showNextImage();
+            const exitPosition =
+                swipeDirection > 0 ? -100 : 100;
+
+            currentImage.style.transform =
+                `translateX(${exitPosition}%)`;
+
+            nearbyImage.style.transform =
+                "translateX(0)";
+
+            window.setTimeout(() => {
+                currentImageIndex =
+                    nearbyImageIndex;
+
+                isAnimating = false;
+                resetImagePositions();
+                restartAutoPlay();
+            }, 300);
         } else {
-            // 向右滑：上一张
-            showPreviousImage();
-        }
+            // 滑动距离不足，回弹到原图
+            const nearbyPosition =
+                swipeDirection > 0 ? 100 : -100;
 
+            currentImage.style.transform =
+                "translateX(0)";
+
+            nearbyImage.style.transform =
+                `translateX(${nearbyPosition}%)`;
+
+            window.setTimeout(() => {
+                resetImagePositions();
+                restartAutoPlay();
+            }, 300);
+        }
+    };
+
+    gallery.ontouchcancel = function () {
+        resetImagePositions();
         restartAutoPlay();
     };
 
-    showImage(0);
+    resetImagePositions();
     restartAutoPlay();
 }
 

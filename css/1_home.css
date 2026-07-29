@@ -42,18 +42,23 @@
     object-fit: contain;
     object-position: center;
 
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    will-change: transform;
+
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .photo-gallery img.active {
-    opacity: 1;
+    transform: translateX(0);
 }
 
 .controls {
     position: absolute;
     right: 12px;
     bottom: 12px;
+    z-index: 10;
 
     display: flex;
     align-items: center;
@@ -112,7 +117,7 @@
     column-gap: 18px;
     align-items: start;
 
-    padding: 9px 18px;
+    padding: 9px 0;
 
     background-color: #FFFFFF;
     border-radius: 12px;
