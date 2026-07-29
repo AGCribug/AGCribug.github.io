@@ -42,7 +42,7 @@
     margin-bottom: 26px;
 }
 
-.contact-header h1 {
+.contact-header h2 {
     margin: 0 0 10px;
 
     font-size: 28px;
@@ -54,9 +54,14 @@
 .contact-header p {
     margin: 0;
 
+    color: #555555;
     font-size: 16px;
     line-height: 1.8;
-    color: #555555;
+}
+
+/* 简体、繁体中文正文首行缩进两个字 */
+.contact-cn .contact-header p {
+    text-indent: 2em;
 }
 
 /* 联系方式列表 */
@@ -104,7 +109,7 @@
         padding: 22px 20px;
     }
 
-    .contact-header h1 {
+    .contact-header h2 {
         font-size: 24px;
     }
 
