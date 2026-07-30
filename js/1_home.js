@@ -350,64 +350,154 @@ function initPhotoGallery() {
 
 // 1.2_首页自动读取最新新闻
 function loadLatestNewsToHome(pageId) {
-    const homeNewsList = document.getElementById("home-news-list");
+    const homeNewsList =
+        document.getElementById("home-news-list");
 
     if (!homeNewsList) {
         return;
     }
 
     const currentPageId =
-        pageId || window.location.hash.replace("#", "") || "1_home_sc";
+        pageId ||
+        window.location.hash.replace("#", "") ||
+        "1_home_sc";
 
-    const langSuffix = currentPageId.replace("1_home", "") || "_sc";
+    const langSuffix =
+        currentPageId.replace("1_home", "") ||
+        "_sc";
 
-    const newsUrl = `parts/5_news${langSuffix}.html`;
+    const newsUrl =
+        `parts/5_news${langSuffix}.html`;
 
     fetch(newsUrl)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Couldn't load ${newsUrl}`);
+                throw new Error(
+                    `Couldn't load ${newsUrl}`
+                );
             }
 
             return response.text();
         })
         .then(html => {
-            const doc = new DOMParser().parseFromString(html, "text/html");
+            const doc =
+                new DOMParser().parseFromString(
+                    html,
+                    "text/html"
+                );
 
-            const newsItems = Array.from(
-                doc.querySelectorAll(".news-item")
-            ).slice(0, 5);
+            const newsTypes = Array.from(
+                doc.querySelectorAll(".news-type")
+            );
 
             homeNewsList.innerHTML = "";
 
-            newsItems.forEach(item => {
-                const sourceDate = item.querySelector(".news-date");
-                const sourceText = item.querySelector(".news-text");
+            newsTypes.forEach(newsType => {
+                const sourceTitle =
+                    newsType.querySelector("h2");
 
-                if (!sourceDate || !sourceText) {
+                const sourceItems = Array.from(
+                    newsType.querySelectorAll(
+                        ".news-item"
+                    )
+                ).slice(0, 3);
+
+                if (
+                    !sourceTitle ||
+                    sourceItems.length === 0
+                ) {
                     return;
                 }
 
-                const newsItem = document.createElement("div");
-                newsItem.className = "home-news-item";
+                const homeNewsType =
+                    document.createElement("section");
 
-                const date = document.createElement("span");
-                date.className = "home-news-date";
-                date.textContent = sourceDate.textContent.trim();
+                homeNewsType.className =
+                    "home-news-type";
 
-                const text = document.createElement("span");
-                text.className = "home-news-text";
+                const title =
+                    document.createElement("h3");
 
-                // 关键：用 innerHTML，保留 sub/sup 等标签
-                text.innerHTML = sourceText.innerHTML.trim();
+                title.className =
+                    "home-news-type-title";
 
-                newsItem.appendChild(date);
-                newsItem.appendChild(text);
+                title.textContent =
+                    sourceTitle.textContent.trim();
 
-                homeNewsList.appendChild(newsItem);
+                const itemList =
+                    document.createElement("div");
+
+                itemList.className =
+                    "home-news-type-list";
+
+                sourceItems.forEach(item => {
+                    const sourceDate =
+                        item.querySelector(
+                            ".news-date"
+                        );
+
+                    const sourceText =
+                        item.querySelector(
+                            ".news-text"
+                        );
+
+                    if (
+                        !sourceDate ||
+                        !sourceText
+                    ) {
+                        return;
+                    }
+
+                    const newsItem =
+                        document.createElement("div");
+
+                    newsItem.className =
+                        "home-news-item";
+
+                    const date =
+                        document.createElement("span");
+
+                    date.className =
+                        "home-news-date";
+
+                    date.textContent =
+                        sourceDate.textContent.trim();
+
+                    const text =
+                        document.createElement("span");
+
+                    text.className =
+                        "home-news-text";
+
+                    // 保留 strong、sub、sup、em 等标签
+                    text.innerHTML =
+                        sourceText.innerHTML.trim();
+
+                    newsItem.appendChild(date);
+                    newsItem.appendChild(text);
+
+                    itemList.appendChild(newsItem);
+                });
+
+                homeNewsType.appendChild(title);
+                homeNewsType.appendChild(itemList);
+
+                homeNewsList.appendChild(
+                    homeNewsType
+                );
             });
         })
-        .catch(error => {
-            console.warn("首页新闻加载失败：", error);
-        });
+
+    .catch(error => {
+        const errorMessages = {
+            "_sc": "首页新闻加载失败：",
+            "_tc": "首頁新聞載入失敗：",
+            "_en": "Failed to load news on the home page:"
+        };
+        console.warn(
+            errorMessages[langSuffix] ||
+            errorMessages["_sc"],
+            error
+        );
+    });
 }

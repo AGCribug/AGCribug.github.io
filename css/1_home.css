@@ -107,6 +107,26 @@
 .home-news-list {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+}
+
+.home-news-type {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.home-news-type-title {
+    margin: 0 0 2px;
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.home-news-type-list {
+    display: flex;
+    flex-direction: column;
     gap: 6px;
 }
 
