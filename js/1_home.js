@@ -133,10 +133,12 @@ function initPhotoGallery() {
     }
 
     function showNextImage() {
-        slideToImage(
-            getNearbyIndex(1),
-            1
-        );
+        const nextIndex = getNearbyIndex(1);
+        const direction =
+            currentImageIndex === images.length - 1
+                ? -1
+                : 1;
+        slideToImage(nextIndex, direction);
     }
 
     function showPreviousImage() {
