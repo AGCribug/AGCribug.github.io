@@ -136,10 +136,9 @@
     margin: 0;
     padding: 6px 0;
 
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    column-gap: 18px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
     background-color: #FFFFFF;
     border-radius: 12px;
@@ -162,11 +161,17 @@
 }
 
 .home-news-date {
+    order: 2;
+
     color: #555555;
     white-space: nowrap;
+
+    font-size: 14px;
 }
 
 .home-news-text {
+    order: 1;
+
     color: #222222;
     line-height: 1.7;
 }
