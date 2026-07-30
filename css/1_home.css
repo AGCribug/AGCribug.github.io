@@ -96,7 +96,6 @@
     text-align: left;
 }
 
-/* “最新动态” */
 .home-section-title {
     margin: 0 0 10px;
     padding: 0;
@@ -106,7 +105,6 @@
     line-height: 1.4;
 }
 
-/* 两个新闻板块 */
 .home-news-list {
     display: flex;
     flex-direction: column;
@@ -117,28 +115,26 @@
     width: 100%;
 }
 
-/* 学术轨迹、生活拾光 */
 .home-news-type-title {
     margin: 0 0 6px;
     padding: 0;
 
     font-size: 20px;
-    line-height: normal;
 }
 
 .home-news-type-list {
     width: 100%;
 }
 
-/* 单条新闻，与 News 页一致 */
 .home-news-item {
     width: 100%;
     margin: 0;
     padding: 6px 0;
 
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    column-gap: 18px;
+    align-items: start;
 
     background-color: #FFFFFF;
     border-radius: 12px;
@@ -155,34 +151,58 @@
 @media (hover: hover) and (pointer: fine) {
     .home-news-item:hover {
         background-color: #F8F7F2;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
         transform: translateY(-1px);
     }
 }
 
 .home-news-date {
-    order: 2;
-
-    color: #555555;
-    white-space: nowrap;
-
-    font-size: 14px;
+    color:#555555;
+    white-space:nowrap;
 }
 
 .home-news-text {
-    order: 1;
-
-    color: #222222;
-    line-height: 1.7;
+    color:#222222;
+    line-height:1.7;
 }
 
 .home-news-more {
-    margin-top: 10px;
-    padding: 3px 6px;
+    margin-top:10px;
+    padding:3px 6px;
 
-    background: transparent;
-    border: none;
+    background:transparent;
+    border:none;
 
-    color: #1F618D;
-    cursor: pointer;
+    color:#1F618D;
+    cursor:pointer;
+}
+
+/* 移动端适配 */
+@media (max-width:768px){
+
+    .home-container {
+        width: calc(100% - 40px);
+    }
+
+
+    .home-news-item {
+
+        grid-template-columns:1fr;
+        row-gap:6px;
+
+    }
+
+    .home-news-text {
+        grid-row:1;
+    }
+
+    .home-news-date {
+
+        grid-row:2;
+        justify-self:start;
+
+        font-size:13px;
+        line-height:1.4;
+    }
+
 }
