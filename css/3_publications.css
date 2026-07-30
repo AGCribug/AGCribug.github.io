@@ -108,12 +108,23 @@
     text-decoration: none;
 }
 
-/* 响应式：针对移动端微调 */
+/* 移动端响应 */
 @media (max-width: 768px) {
     .container {
-        width: calc(100% - 40px); /* 移动端屏幕小，左右改留20px间距 */
+        width: calc(100% - 40px);
     }
+
+    .filter-bar {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .publication-section-title {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
     .publication-item {
-        padding: 15px; /* 移动端内部稍微紧凑一点 */
+        padding: 15px 0;
     }
 }

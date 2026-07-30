@@ -138,7 +138,7 @@
     white-space: nowrap;
 }
 
-/* 手机端适配 */
+/* 移动端响应 */
 @media (max-width: 768px) {
     .member-card {
         width: calc(100% - 40px);
@@ -147,9 +147,8 @@
         align-items: center;
         gap: 16px;
 
-        padding: 16px;
+        padding: 16px 0;
     }
-
     .member-left {
         width: 100%;
     }

@@ -1,5 +1,4 @@
 /* 1_home */
-/* Home 页面整体容器 */
 .home-container {
     width: calc(100% - 80px);
     max-width: 1000px;
@@ -161,19 +160,21 @@
     cursor: pointer;
 }
 
-/* 手机端响应 */
+/* 移动端响应 */
 @media (max-width: 768px) {
+    .home-container {
+        width: calc(100% - 40px);
+    }
+
     .home-news-item {
         grid-template-columns: 1fr;
         row-gap: 4px;
     }
 
-    /* 新闻内容在上 */
     .home-news-text {
         grid-row: 1;
     }
 
-    /* 日期位于新闻内容左下方 */
     .home-news-date {
         grid-row: 2;
         justify-self: start;

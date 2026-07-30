@@ -79,10 +79,10 @@
     color: #666666;
 }
 
-/* 4_手机端适配 */
+/* 移动端响应 */
 @media (max-width: 768px) {
     .news-container {
-        width: calc(100% - 32px);
+        width: calc(100% - 40px);
         gap: 22px;
     }
 

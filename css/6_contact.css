@@ -102,14 +102,14 @@
     color: #0056B3;
 }
 
-/* 手机端适配 */
+/* 移动端响应 */
 @media (max-width: 768px) {
     .contact-container {
         width: calc(100% - 40px);
     }
 
     .contact-card {
-        padding: 22px 20px;
+        padding: 22px 0;
     }
 
     .contact-header h2 {

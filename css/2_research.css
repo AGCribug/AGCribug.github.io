@@ -94,7 +94,7 @@
     text-align: center;
 }
 
-/* 移动端：改回上下排列 */
+/* 移动端响应 */
 @media (max-width: 768px) {
     .research-container {
         width: calc(100% - 40px);
