@@ -34,7 +34,7 @@
     box-sizing: border-box;
 
     margin: 0;
-    padding: 6px 18px;
+    padding: 6px 0;
 
     background-color: #FFFFFF;
     border-radius: 12px;
@@ -52,7 +52,7 @@
 }
 
 .publication-section-title {
-    margin: 6px 18px;
+    margin: 6px 0;
     font-size: 16px;
     font-weight: normal;
     text-align: left;

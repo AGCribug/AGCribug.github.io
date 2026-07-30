@@ -52,7 +52,8 @@ function initPhotoGallery() {
 
     function resetImagePositions() {
         images.forEach((image, index) => {
-            image.style.transition = "";
+            image.style.transition = "none";
+
             image.style.transform =
                 index === currentImageIndex
                     ? "translateX(0)"
@@ -65,6 +66,14 @@ function initPhotoGallery() {
         });
 
         updateButtons();
+
+        gallery.offsetWidth;
+
+        window.requestAnimationFrame(() => {
+            images.forEach(image => {
+                image.style.transition = "";
+            });
+        });
     }
 
     function slideToImage(nextIndex, direction = 1) {
