@@ -57,6 +57,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return "简";
     }
 
+    // 根据当前语言更新浏览器标签页标题
+    function updateDocumentTitle(lang) {
+        const titles = {
+            sc: "Shiping的个人主页",
+            tc: "Shiping的個人主頁",
+            en: "Henry's Homepage"
+        };
+        document.title =
+            titles[lang] || titles.sc;
+    }
+
     // 获取移动端 Header 页面标题
     function getMobileHeaderTitle(pageId) {
         const lang =
@@ -510,6 +521,7 @@ let visits =
 
         const lang =
             getLangFromPageId(pageId);
+            updateDocumentTitle(lang);
 
         const assetId =
             pageId.replace(
