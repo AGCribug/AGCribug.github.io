@@ -14,10 +14,10 @@
 }
 
 /* 2_年份区域 */
-.news-year {
+.news-type {
     width: 100%;
 }
-.news-year h2 {
+.news-type h2 {
     margin: 0 0 12px;
     padding-bottom: 0px;
     font-size: 26px;
