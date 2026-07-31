@@ -661,14 +661,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1.10_初始化 Footer 信息
     function initFooterInfo(lang) {
         const year =
-            document.getElementById(
-                "year"
-            );
+            document.getElementById("year");
 
         const date =
-            document.getElementById(
-                "date"
-            );
+            document.getElementById("date");
 
         const visitsText =
             document.getElementById(
@@ -693,7 +689,7 @@ document.addEventListener("DOMContentLoaded", function () {
             now.toLocaleDateString();
 
         const counterBaseUrl =
-            "https://api.counterapi.dev/v1/agcribug-github-io/page-visits";
+            "https://api.counterapi.dev/v1/agcribug-github-io/page-visits/";
 
         const hasCounted =
             sessionStorage.getItem(
@@ -703,7 +699,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const counterUrl =
             hasCounted
                 ? counterBaseUrl
-                : `${counterBaseUrl}/up`;
+                : `${counterBaseUrl}up`;
 
         fetch(counterUrl)
             .then(response => {
