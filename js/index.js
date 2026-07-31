@@ -3,17 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const mainContent = document.getElementById("main-content");
     const defaultPage = "1_home_sc";
 
-    if (!mainContent) {
-        console.error("未找到 #main-content");
-        return;
-    }
-
-    // 防止快速切换页面时，旧请求覆盖新页面
-    let latestLoadId = 0;
-
     // 1.1_从网址 hash 中读取当前页面
     function getPageFromHash() {
-        const pageId = window.location.hash.replace("#", "");
+        const pageId =
+            window.location.hash.replace("#", "");
 
         return pageId || defaultPage;
     }
@@ -37,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 去掉页面名称末尾的语言后缀
     function getBasePageId(pageId) {
-        return pageId.replace(/_(sc|tc|en)$/, "");
+        return pageId.replace(
+            /_(sc|tc|en)$/,
+            ""
+        );
     }
 
     // 语言显示文字
@@ -57,6 +53,129 @@ document.addEventListener("DOMContentLoaded", function () {
         return "简";
     }
 
+    // 三语言系统提示
+    function getSystemMessage(lang, key) {
+        const messages = {
+            sc: {
+                mainContentNotFound:
+                    "未找到 #main-content",
+
+                headerNotFound:
+                    "未找到 #header",
+                headerLoadFailed:
+                    "Header 加载失败：",
+
+                footerNotFound:
+                    "未找到 #footer",
+                footerLoadFailed:
+                    "Footer 加载失败：",
+
+                counterLoadFailed:
+                    "访问统计加载失败：",
+
+                contentLoadFailed:
+                    "页面内容加载失败：",
+
+                cssLoadFailed:
+                    "CSS 加载失败：",
+
+                jsNotFound:
+                    "未找到 JS：",
+                jsLoadFailed:
+                    "JS 加载失败：",
+                jsCheckFailed:
+                    "JS 检查失败："
+            },
+
+            tc: {
+                mainContentNotFound:
+                    "未找到 #main-content",
+
+                headerNotFound:
+                    "未找到 #header",
+                headerLoadFailed:
+                    "Header 載入失敗：",
+
+                footerNotFound:
+                    "未找到 #footer",
+                footerLoadFailed:
+                    "Footer 載入失敗：",
+
+                counterLoadFailed:
+                    "瀏覽統計載入失敗：",
+
+                contentLoadFailed:
+                    "頁面內容載入失敗：",
+
+                cssLoadFailed:
+                    "CSS 載入失敗：",
+
+                jsNotFound:
+                    "未找到 JS：",
+                jsLoadFailed:
+                    "JS 載入失敗：",
+                jsCheckFailed:
+                    "JS 檢查失敗："
+            },
+
+            en: {
+                mainContentNotFound:
+                    "#main-content not found",
+
+                headerNotFound:
+                    "#header not found",
+                headerLoadFailed:
+                    "Failed to load Header:",
+
+                footerNotFound:
+                    "#footer not found",
+                footerLoadFailed:
+                    "Failed to load Footer:",
+
+                counterLoadFailed:
+                    "Failed to load visit statistics:",
+
+                contentLoadFailed:
+                    "Failed to load page content:",
+
+                cssLoadFailed:
+                    "Failed to load CSS:",
+
+                jsNotFound:
+                    "JS not found:",
+                jsLoadFailed:
+                    "Failed to load JS:",
+                jsCheckFailed:
+                    "Failed to check JS:"
+            }
+        };
+
+        return (
+            messages[lang]?.[key] ||
+            messages.sc[key] ||
+            ""
+        );
+    }
+
+    const initialLang =
+        getLangFromPageId(
+            getPageFromHash()
+        );
+
+    if (!mainContent) {
+        console.error(
+            getSystemMessage(
+                initialLang,
+                "mainContentNotFound"
+            )
+        );
+
+        return;
+    }
+
+    // 防止快速切换页面时，旧请求覆盖新页面
+    let latestLoadId = 0;
+
     // 根据当前语言更新浏览器标签页标题
     function updateDocumentTitle(lang) {
         const titles = {
@@ -64,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tc: "Shiping的個人主頁",
             en: "Henry's Homepage"
         };
+
         document.title =
             titles[lang] || titles.sc;
     }
@@ -105,7 +225,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
 
-        return titles[lang]?.[basePageId] || "";
+        return (
+            titles[lang]?.[basePageId] ||
+            ""
+        );
     }
 
     // 更新移动端 Header 页面标题
@@ -125,17 +248,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 1.3_关闭语言菜单
     function closeLanguageMenu() {
-        const langSwitcher = document.querySelector(".lang-switcher");
+        const langSwitcher =
+            document.querySelector(
+                ".lang-switcher"
+            );
 
         if (langSwitcher) {
-            langSwitcher.classList.remove("is-open");
+            langSwitcher.classList.remove(
+                "is-open"
+            );
         }
     }
 
     // 1.4_关闭移动端导航菜单
     function closeMobileMenu() {
         const navbar =
-            document.querySelector(".navbar");
+            document.querySelector(
+                ".navbar"
+            );
 
         const menuToggle =
             document.querySelector(
@@ -158,163 +288,206 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 1.5_关闭 Footer 菜单
     function closeFooterMenus() {
-        document.querySelectorAll(".menu").forEach(menu => {
-            menu.style.display = "none";
-        });
+        document
+            .querySelectorAll(".menu")
+            .forEach(menu => {
+                menu.style.display =
+                    "none";
+            });
     }
 
     // 1.6_统一处理导航、语言选择和 Footer 菜单点击
-    document.addEventListener("click", function (event) {
+    document.addEventListener(
+        "click",
+        function (event) {
 
-        // 移动端导航菜单按钮
-        const mobileMenuToggle =
-            event.target.closest(
-                ".mobile-menu-toggle"
-            );
-
-        if (mobileMenuToggle) {
-            const navbar =
-                mobileMenuToggle.closest(
-                    ".navbar"
+            // 移动端导航菜单按钮
+            const mobileMenuToggle =
+                event.target.closest(
+                    ".mobile-menu-toggle"
                 );
 
-            if (navbar) {
-                const isOpen =
-                    navbar.classList.toggle(
-                        "mobile-menu-open"
+            if (mobileMenuToggle) {
+                const navbar =
+                    mobileMenuToggle.closest(
+                        ".navbar"
                     );
 
-                mobileMenuToggle.setAttribute(
-                    "aria-expanded",
-                    String(isOpen)
-                );
-            }
+                if (navbar) {
+                    const isOpen =
+                        navbar.classList.toggle(
+                            "mobile-menu-open"
+                        );
 
-            closeLanguageMenu();
-            closeFooterMenus();
+                    mobileMenuToggle
+                        .setAttribute(
+                            "aria-expanded",
+                            String(isOpen)
+                        );
+                }
 
-            return;
-        }
+                closeLanguageMenu();
+                closeFooterMenus();
 
-        // 顶部导航按钮
-        const navButton =
-            event.target.closest("button[data-base-page]");
-
-        if (navButton) {
-            const basePageId =
-                navButton.getAttribute("data-base-page");
-
-            const currentLang =
-                getLangFromPageId(getPageFromHash());
-
-            const pageId =
-                `${basePageId}_${currentLang}`;
-
-            closeMobileMenu();
-            closeLanguageMenu();
-            closeFooterMenus();
-
-            if (window.location.hash !== `#${pageId}`) {
-                window.location.hash = pageId;
-            } else {
-                loadContent(pageId);
-            }
-
-            return;
-        }
-
-        // 当前语言按钮
-        const langToggle =
-            event.target.closest("#lang-toggle");
-
-        if (langToggle) {
-            const langSwitcher =
-                document.querySelector(".lang-switcher");
-
-            if (langSwitcher) {
-                langSwitcher.classList.toggle("is-open");
-            }
-
-            closeMobileMenu();
-            closeFooterMenus();
-
-            return;
-        }
-
-        // 语言菜单选项
-        const langButton =
-            event.target.closest(
-                "#lang-menu button[data-lang]"
-            );
-
-        if (langButton) {
-            const targetLang =
-                langButton.getAttribute("data-lang");
-
-            const currentPageId =
-                getPageFromHash();
-
-            const basePageId =
-                getBasePageId(currentPageId);
-
-            const targetPageId =
-                `${basePageId}_${targetLang}`;
-
-            closeLanguageMenu();
-            closeFooterMenus();
-
-            // 立即更新菜单，避免短暂显示三个语言
-            updateLanguageSwitcher(targetPageId);
-
-            if (
-                window.location.hash !==
-                `#${targetPageId}`
-            ) {
-                window.location.hash = targetPageId;
-            } else {
-                loadContent(targetPageId);
-            }
-
-            return;
-        }
-
-        // Footer 菜单按钮
-        const footerButton =
-            event.target.closest(".menu-btn");
-
-        if (footerButton) {
-            const group =
-                footerButton.closest(".menu-group");
-
-            const menu =
-                group
-                    ? group.querySelector(".menu")
-                    : null;
-
-            if (!menu) {
                 return;
             }
 
-            const shouldOpen =
-                menu.style.display !== "block";
+            // 顶部导航按钮
+            const navButton =
+                event.target.closest(
+                    "button[data-base-page]"
+                );
 
-            closeFooterMenus();
+            if (navButton) {
+                const basePageId =
+                    navButton.getAttribute(
+                        "data-base-page"
+                    );
+
+                const currentLang =
+                    getLangFromPageId(
+                        getPageFromHash()
+                    );
+
+                const pageId =
+                    `${basePageId}_${currentLang}`;
+
+                closeMobileMenu();
+                closeLanguageMenu();
+                closeFooterMenus();
+
+                if (
+                    window.location.hash !==
+                    `#${pageId}`
+                ) {
+                    window.location.hash =
+                        pageId;
+                } else {
+                    loadContent(pageId);
+                }
+
+                return;
+            }
+
+            // 当前语言按钮
+            const langToggle =
+                event.target.closest(
+                    "#lang-toggle"
+                );
+
+            if (langToggle) {
+                const langSwitcher =
+                    document.querySelector(
+                        ".lang-switcher"
+                    );
+
+                if (langSwitcher) {
+                    langSwitcher
+                        .classList.toggle(
+                            "is-open"
+                        );
+                }
+
+                closeMobileMenu();
+                closeFooterMenus();
+
+                return;
+            }
+
+            // 语言菜单选项
+            const langButton =
+                event.target.closest(
+                    "#lang-menu button[data-lang]"
+                );
+
+            if (langButton) {
+                const targetLang =
+                    langButton.getAttribute(
+                        "data-lang"
+                    );
+
+                const currentPageId =
+                    getPageFromHash();
+
+                const basePageId =
+                    getBasePageId(
+                        currentPageId
+                    );
+
+                const targetPageId =
+                    `${basePageId}_${targetLang}`;
+
+                closeLanguageMenu();
+                closeFooterMenus();
+
+                // 立即更新菜单，避免短暂显示三个语言
+                updateLanguageSwitcher(
+                    targetPageId
+                );
+
+                if (
+                    window.location.hash !==
+                    `#${targetPageId}`
+                ) {
+                    window.location.hash =
+                        targetPageId;
+                } else {
+                    loadContent(
+                        targetPageId
+                    );
+                }
+
+                return;
+            }
+
+            // Footer 菜单按钮
+            const footerButton =
+                event.target.closest(
+                    ".menu-btn"
+                );
+
+            if (footerButton) {
+                const group =
+                    footerButton.closest(
+                        ".menu-group"
+                    );
+
+                const menu =
+                    group
+                        ? group.querySelector(
+                            ".menu"
+                        )
+                        : null;
+
+                if (!menu) {
+                    return;
+                }
+
+                const shouldOpen =
+                    menu.style.display !==
+                    "block";
+
+                closeFooterMenus();
+                closeLanguageMenu();
+
+                menu.style.display =
+                    shouldOpen
+                        ? "block"
+                        : "none";
+
+                return;
+            }
+
+            // 点击其他位置时关闭全部菜单
+            closeMobileMenu();
             closeLanguageMenu();
-
-            menu.style.display =
-                shouldOpen ? "block" : "none";
-
-            return;
+            closeFooterMenus();
         }
-
-        // 点击其他位置时关闭全部菜单
-        closeMobileMenu();
-        closeLanguageMenu();
-        closeFooterMenus();
-    });
+    );
 
     // 1.7_全局页面初始化接口
-    window.currentPageId = getPageFromHash();
+    window.currentPageId =
+        getPageFromHash();
 
     window.initPage = function (pageId) {
         console.log(
@@ -324,7 +497,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.currentPageId = pageId;
 
         const navbar =
-            document.querySelector(".navbar");
+            document.querySelector(
+                ".navbar"
+            );
 
         if (navbar) {
             navbar.classList.remove(
@@ -334,7 +509,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 初始化首页
         if (
-            pageId.startsWith("1_home") &&
+            pageId.startsWith(
+                "1_home"
+            ) &&
             typeof window.initHomePage ===
                 "function"
         ) {
@@ -369,7 +546,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!response.ok) {
                 throw new Error(
-                    `Couldn't load ${headerUrl}`
+                    headerUrl
                 );
             }
 
@@ -377,7 +554,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 await response.text();
 
             // 当前请求已经过期，不再插入
-            if (loadId !== latestLoadId) {
+            if (
+                loadId !== latestLoadId
+            ) {
                 return;
             }
 
@@ -388,22 +567,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!header) {
                 console.warn(
-                    "未找到 #header"
+                    getSystemMessage(
+                        lang,
+                        "headerNotFound"
+                    )
                 );
+
                 return;
             }
 
             header.innerHTML = html;
 
             // Header 插入后立即校正语言状态
-            updateLanguageSwitcher(pageId);
+            updateLanguageSwitcher(
+                pageId
+            );
 
             // 更新移动端页面标题
-            updateMobileHeaderTitle(pageId);
+            updateMobileHeaderTitle(
+                pageId
+            );
 
         } catch (error) {
             console.warn(
-                "Header 加载失败：",
+                getSystemMessage(
+                    lang,
+                    "headerLoadFailed"
+                ),
                 error
             );
         }
@@ -423,7 +613,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!response.ok) {
                 throw new Error(
-                    `Couldn't load ${footerUrl}`
+                    footerUrl
                 );
             }
 
@@ -431,7 +621,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 await response.text();
 
             // 当前请求已经过期，不再插入
-            if (loadId !== latestLoadId) {
+            if (
+                loadId !== latestLoadId
+            ) {
                 return;
             }
 
@@ -442,29 +634,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!footer) {
                 console.warn(
-                    "未找到 #footer"
+                    getSystemMessage(
+                        lang,
+                        "footerNotFound"
+                    )
                 );
+
                 return;
             }
 
             footer.innerHTML = html;
 
-            initFooterInfo();
+            initFooterInfo(lang);
+
         } catch (error) {
             console.warn(
-                "Footer 加载失败：",
+                getSystemMessage(
+                    lang,
+                    "footerLoadFailed"
+                ),
                 error
             );
         }
     }
 
     // 1.10_初始化 Footer 信息
-    function initFooterInfo() {
+    function initFooterInfo(lang) {
         const year =
-            document.getElementById("year");
+            document.getElementById(
+                "year"
+            );
 
         const date =
-            document.getElementById("date");
+            document.getElementById(
+                "date"
+            );
 
         const visitsText =
             document.getElementById(
@@ -482,46 +686,74 @@ document.addEventListener("DOMContentLoaded", function () {
         year.textContent =
             new Date().getFullYear();
 
-        const now = new Date();
+        const now =
+            new Date();
 
         date.textContent =
             now.toLocaleDateString();
 
-let visits =
-    Number(
-        localStorage.getItem("visits")
-    ) || 0;
+        const counterBaseUrl =
+            "https://api.counterapi.dev/v1/agcribug-github-io/page-visits";
 
+        const hasCounted =
+            sessionStorage.getItem(
+                "site-visit-counted"
+            );
 
-    if (!sessionStorage.getItem("visited")) {
+        const counterUrl =
+            hasCounted
+                ? counterBaseUrl
+                : `${counterBaseUrl}/up`;
 
-        visits++;
+        fetch(counterUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(
+                        counterUrl
+                    );
+                }
 
-        localStorage.setItem(
-            "visits",
-            String(visits)
-        );
+                return response.json();
+            })
+            .then(data => {
+                visitsText.textContent =
+                    String(data.count);
 
-        sessionStorage.setItem(
-            "visited",
-            "true"
-        );
-    }
+                if (!hasCounted) {
+                    sessionStorage.setItem(
+                        "site-visit-counted",
+                        "true"
+                    );
+                }
+            })
+            .catch(error => {
+                console.warn(
+                    getSystemMessage(
+                        lang,
+                        "counterLoadFailed"
+                    ),
+                    error
+                );
 
-        visitsText.textContent =
-            String(visits);
+                visitsText.textContent =
+                    "—";
+            });
     }
 
     // 1.11_加载页面内容
     async function loadContent(pageId) {
-        const loadId = ++latestLoadId;
+        const loadId =
+            ++latestLoadId;
 
         const htmlUrl =
             `parts/${pageId}.html`;
 
         const lang =
-            getLangFromPageId(pageId);
-            updateDocumentTitle(lang);
+            getLangFromPageId(
+                pageId
+            );
+
+        updateDocumentTitle(lang);
 
         const assetId =
             pageId.replace(
@@ -535,7 +767,8 @@ let visits =
         const jsUrl =
             `js/${assetId}.js`;
 
-        window.currentPageId = pageId;
+        window.currentPageId =
+            pageId;
 
         mainContent.style.visibility =
             "hidden";
@@ -560,7 +793,7 @@ let visits =
 
             if (!response.ok) {
                 throw new Error(
-                    `Couldn't load ${htmlUrl}`
+                    htmlUrl
                 );
             }
 
@@ -569,7 +802,8 @@ let visits =
 
             await loadPageCss(
                 cssUrl,
-                loadId
+                loadId,
+                lang
             );
 
             await Promise.all([
@@ -578,11 +812,14 @@ let visits =
             ]);
 
             // 当前请求已经过期
-            if (loadId !== latestLoadId) {
+            if (
+                loadId !== latestLoadId
+            ) {
                 return;
             }
 
-            mainContent.innerHTML = html;
+            mainContent.innerHTML =
+                html;
 
             mainContent.style.visibility =
                 "visible";
@@ -590,83 +827,122 @@ let visits =
             window.scrollTo(0, 0);
 
             // 页面载入后再次校正语言菜单
-            updateLanguageSwitcher(pageId);
+            updateLanguageSwitcher(
+                pageId
+            );
 
             loadPageScript(
                 jsUrl,
                 pageId,
                 loadId
             );
+
         } catch (error) {
-            if (loadId !== latestLoadId) {
+            if (
+                loadId !== latestLoadId
+            ) {
                 return;
             }
 
             mainContent.style.visibility =
                 "visible";
 
-            mainContent.innerHTML =
-                `<p>${error.message}</p>`;
+            const message =
+                getSystemMessage(
+                    lang,
+                    "contentLoadFailed"
+                );
 
-            console.error(error);
+            mainContent.innerHTML =
+                `<p>${message}</p>`;
+
+            console.error(
+                message,
+                error
+            );
         }
     }
 
     // 1.12_加载当前页面 CSS
     function loadPageCss(
         cssUrl,
-        loadId
+        loadId,
+        lang
     ) {
-        return new Promise(resolve => {
-            if (loadId !== latestLoadId) {
-                resolve();
-                return;
-            }
+        return new Promise(
+            resolve => {
 
-            const existingLink =
-                document.getElementById(
-                    "page-style"
-                );
-
-            const link =
-                document.createElement(
-                    "link"
-                );
-
-            link.rel = "stylesheet";
-            link.href = cssUrl;
-            link.id = "page-style";
-
-            let hasFinished = false;
-
-            function finish() {
-                if (hasFinished) {
+                if (
+                    loadId !==
+                    latestLoadId
+                ) {
+                    resolve();
                     return;
                 }
 
-                hasFinished = true;
-                resolve();
-            }
+                const existingLink =
+                    document.getElementById(
+                        "page-style"
+                    );
 
-            link.onload = finish;
+                const link =
+                    document.createElement(
+                        "link"
+                    );
 
-            link.onerror = function () {
-                console.warn(
-                    `CSS 加载失败：${cssUrl}`
+                link.rel =
+                    "stylesheet";
+
+                link.href =
+                    cssUrl;
+
+                link.id =
+                    "page-style";
+
+                let hasFinished =
+                    false;
+
+                function finish() {
+                    if (hasFinished) {
+                        return;
+                    }
+
+                    hasFinished =
+                        true;
+
+                    resolve();
+                }
+
+                link.onload =
+                    finish;
+
+                link.onerror =
+                    function () {
+                        console.warn(
+                            getSystemMessage(
+                                lang,
+                                "cssLoadFailed"
+                            ),
+                            cssUrl
+                        );
+
+                        finish();
+                    };
+
+                if (existingLink) {
+                    existingLink.remove();
+                }
+
+                document.head
+                    .appendChild(link);
+
+                // 防止网络异常时一直等待
+                setTimeout(
+                    finish,
+                    3000
                 );
-
-                finish();
-            };
-
-            if (existingLink) {
-                existingLink.remove();
             }
-
-            document.head.appendChild(link);
-
-            // 防止网络异常时一直等待
-            setTimeout(finish, 3000);
-        });
+        );
     }
 
     // 1.13_加载当前页面 JS
@@ -675,6 +951,11 @@ let visits =
         pageId,
         loadId
     ) {
+        const lang =
+            getLangFromPageId(
+                pageId
+            );
+
         const oldScript =
             document.getElementById(
                 "page-script"
@@ -687,17 +968,24 @@ let visits =
         fetch(jsUrl)
             .then(response => {
                 if (
-                    loadId !== latestLoadId
+                    loadId !==
+                    latestLoadId
                 ) {
                     return;
                 }
 
                 if (!response.ok) {
                     console.warn(
-                        `未找到 JS：${jsUrl}`
+                        getSystemMessage(
+                            lang,
+                            "jsNotFound"
+                        ),
+                        jsUrl
                     );
 
-                    if (window.initPage) {
+                    if (
+                        window.initPage
+                    ) {
                         window.initPage(
                             pageId
                         );
@@ -711,9 +999,14 @@ let visits =
                         "script"
                     );
 
-                script.src = jsUrl;
-                script.id = "page-script";
-                script.type = "module";
+                script.src =
+                    jsUrl;
+
+                script.id =
+                    "page-script";
+
+                script.type =
+                    "module";
 
                 script.onload =
                     function () {
@@ -731,7 +1024,11 @@ let visits =
                 script.onerror =
                     function () {
                         console.warn(
-                            `JS 加载失败：${jsUrl}`
+                            getSystemMessage(
+                                lang,
+                                "jsLoadFailed"
+                            ),
+                            jsUrl
                         );
 
                         if (
@@ -745,24 +1042,34 @@ let visits =
                         }
                     };
 
-                document.body.appendChild(
-                    script
-                );
+                document.body
+                    .appendChild(
+                        script
+                    );
             })
             .catch(error => {
                 if (
-                    loadId !== latestLoadId
+                    loadId !==
+                    latestLoadId
                 ) {
                     return;
                 }
 
                 console.warn(
-                    `JS 检查失败：${jsUrl}`,
+                    getSystemMessage(
+                        lang,
+                        "jsCheckFailed"
+                    ),
+                    jsUrl,
                     error
                 );
 
-                if (window.initPage) {
-                    window.initPage(pageId);
+                if (
+                    window.initPage
+                ) {
+                    window.initPage(
+                        pageId
+                    );
                 }
             });
     }
@@ -795,11 +1102,15 @@ let visits =
         }
 
         const currentLang =
-            getLangFromPageId(pageId);
+            getLangFromPageId(
+                pageId
+            );
 
         // 外部按钮显示当前语言
         currentText.textContent =
-            getLangLabel(currentLang);
+            getLangLabel(
+                currentLang
+            );
 
         // 每次更新时关闭菜单
         langSwitcher.classList.remove(
@@ -839,7 +1150,9 @@ let visits =
     }
 
     // 2.1_首次进入页面
-    loadContent(getPageFromHash());
+    loadContent(
+        getPageFromHash()
+    );
 
     // 2.2_hash 改变时重新加载
     window.addEventListener(
@@ -854,29 +1167,67 @@ let visits =
 
 // 3_Scrollbar
 (function initFloatingScrollbar() {
-    const scrollbar = document.createElement("div");
-    scrollbar.className = "floating-scrollbar";
-    const thumb = document.createElement("div");
-    thumb.className = "floating-scrollbar-thumb";
-    scrollbar.appendChild(thumb);
-    document.body.appendChild(scrollbar);
+    const scrollbar =
+        document.createElement(
+            "div"
+        );
+
+    scrollbar.className =
+        "floating-scrollbar";
+
+    const thumb =
+        document.createElement(
+            "div"
+        );
+
+    thumb.className =
+        "floating-scrollbar-thumb";
+
+    scrollbar.appendChild(
+        thumb
+    );
+
+    document.body.appendChild(
+        scrollbar
+    );
+
     let hideTimer = null;
     let isDragging = false;
     let dragStartY = 0;
     let startScrollTop = 0;
+
     function getScrollInfo() {
         const scrollTop =
-            window.scrollY || document.documentElement.scrollTop;
+            window.scrollY ||
+            document.documentElement
+                .scrollTop;
+
         const scrollHeight =
-            document.documentElement.scrollHeight;
+            document.documentElement
+                .scrollHeight;
+
         const clientHeight =
-            document.documentElement.clientHeight;
+            document.documentElement
+                .clientHeight;
+
         const maxScrollTop =
-            scrollHeight - clientHeight;
+            scrollHeight -
+            clientHeight;
+
         const thumbHeight =
-            Math.max((clientHeight / scrollHeight) * clientHeight, 40);
+            Math.max(
+                (
+                    clientHeight /
+                    scrollHeight
+                ) *
+                    clientHeight,
+                40
+            );
+
         const maxThumbTop =
-            clientHeight - thumbHeight;
+            clientHeight -
+            thumbHeight;
+
         return {
             scrollTop,
             scrollHeight,
@@ -886,93 +1237,235 @@ let visits =
             maxThumbTop
         };
     }
+
     function showScrollbar() {
-        scrollbar.classList.add("is-visible");
-        clearTimeout(hideTimer);
+        scrollbar.classList.add(
+            "is-visible"
+        );
+
+        clearTimeout(
+            hideTimer
+        );
+
         if (!isDragging) {
-            hideTimer = setTimeout(function () {
-                scrollbar.classList.remove("is-visible");
-            }, 700);
+            hideTimer =
+                setTimeout(
+                    function () {
+                        scrollbar
+                            .classList
+                            .remove(
+                                "is-visible"
+                            );
+                    },
+                    700
+                );
         }
     }
+
     function updateScrollbar() {
-        const info = getScrollInfo();
-        if (info.maxScrollTop <= 0) {
-            scrollbar.classList.remove("is-visible");
+        const info =
+            getScrollInfo();
+
+        if (
+            info.maxScrollTop <= 0
+        ) {
+            scrollbar.classList.remove(
+                "is-visible"
+            );
+
             return;
         }
+
         const thumbTop =
-            (info.scrollTop / info.maxScrollTop) * info.maxThumbTop;
-        thumb.style.height = `${info.thumbHeight}px`;
-        thumb.style.transform = `translateY(${thumbTop}px)`;
+            (
+                info.scrollTop /
+                info.maxScrollTop
+            ) *
+            info.maxThumbTop;
+
+        thumb.style.height =
+            `${info.thumbHeight}px`;
+
+        thumb.style.transform =
+            `translateY(${thumbTop}px)`;
+
         showScrollbar();
     }
-    thumb.addEventListener("mousedown", function (event) {
-        event.preventDefault();
-        isDragging = true;
-        dragStartY = event.clientY;
-        startScrollTop =
-            window.scrollY || document.documentElement.scrollTop;
-        scrollbar.classList.add("is-visible");
-        clearTimeout(hideTimer);
-        document.body.style.userSelect = "none";
-    });
-    window.addEventListener("mousemove", function (event) {
-        if (!isDragging) {
-            return;
+
+    thumb.addEventListener(
+        "mousedown",
+        function (event) {
+            event.preventDefault();
+
+            isDragging = true;
+
+            dragStartY =
+                event.clientY;
+
+            startScrollTop =
+                window.scrollY ||
+                document.documentElement
+                    .scrollTop;
+
+            scrollbar.classList.add(
+                "is-visible"
+            );
+
+            clearTimeout(
+                hideTimer
+            );
+
+            document.body.style
+                .userSelect =
+                "none";
         }
-        const info = getScrollInfo();
-        if (info.maxScrollTop <= 0 || info.maxThumbTop <= 0) {
-            return;
+    );
+
+    window.addEventListener(
+        "mousemove",
+        function (event) {
+            if (!isDragging) {
+                return;
+            }
+
+            const info =
+                getScrollInfo();
+
+            if (
+                info.maxScrollTop <= 0 ||
+                info.maxThumbTop <= 0
+            ) {
+                return;
+            }
+
+            const deltaY =
+                event.clientY -
+                dragStartY;
+
+            const scrollDelta =
+                (
+                    deltaY /
+                    info.maxThumbTop
+                ) *
+                info.maxScrollTop;
+
+            window.scrollTo({
+                top:
+                    startScrollTop +
+                    scrollDelta,
+
+                behavior:
+                    "auto"
+            });
+
+            updateScrollbar();
         }
-        const deltaY = event.clientY - dragStartY;
-        const scrollDelta =
-            (deltaY / info.maxThumbTop) * info.maxScrollTop;
-        window.scrollTo({
-            top: startScrollTop + scrollDelta,
-            behavior: "auto"
-        });
-        updateScrollbar();
-    });
-    window.addEventListener("mouseup", function () {
-        if (!isDragging) {
-            return;
+    );
+
+    window.addEventListener(
+        "mouseup",
+        function () {
+            if (!isDragging) {
+                return;
+            }
+
+            isDragging =
+                false;
+
+            document.body.style
+                .userSelect =
+                "";
+
+            updateScrollbar();
         }
-        isDragging = false;
-        document.body.style.userSelect = "";
-        updateScrollbar();
-    });
-    window.addEventListener("scroll", updateScrollbar);
-    window.addEventListener("resize", updateScrollbar);
+    );
+
+    window.addEventListener(
+        "scroll",
+        updateScrollbar
+    );
+
+    window.addEventListener(
+        "resize",
+        updateScrollbar
+    );
+
     updateScrollbar();
 })();
 
+
 // 4_Navbar
 (function initNavbarAutoHide() {
-    const navbar = document.querySelector(".navbar");
+    const navbar =
+        document.querySelector(
+            ".navbar"
+        );
+
     if (!navbar) {
         return;
     }
-    let lastScrollY = window.scrollY;
-    window.addEventListener("scroll", function () {
-        const currentScrollY = window.scrollY;
-        const currentPageId = window.currentPageId || "1_home_sc";
-        if (currentPageId.startsWith("1_home")) {
-            navbar.classList.remove("navbar-hidden");
-            lastScrollY = currentScrollY;
-            return;
+
+    let lastScrollY =
+        window.scrollY;
+
+    window.addEventListener(
+        "scroll",
+        function () {
+            const currentScrollY =
+                window.scrollY;
+
+            const currentPageId =
+                window.currentPageId ||
+                "1_home_sc";
+
+            if (
+                currentPageId.startsWith(
+                    "1_home"
+                )
+            ) {
+                navbar.classList.remove(
+                    "navbar-hidden"
+                );
+
+                lastScrollY =
+                    currentScrollY;
+
+                return;
+            }
+
+            if (
+                currentScrollY <= 0
+            ) {
+                navbar.classList.remove(
+                    "navbar-hidden"
+                );
+
+                lastScrollY =
+                    currentScrollY;
+
+                return;
+            }
+
+            if (
+                currentScrollY >
+                lastScrollY
+            ) {
+                navbar.classList.add(
+                    "navbar-hidden"
+                );
+            }
+
+            if (
+                currentScrollY <
+                lastScrollY
+            ) {
+                navbar.classList.remove(
+                    "navbar-hidden"
+                );
+            }
+
+            lastScrollY =
+                currentScrollY;
         }
-        if (currentScrollY <= 0) {
-            navbar.classList.remove("navbar-hidden");
-            lastScrollY = currentScrollY;
-            return;
-        }
-        if (currentScrollY > lastScrollY) {
-            navbar.classList.add("navbar-hidden");
-        }
-        if (currentScrollY < lastScrollY) {
-            navbar.classList.remove("navbar-hidden");
-        }
-        lastScrollY = currentScrollY;
-    });
+    );
 })();
