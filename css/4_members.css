@@ -105,11 +105,6 @@
     overflow-wrap: break-word;
 }
 
-.education-row td:nth-child(1),
-.education-row td:nth-child(2) {
-    white-space: nowrap;
-}
-
 /* 表格文字全部取消加粗，并且全部靠左 */
 .member-info-table th,
 .member-info-table td {
