@@ -89,7 +89,7 @@
 
 /* 履历表格 */
 .member-info-table {
-    width: auto;
+    width: 100%;
     max-width: 100%;
 
     border-collapse: collapse;
@@ -98,6 +98,16 @@
 
     font-size: 15px;
     color: #222222;
+}
+
+.member-info-table td[colspan="3"] {
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.education-row td:nth-child(1),
+.education-row td:nth-child(2) {
+    white-space: nowrap;
 }
 
 /* 表格文字全部取消加粗，并且全部靠左 */
