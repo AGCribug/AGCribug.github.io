@@ -688,13 +688,27 @@ document.addEventListener("DOMContentLoaded", function () {
         date.textContent =
             now.toLocaleDateString();
 
-        const counterBaseUrl =
-            "https://api.counterapi.dev/v1/agcribug-github-io/page-visits/";
+        const cachedCount =
+            sessionStorage.getItem(
+                "site-visit-count"
+            );
 
         const hasCounted =
             sessionStorage.getItem(
                 "site-visit-counted"
             );
+
+        // 当前会话已经成功获取过访问人数
+        // 页面切换时直接显示缓存，不再请求接口
+        if (cachedCount !== null) {
+            visitsText.textContent =
+                cachedCount;
+
+            return;
+        }
+
+        const counterBaseUrl =
+            "https://api.counterapi.dev/v1/agcribug-github-io/page-visits/";
 
         const counterUrl =
             hasCounted
@@ -712,9 +726,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                visitsText.textContent =
+                const count =
                     String(data.count);
 
+                visitsText.textContent =
+                    count;
+
+                // 保存访问人数，
+                // 页面切换后直接读取
+                sessionStorage.setItem(
+                    "site-visit-count",
+                    count
+                );
+
+                // 当前会话只增加一次访问量
                 if (!hasCounted) {
                     sessionStorage.setItem(
                         "site-visit-counted",
