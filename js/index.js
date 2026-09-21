@@ -3,12 +3,69 @@ document.addEventListener("DOMContentLoaded", function () {
     const mainContent = document.getElementById("main-content");
     const defaultPage = "1_home_sc";
 
-    // 1.1_从网址 hash 中读取当前页面
-    function getPageFromHash() {
-        const pageId =
-            window.location.hash.replace("#", "");
+    const pageRouteMap = {
+        "1_home": "home",
+        "2_research": "research",
+        "3_publications": "publications",
+        "4_members": "members",
+        "5_news": "news",
+        "6_contact": "contact"
+    };
 
-        return pageId || defaultPage;
+    const routePageMap = {
+        home: "1_home",
+        research: "2_research",
+        publications: "3_publications",
+        members: "4_members",
+        news: "5_news",
+        contact: "6_contact"
+    };
+
+    // 1.1_根据内部 pageId 生成公开网址
+    function getPathFromPageId(pageId) {
+        const lang =
+            getLangFromPageId(pageId);
+
+        const basePageId =
+            getBasePageId(pageId);
+
+        const route =
+            pageRouteMap[basePageId] ||
+            "home";
+
+        return `/${route}/${lang.toUpperCase()}`;
+    }
+
+    // 从公开网址读取内部 pageId
+    function getPageFromPath() {
+        const pathParts =
+            window.location.pathname
+                .split("/")
+                .filter(Boolean);
+
+        // 访问根目录时默认简体首页
+        if (pathParts.length === 0) {
+            return defaultPage;
+        }
+
+        const route =
+            pathParts[0].toLowerCase();
+
+        const lang =
+            (pathParts[1] || "SC")
+                .toLowerCase();
+
+        const basePageId =
+            routePageMap[route];
+
+        if (
+            !basePageId ||
+            !["sc", "tc", "en"].includes(lang)
+        ) {
+            return defaultPage;
+        }
+
+        return `${basePageId}_${lang}`;
     }
 
     // 1.2_识别当前语言
@@ -159,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const initialLang =
         getLangFromPageId(
-            getPageFromHash()
+            getPageFromPath()
         );
 
     if (!mainContent) {
@@ -346,7 +403,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const currentLang =
                     getLangFromPageId(
-                        getPageFromHash()
+                        getPageFromPath()
                     );
 
                 const pageId =
@@ -356,15 +413,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 closeLanguageMenu();
                 closeFooterMenus();
 
+                const targetPath =
+                    getPathFromPageId(pageId);
+
                 if (
-                    window.location.hash !==
-                    `#${pageId}`
+                    window.location.pathname !==
+                    targetPath
                 ) {
-                    window.location.hash =
-                        pageId;
-                } else {
-                    loadContent(pageId);
+                    history.pushState(
+                        { pageId },
+                        "",
+                        targetPath
+                    );
                 }
+
+                loadContent(pageId);
 
                 return;
             }
@@ -407,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 const currentPageId =
-                    getPageFromHash();
+                    getPageFromPath();
 
                 const basePageId =
                     getBasePageId(
@@ -425,17 +488,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     targetPageId
                 );
 
-                if (
-                    window.location.hash !==
-                    `#${targetPageId}`
-                ) {
-                    window.location.hash =
-                        targetPageId;
-                } else {
-                    loadContent(
+                const targetPath =
+                    getPathFromPageId(
                         targetPageId
                     );
+
+                if (
+                    window.location.pathname !==
+                    targetPath
+                ) {
+                    history.pushState(
+                        {
+                            pageId:
+                                targetPageId
+                        },
+                        "",
+                        targetPath
+                    );
                 }
+
+                loadContent(
+                    targetPageId
+                );
 
                 return;
             }
@@ -487,7 +561,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 1.7_全局页面初始化接口
     window.currentPageId =
-        getPageFromHash();
+        getPageFromPath();
 
     window.initPage = function (pageId) {
         console.log(
@@ -1171,19 +1245,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 2.1_首次进入页面
+    const initialPageId =
+        getPageFromPath();
+
+    // 如果直接访问网站根目录，
+    // 自动整理成 /home/SC
+    if (
+        window.location.pathname === "/"
+    ) {
+        history.replaceState(
+            {
+                pageId:
+                    initialPageId
+            },
+            "",
+            getPathFromPageId(
+                initialPageId
+            )
+        );
+    }
+
     loadContent(
-        getPageFromHash()
+        initialPageId
     );
 
-    // 2.2_hash 改变时重新加载
-    window.addEventListener(
-        "hashchange",
-        function () {
-            loadContent(
-                getPageFromHash()
-            );
-        }
-    );
+    // 2.2_浏览器前进、后退时重新加载
+   window.addEventListener(
+       "popstate",
+       function () {
+           loadContent(
+               getPageFromPath()
+           );
+       }
+   );
 });
 
 // 3_Scrollbar
