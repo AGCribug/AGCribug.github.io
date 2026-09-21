@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // 1.1_根据内部 pageId 生成公开网址
-    function getPathFromPageId(pageId) {
+    function getPathFromPageId(
+        pageId,
+        detailPath = ""
+    ) {
         const lang =
             getLangFromPageId(pageId);
 
@@ -33,11 +36,16 @@ document.addEventListener("DOMContentLoaded", function () {
             pageRouteMap[basePageId] ||
             "home";
 
-        return `/${route}/${lang.toUpperCase()}`;
+        const basePath =
+            `/${lang}/${route}`;
+
+        return detailPath
+            ? `${basePath}/${detailPath}`
+            : basePath;
     }
 
-    // 从公开网址读取内部 pageId
-    function getPageFromPath() {
+    // 从公开网址读取路由信息
+    function getRouteInfoFromPath() {
         const pathParts =
             window.location.pathname
                 .split("/")
@@ -45,14 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 访问根目录时默认简体首页
         if (pathParts.length === 0) {
-            return defaultPage;
+            return {
+                pageId: defaultPage,
+                lang: "sc",
+                route: "home",
+                detailPath: ""
+            };
         }
 
-        const route =
-            pathParts[0].toLowerCase();
-
         const lang =
-            (pathParts[1] || "SC")
+            (pathParts[0] || "sc")
+                .toLowerCase();
+
+        const route =
+            (pathParts[1] || "home")
                 .toLowerCase();
 
         const basePageId =
@@ -62,10 +76,33 @@ document.addEventListener("DOMContentLoaded", function () {
             !basePageId ||
             !["sc", "tc", "en"].includes(lang)
         ) {
-            return defaultPage;
+            return {
+                pageId: defaultPage,
+                lang: "sc",
+                route: "home",
+                detailPath: ""
+            };
         }
 
-        return `${basePageId}_${lang}`;
+        return {
+            pageId:
+                `${basePageId}_${lang}`,
+
+            lang,
+
+            route,
+
+            detailPath:
+                pathParts
+                    .slice(2)
+                    .join("/")
+        };
+    }
+
+    // 从公开网址读取内部 pageId
+    function getPageFromPath() {
+        return getRouteInfoFromPath()
+            .pageId;
     }
 
     // 1.2_识别当前语言
@@ -488,9 +525,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     targetPageId
                 );
 
+                const currentRouteInfo =
+                    getRouteInfoFromPath();
+
                 const targetPath =
                     getPathFromPageId(
-                        targetPageId
+                        targetPageId,
+                        currentRouteInfo.detailPath
                     );
 
                 if (
@@ -1249,7 +1290,7 @@ document.addEventListener("DOMContentLoaded", function () {
         getPageFromPath();
 
     // 如果直接访问网站根目录，
-    // 自动整理成 /home/SC
+    // 自动整理成 /sc/home
     if (
         window.location.pathname === "/"
     ) {
