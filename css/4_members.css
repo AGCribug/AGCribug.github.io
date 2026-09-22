@@ -192,7 +192,7 @@
     gap: 16px;
 }
 
-/* 单个图标 */
+/* 单个链接 */
 .member-link {
     display: inline-flex;
     align-items: center;
@@ -200,16 +200,21 @@
 
     flex-shrink: 0;
 
-    color: #4458B8;
-
-    font-size: 30px;
-    line-height: 1;
-
     text-decoration: none;
 
     transition:
         transform 0.2s ease,
         opacity 0.2s ease;
+}
+
+/* SVG 图标 */
+.member-link img {
+    width: 30px;
+    height: 30px;
+
+    display: block;
+
+    object-fit: contain;
 }
 
 /* 图标悬停 */
@@ -261,7 +266,7 @@
     padding-right: 0;
 }
 
-/* 桌面端：时间、学校尽量不换行 */
+/* 桌面端：时间和学校尽量不换行 */
 .education-row td:nth-child(1),
 .education-row td:nth-child(2) {
     white-space: nowrap;
@@ -315,7 +320,6 @@
     /* 左侧区域 */
     .member-detail-left {
         width: 100%;
-
         gap: 14px;
     }
 
@@ -325,13 +329,15 @@
         line-height: 1.7;
     }
 
-    /* 图标 */
+    /* 图标区域 */
     .member-links {
         gap: 18px;
     }
 
-    .member-link {
-        font-size: 28px;
+    /* 手机端 SVG 稍微缩小 */
+    .member-link img {
+        width: 28px;
+        height: 28px;
     }
 
     /* 教育经历表格 */
