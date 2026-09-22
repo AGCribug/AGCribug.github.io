@@ -192,6 +192,14 @@
     gap: 16px;
 }
 
+/* 照片下方的学术链接 */
+.member-photo-links {
+    width: 140px;
+    margin-top: 10px;
+
+    justify-content: center;
+}
+
 /* 单个链接 */
 .member-link {
     display: inline-flex;
