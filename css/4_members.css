@@ -34,7 +34,7 @@
         transform 0.2s ease;
 }
 
-/* 左侧照片与姓名 */
+/* 左侧照片区域 */
 .member-left {
     width: 180px;
     flex-shrink: 0;
@@ -79,7 +79,7 @@
     text-align: center;
 }
 
-/* 右侧表格区域 */
+/* 右侧整体区域 */
 .member-right {
     flex: 1;
     min-width: 0;
@@ -88,7 +88,7 @@
     align-items: center;
 }
 
-/* 履历表格 */
+/* 主信息表格 */
 .member-info-table {
     width: 100%;
     max-width: 100%;
@@ -101,7 +101,7 @@
     color: #222222;
 }
 
-/* 表格文字全部取消加粗，并且全部靠左 */
+/* 表格文字 */
 .member-info-table th,
 .member-info-table td {
     padding: 4px 0;
@@ -121,32 +121,156 @@
     word-break: normal;
 }
 
-/* 教育经历标题 */
-.member-info-table th {
-    padding-top: 0;
-    padding-bottom: 6px;
+/* =========================
+   自我介绍下方左右信息区
+   ========================= */
 
-    color: #222222;
-    font-weight: 600;
+/* 外层单元格 */
+.member-detail-cell {
+    padding-top: 16px !important;
 }
 
-/* 表格列间距 */
+/* 左：研究方向 + 图标
+   右：教育经历 */
+.member-detail-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 36px;
+
+    align-items: stretch;
+}
+
+/* =========================
+   左侧：研究方向 + 链接
+   ========================= */
+
+.member-detail-left {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+/* 小标题 */
+.detail-title {
+    margin-bottom: 6px;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+
+    color: #222222;
+}
+
+/* 研究方向区域 */
+.member-research {
+    width: 100%;
+}
+
+/* 研究方向关键词 */
+.research-keywords {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+
+    color: #222222;
+}
+
+/* 图标链接区域 */
+.member-links {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 16px;
+}
+
+/* 单个图标 */
+.member-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #4458B8;
+
+    font-size: 30px;
+    line-height: 1;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+/* 图标悬停 */
+.member-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.75;
+}
+
+/* =========================
+   右侧：教育经历
+   ========================= */
+
+.member-detail-right {
+    min-width: 0;
+}
+
+/* 教育经历内部表格 */
+.education-table {
+    width: 100%;
+    max-width: 100%;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
+
+    font-size: 15px;
+    color: #222222;
+}
+
+/* 教育经历单元格 */
+.education-table td {
+    padding: 4px 0;
+
+    border: none;
+    vertical-align: top;
+    text-align: left;
+
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* 教育经历列间距 */
 .education-row td {
     padding-right: 32px;
 }
 
-/* 最后一列不额外留右间距 */
+/* 最后一列不留额外右间距 */
 .education-row td:last-child {
     padding-right: 0;
 }
 
-/* 桌面端：时间和学校不换行 */
+/* 桌面端：时间、学校尽量不换行 */
 .education-row td:nth-child(1),
 .education-row td:nth-child(2) {
     white-space: nowrap;
 }
 
-/* 移动端响应 */
+/* =========================
+   移动端响应
+   ========================= */
+
 @media (max-width: 768px) {
 
     .member-card {
@@ -182,11 +306,46 @@
         word-break: normal;
     }
 
-    /* 学校和学位紧邻显示，日期位于下一行左侧 */
+    /* 自我介绍下方改为上下排列 */
+    .member-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* 左侧区域 */
+    .member-detail-left {
+        width: 100%;
+
+        gap: 14px;
+    }
+
+    /* 研究方向 */
+    .research-keywords {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* 图标 */
+    .member-links {
+        gap: 18px;
+    }
+
+    .member-link {
+        font-size: 28px;
+    }
+
+    /* 教育经历表格 */
+    .education-table {
+        width: 100%;
+        table-layout: auto;
+    }
+
+    /* 学校和学位在第一行，日期在第二行 */
     .education-row {
         display: grid;
         grid-template-columns: max-content max-content;
         justify-content: start;
+
         column-gap: 10px;
         row-gap: 2px;
 
@@ -197,17 +356,20 @@
         padding: 0;
     }
 
+    /* 日期 */
     .education-row td:nth-child(1) {
         grid-column: 1 / -1;
         grid-row: 2;
 
         color: #666666;
+
         font-size: 13px;
         line-height: 1.4;
 
         white-space: nowrap;
     }
 
+    /* 学校 */
     .education-row td:nth-child(2) {
         grid-column: 1;
         grid-row: 1;
@@ -218,6 +380,7 @@
         white-space: normal;
     }
 
+    /* 学位 */
     .education-row td:nth-child(3) {
         grid-column: 2;
         grid-row: 1;
