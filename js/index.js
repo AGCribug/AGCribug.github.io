@@ -813,8 +813,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "site-visit-counted"
             );
 
-        // 当前会话已经成功获取过访问人数
-        // 页面切换时直接显示缓存，不再请求接口
+        // 当前会话已经获取过浏览人数
+        // 页面切换时直接使用缓存
         if (cachedCount !== null) {
             visitsText.textContent =
                 cachedCount;
@@ -822,39 +822,60 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const counterBaseUrl =
-            "https://api.counterapi.dev/v1/agcribug-github-io/page-visits/";
-
+        // 换成你自己的 Cloudflare Worker 地址
         const counterUrl =
-            hasCounted
-                ? counterBaseUrl
-                : `${counterBaseUrl}up`;
+            "https://你的-worker地址.workers.dev/visit";
 
-        fetch(counterUrl)
+        // 当前会话第一次访问：POST，浏览人数 +1
+        // 当前会话已经计数过：GET，只读取
+        const requestMethod =
+            hasCounted
+                ? "GET"
+                : "POST";
+
+        fetch(
+            counterUrl,
+            {
+                method: requestMethod,
+                headers: {
+                    "Accept":
+                        "application/json"
+                }
+            }
+        )
             .then(response => {
                 if (!response.ok) {
                     throw new Error(
-                        counterUrl
+                        `${response.status} ${counterUrl}`
                     );
                 }
 
                 return response.json();
             })
             .then(data => {
+                if (
+                    data.count === undefined ||
+                    data.count === null
+                ) {
+                    throw new Error(
+                        "访问统计返回数据无效"
+                    );
+                }
+
                 const count =
                     String(data.count);
 
                 visitsText.textContent =
                     count;
 
-                // 保存访问人数，
-                // 页面切换后直接读取
+                // 保存当前浏览人数
+                // SPA 页面切换时不再请求 Worker
                 sessionStorage.setItem(
                     "site-visit-count",
                     count
                 );
 
-                // 当前会话只增加一次访问量
+                // 本浏览器会话只统计一次
                 if (!hasCounted) {
                     sessionStorage.setItem(
                         "site-visit-counted",
