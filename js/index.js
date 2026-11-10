@@ -395,6 +395,25 @@ document.addEventListener("DOMContentLoaded", function () {
         "click",
         function (event) {
 
+            // 新闻详情和返回链接沿用栏目加载流程。
+            const newsLink = event.target.closest('a[href]');
+            if (newsLink && !event.defaultPrevented && event.button === 0 &&
+                !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey &&
+                !newsLink.hasAttribute("download") &&
+                (!newsLink.target || newsLink.target === "_self")) {
+                const target = new URL(newsLink.href, window.location.href);
+                if (target.origin === window.location.origin &&
+                    /^\/(sc|tc|en)\/news(?:\/[a-zA-Z0-9_-]+)?\/?$/.test(target.pathname)) {
+                    event.preventDefault();
+                    history.pushState({}, "", target.pathname);
+                    closeMobileMenu();
+                    closeLanguageMenu();
+                    closeFooterMenus();
+                    loadContent(getPageFromPath());
+                    return;
+                }
+            }
+
             // 移动端导航菜单按钮
             const mobileMenuToggle =
                 event.target.closest(
@@ -861,8 +880,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const loadId =
             ++latestLoadId;
 
-        const htmlUrl =
-            `parts/${pageId}.html`;
+        const routeInfo = getRouteInfoFromPath();
+        const detail = getBasePageId(pageId) === "5_news"
+            ? routeInfo.detailPath : "";
+        const validDetail = /^[a-zA-Z0-9_-]+$/.test(detail);
+        const htmlUrl = detail
+            ? (validDetail ? `news/${detail}_${getLangFromPageId(pageId)}.html` : "news/not-found.html")
+            : `parts/${pageId}.html`;
 
         const lang =
             getLangFromPageId(
