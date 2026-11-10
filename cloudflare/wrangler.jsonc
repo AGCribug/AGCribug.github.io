@@ -1,0 +1,13 @@
+{
+  "name": "counter",
+  "main": "counter.mjs",
+  "compatibility_date": "2026-10-10",
+  "account_id": "c75a690c195938193008c87c7adb10a3",
+  "workers_dev": true,
+  "kv_namespaces": [
+    {
+      "binding": "VISIT_KV",
+      "id": "2f5cf8ce76f04921a2ca91e72cd08339"
+    }
+  ]
+}

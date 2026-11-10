@@ -803,98 +803,57 @@ document.addEventListener("DOMContentLoaded", function () {
         date.textContent =
             now.toLocaleDateString();
 
-        const cachedCount =
-            sessionStorage.getItem(
-                "site-visit-count"
-            );
+        visitsText.textContent = "…";
+        getVisitCount().then(count => {
+            // Footer may have been replaced while the request was running.
+            const current = document.getElementById("visits");
+            if (current) current.textContent = String(count);
+        }).catch(error => {
+            console.warn(getSystemMessage(lang, "counterLoadFailed"), error);
+            const current = document.getElementById("visits");
+            if (current) current.textContent = "—";
+        });
+    }
 
-        const hasCounted =
-            sessionStorage.getItem(
-                "site-visit-counted"
-            );
+    // Share one pending request across page and language changes.
+    let visitRequest = null;
+    let visitCount = null;
+    let visitCounted = false;
 
-        // 当前会话已经获取过浏览人数
-        // 页面切换时直接使用缓存
-        if (cachedCount !== null) {
-            visitsText.textContent =
-                cachedCount;
+    function readVisitStorage(key) {
+        try { return sessionStorage.getItem(key); }
+        catch { return null; }
+    }
 
-            return;
-        }
+    function getVisitCount() {
+        if (visitCount !== null) return Promise.resolve(visitCount);
+        if (visitRequest) return visitRequest;
 
-        // 换成你自己的 Cloudflare Worker 地址
-        const counterUrl =
-            "https://你的-worker地址.workers.dev/visit";
-
-        // 当前会话第一次访问：POST，浏览人数 +1
-        // 当前会话已经计数过：GET，只读取
-        const requestMethod =
-            hasCounted
-                ? "GET"
-                : "POST";
-
-        fetch(
-            counterUrl,
-            {
-                method: requestMethod,
-                headers: {
-                    "Accept":
-                        "application/json"
-                }
+        const counted = visitCounted || readVisitStorage("site-visit-counted") === "true";
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
+        visitRequest = fetch("https://counter.ninuharumo.workers.dev/visit", {
+            method: counted ? "GET" : "POST",
+            headers: { Accept: "application/json" },
+            cache: "no-store",
+            signal: controller.signal
+        }).then(async response => {
+            if (!response.ok) throw new Error(`Counter HTTP ${response.status}`);
+            const data = await response.json();
+            if (!Number.isSafeInteger(data.count) || data.count < 0) {
+                throw new Error("Invalid visit count");
             }
-        )
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(
-                        `${response.status} ${counterUrl}`
-                    );
-                }
-
-                return response.json();
-            })
-            .then(data => {
-                if (
-                    data.count === undefined ||
-                    data.count === null
-                ) {
-                    throw new Error(
-                        "访问统计返回数据无效"
-                    );
-                }
-
-                const count =
-                    String(data.count);
-
-                visitsText.textContent =
-                    count;
-
-                // 保存当前浏览人数
-                // SPA 页面切换时不再请求 Worker
-                sessionStorage.setItem(
-                    "site-visit-count",
-                    count
-                );
-
-                // 本浏览器会话只统计一次
-                if (!hasCounted) {
-                    sessionStorage.setItem(
-                        "site-visit-counted",
-                        "true"
-                    );
-                }
-            })
-            .catch(error => {
-                console.warn(
-                    getSystemMessage(
-                        lang,
-                        "counterLoadFailed"
-                    ),
-                    error
-                );
-
-                visitsText.textContent =
-                    "—";
-            });
+            visitCount = data.count;
+            visitCounted = true;
+            try {
+                sessionStorage.setItem("site-visit-counted", "true");
+            } catch { /* In-memory state still prevents duplicate SPA requests. */ }
+            return visitCount;
+        }).finally(() => {
+            clearTimeout(timeout);
+            visitRequest = null;
+        });
+        return visitRequest;
     }
 
     // 1.11_加载页面内容
