@@ -641,3 +641,16 @@ body {
         display: none;
     }
 }
+/* 首页和新闻栏目共用的新闻正文链接 */
+a.news-detail-link,
+a.news-detail-link:visited {
+    color: inherit;
+    text-decoration: none;
+}
+a.news-detail-link:hover {
+    color: #02BF02;
+}
+a.news-detail-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
