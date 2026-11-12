@@ -105,3 +105,24 @@
 .news-detail h1 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 8px; }
 .news-detail time { opacity: .7; }
 .news-detail a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+/* Article metadata stays above the responsive text/photo layout. */
+.news-article-header { padding: 24px 0; border-bottom: 1px solid #deded9; }
+.news-detail .news-article-header h1 { margin: 0 0 12px; line-height: 1.4; }
+.news-detail .news-subtitle { margin: 0 0 22px; font-size: clamp(17px, 2vw, 20px); color: #555; line-height: 1.65; }
+.news-byline, .news-published { margin: 4px 0; font-size: 14px; color: #666; }
+.news-detail .news-published time { opacity: 1; }
+.news-article-body { margin: 20px 0; }
+.news-article-body--split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; gap: 40px; }
+.news-prose { min-width: 0; font-size: 16px; line-height: 1.9; }
+.news-prose p { margin: 0 0 1.2em; text-align: justify; text-indent: 2em; }
+.news-article-body figure { min-width: 0; margin: 0; }
+.news-article-body img { display: block; width: 100%; height: auto; }
+.news-article-body figcaption { margin-top: 10px; font-size: 13px; line-height: 1.7; color: #666; }
+@media (max-width: 768px) {
+    .news-article-body--split { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .news-article-body--split figure { grid-row: 1; }
+    .news-article-header { padding-top: 16px; }
+}
+
+.news-prose[lang="en"] p { text-indent: 0; text-align: left; overflow-wrap: normal; }
