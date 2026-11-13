@@ -126,3 +126,19 @@
 }
 
 .news-prose[lang="en"] p { text-indent: 0; text-align: left; overflow-wrap: normal; }
+
+.news-meta { display: flex; align-items: baseline; gap: 8px 28px; flex-wrap: wrap; }
+.news-meta p { margin: 0; }
+.news-article-body--stacked { display: flex; flex-direction: column; gap: 28px; }
+.news-article-body--stacked figure { width: 100%; }
+@media (min-width: 769px) {
+    /* Let prose determine the row height; fit the complete portrait within it. */
+    .news-article-body--split figure { contain: size; height: 100%; min-height: 0; display: flex; flex-direction: column; align-items: center; }
+    .news-article-body--split figure img { flex: 1; min-height: 0; width: 100%; object-fit: contain; }
+    .news-article-body--split figcaption { flex: 0 0 auto; text-align: center; }
+}
+
+/* Keep author and publication time on separate lines on narrow screens. */
+@media (max-width: 768px) {
+    .news-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
