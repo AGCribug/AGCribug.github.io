@@ -142,3 +142,15 @@
 @media (max-width: 768px) {
     .news-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
 }
+
+/* Fit the complete paper figure inside a single viewport, including caption. */
+.news-article-body--stacked figure img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 65vh;
+    max-height: 65svh;
+    object-fit: contain;
+    margin: 0 auto;
+}
+.news-article-body--stacked figcaption { text-align: center; }
